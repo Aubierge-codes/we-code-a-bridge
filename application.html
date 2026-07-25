@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Job Application Form — Codebridge</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* ---- Application form page-specific styles ---- */
+  .app-hero-section {
+    text-align: center;
+    background: var(--cb-navy);
+    border-radius: 28px;
+    padding: 54px 40px 48px;
+    color: var(--cb-white);
+    margin: 30px 0 0;
+  }
+  .app-hero-section .logo-circle {
+    width: 72px; height: 72px;
+    background: var(--cb-white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 22px;
+    font-weight: 800; font-size: 22px;
+    color: var(--cb-navy);
+  }
+  .app-hero-section h2 {
+    font-size: 28px; font-weight: 700;
+    margin: 0 0 10px; color: var(--cb-white);
+  }
+  .app-hero-section p {
+    color: rgba(255,255,255,0.72);
+    font-size: 15px; margin: 0;
+  }
+
+  /* Step tabs inside the form */
+  .form-step-tabs {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    background: var(--cb-bg-soft);
+    border-radius: 10px 10px 0 0;
+    border: 1px solid var(--cb-border);
+    border-bottom: none;
+    overflow: hidden;
+  }
+  .form-step-tabs button {
+    background: transparent;
+    border: none;
+    border-right: 1px solid var(--cb-border);
+    padding: 18px 10px;
+    font-size: 13px; font-weight: 600;
+    color: var(--cb-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+  }
+  .form-step-tabs button:last-child { border-right: none; }
+  .form-step-tabs button.active {
+    background: var(--cb-navy);
+    color: var(--cb-white);
+  }
+
+  /* Form panel */
+  .form-panel {
+    border: 1px solid var(--cb-border);
+    border-radius: 0 0 18px 18px;
+    background: var(--cb-white);
+    padding: 48px 48px 36px;
+  }
+
+  .form-step { display: none; }
+  .form-step.active { display: block; }
+
+  /* Two-col field row */
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 680px) { .field-row { grid-template-columns: 1fr; } }
+
+  .field-group { display: flex; flex-direction: column; }
+  .field-group label {
+    font-size: 12px; font-weight: 700;
+    color: var(--cb-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    margin-bottom: 10px;
+  }
+  .field-input-wrap {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid var(--cb-border);
+    padding-bottom: 8px;
+    gap: 10px;
+    transition: border-color 0.2s;
+  }
+  .field-input-wrap:focus-within { border-color: var(--cb-navy); }
+  .field-input-wrap input,
+  .field-input-wrap select,
+  .field-input-wrap textarea {
+    flex: 1; border: none; outline: none;
+    font-family: inherit; font-size: 14px;
+    color: var(--cb-text);
+    background: transparent;
+  }
+  .field-input-wrap .field-icon { color: var(--cb-text-muted); font-size: 16px; flex-shrink: 0; }
+
+  /* Full-width field */
+  .field-full {
+    margin-bottom: 28px;
+  }
+
+  /* Position card selector */
+  .position-grid {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  @media (max-width: 680px) { .position-grid { grid-template-columns: 1fr; } }
+  .position-card {
+    border: 2px solid var(--cb-border);
+    border-radius: 14px;
+    padding: 22px 20px;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .position-card.selected, .position-card:hover {
+    border-color: var(--cb-navy);
+    background: #f0f2fa;
+  }
+  .position-card input[type="radio"] { display: none; }
+  .position-card .pos-title { font-weight: 700; font-size: 15px; margin-bottom: 4px; color: var(--cb-navy); }
+  .position-card .pos-meta { font-size: 13px; color: var(--cb-text-muted); }
+
+  /* Education rows */
+  .edu-entry {
+    background: var(--cb-bg-soft);
+    border-radius: 14px;
+    padding: 26px 28px;
+    margin-bottom: 16px;
+  }
+  .edu-entry .field-row { margin-bottom: 0; }
+
+  /* Upload area */
+  .upload-area {
+    border: 2px dashed var(--cb-border);
+    border-radius: 14px;
+    padding: 48px 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    margin-bottom: 16px;
+  }
+  .upload-area:hover { border-color: var(--cb-navy); background: #f5f6fb; }
+  .upload-area .upload-icon { font-size: 36px; margin-bottom: 12px; }
+  .upload-area p { margin: 0 0 8px; font-weight: 600; font-size: 15px; }
+  .upload-area span { font-size: 13px; color: var(--cb-text-muted); }
+  .upload-area input[type="file"] { display: none; }
+
+  .upload-list { list-style: none; padding: 0; margin: 0 0 24px; }
+  .upload-list li {
+    display: flex; align-items: center; justify-content: space-between;
+    background: var(--cb-bg-soft);
+    border: 1px solid var(--cb-border);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    font-size: 14px;
+  }
+  .upload-list li span { color: var(--cb-text-muted); font-size: 12px; }
+
+  /* Nav buttons */
+  .form-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 28px;
+    border-top: 1px solid var(--cb-border);
+    margin-top: 10px;
+  }
+  .btn-prev {
+    background: var(--cb-navy);
+    color: var(--cb-white);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 14px 32px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-prev:hover { background: var(--cb-navy-dark); }
+  .btn-next {
+    background: var(--cb-navy);
+    color: var(--cb-white);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 14px 44px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-next:hover { background: var(--cb-navy-dark); }
+  .btn-submit {
+    background: var(--cb-red);
+    color: var(--cb-white);
+    border: none;
+    border-radius: var(--radius-pill);
+    padding: 14px 44px;
+    font-weight: 700;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .btn-submit:hover { background: var(--cb-red-dark); }
+
+  /* Success message */
+  .success-msg {
+    display: none;
+    text-align: center;
+    padding: 60px 20px;
+  }
+  .success-msg .check { font-size: 54px; margin-bottom: 20px; }
+  .success-msg h3 { font-size: 26px; color: var(--cb-navy); margin: 0 0 12px; }
+  .success-msg p { color: var(--cb-text-muted); max-width: 400px; margin: 0 auto 28px; }
+
+  /* Progress indicator */
+  .step-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px 0 0;
+  }
+  .step-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transition: background 0.3s, width 0.3s;
+  }
+  .step-dot.active {
+    background: var(--cb-white);
+    width: 24px;
+    border-radius: 4px;
+  }
+
+  .copyright-bar {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: var(--cb-text-muted);
+    border-top: 1px solid var(--cb-border);
+    margin-top: 30px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Main navigation">
+    <div class="site-nav-pill">
+      <a href="index.html" class="site-nav-logo" aria-label="Codebridge home">
+        <img src="images/logo.png" alt="Codebridge logo">
+      </a>
+      <div class="site-nav-links">
+        <a href="index.html">Home</a>
+        <a href="about.html">About us</a>
+        <a href="news.html">News</a>
+        <a href="services.html">Services</a>
+        <a href="careers.html" class="active">Careers</a>
+        <a href="innovations.html">Innovations</a>
+        <a href="gallery.html">Gallery</a>
+      </div>
+      <button class="site-nav-lang" aria-label="Language: English">EN</button>
+      <button class="site-nav-toggle" aria-label="Open menu">☰</button>
+    </div>
+    <a href="contact.html" class="site-nav-contact">Contact us</a>
+  </nav>
+
+<!-- NAVBAR -->
+
+
+<main class="container" style="padding-bottom: 60px;">
+
+  <!-- Careers sub-navigation -->
+  <div style="display:flex;justify-content:flex-end;margin-top:40px;">
+    <div class="tab-pill-group">
+      <a href="careers.html"><button>Careers</button></a>
+      <button class="active">Application form</button>
+      <a href="hr.html"><button>Job details</button></a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div class="app-hero-section" style="margin-top:28px;">
+    <div class="logo-circle">CB</div>
+    <h2>Job application Form</h2>
+    <p>This information will let us know more about you</p>
+    <div class="step-progress">
+      <div class="step-dot active" id="dot-0"></div>
+      <div class="step-dot" id="dot-1"></div>
+      <div class="step-dot" id="dot-2"></div>
+      <div class="step-dot" id="dot-3"></div>
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div style="max-width:760px;margin:0 auto;">
+    <div class="form-step-tabs">
+      <button class="active" data-step="0">Position</button>
+      <button data-step="1">P.Information</button>
+      <button data-step="2">Education</button>
+      <button data-step="3">Attachments</button>
+    </div>
+
+    <div class="form-panel" id="formPanel">
+
+      <!-- STEP 0 — Position -->
+      <div class="form-step active" id="step-0">
+        <p style="color:var(--cb-text-muted);font-size:15px;margin:0 0 28px;">Select the position you're applying for</p>
+        <div class="position-grid">
+          <label class="position-card selected">
+            <input type="radio" name="position" value="js-dev" checked>
+            <div class="pos-title">JavaScript Senior Developer</div>
+            <div class="pos-meta">Remote · Full-time · Kigali</div>
+          </label>
+          <label class="position-card">
+            <input type="radio" name="position" value="ui-ux">
+            <div class="pos-title">UI/UX Designer</div>
+            <div class="pos-meta">Hybrid · Full-time · Kigali</div>
+          </label>
+          <label class="position-card">
+            <input type="radio" name="position" value="ai-ml">
+            <div class="pos-title">AI / ML Engineer</div>
+            <div class="pos-meta">Remote · Full-time · Kigali</div>
+          </label>
+          <label class="position-card">
+            <input type="radio" name="position" value="cybersec">
+            <div class="pos-title">Cybersecurity Analyst</div>
+            <div class="pos-meta">On-site · Full-time · Kigali</div>
+          </label>
+          <label class="position-card">
+            <input type="radio" name="position" value="devops">
+            <div class="pos-title">DevOps Engineer</div>
+            <div class="pos-meta">Remote · Full-time · Kigali</div>
+          </label>
+          <label class="position-card">
+            <input type="radio" name="position" value="intern">
+            <div class="pos-title">IT Internship</div>
+            <div class="pos-meta">On-site · 3–6 months · Kigali</div>
+          </label>
+        </div>
+        <div class="form-nav">
+          <span></span>
+          <button class="btn-next" onclick="nextStep()">Next</button>
+        </div>
+      </div>
+
+      <!-- STEP 1 — Personal Information -->
+      <div class="form-step" id="step-1">
+        <div class="field-row">
+          <div class="field-group">
+            <label>Full name</label>
+            <div class="field-input-wrap">
+              <input type="text" placeholder="Full name" autocomplete="name">
+              <span class="field-icon">👤</span>
+            </div>
+          </div>
+          <div class="field-group">
+            <label>Email address</label>
+            <div class="field-input-wrap">
+              <input type="email" placeholder="Email address" autocomplete="email">
+              <span class="field-icon">✉️</span>
+            </div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Company name</label>
+            <div class="field-input-wrap">
+              <input type="text" placeholder="Company name (optional)">
+              <span class="field-icon">🏢</span>
+            </div>
+          </div>
+          <div class="field-group">
+            <label>Phone number</label>
+            <div class="field-input-wrap">
+              <input type="tel" placeholder="Phone number" autocomplete="tel">
+              <span class="field-icon">📞</span>
+            </div>
+          </div>
+        </div>
+        <div class="field-row">
+          <div class="field-group">
+            <label>Date of birth</label>
+            <div class="field-input-wrap">
+              <input type="date">
+              <span class="field-icon">📅</span>
+            </div>
+          </div>
+          <div class="field-group">
+            <label>Location / City</label>
+            <div class="field-input-wrap">
+              <input type="text" placeholder="Kigali, Rwanda">
+              <span class="field-icon">📍</span>
+            </div>
+          </div>
+        </div>
+        <div class="field-full field-group">
+          <label>LinkedIn / Portfolio URL</label>
+          <div class="field-input-wrap">
+            <input type="url" placeholder="https://linkedin.com/in/yourprofile">
+            <span class="field-icon">🔗</span>
+          </div>
+        </div>
+        <div class="form-nav">
+          <button class="btn-prev" onclick="prevStep()">Previous</button>
+          <button class="btn-next" onclick="nextStep()">Next</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 — Education -->
+      <div class="form-step" id="step-2">
+        <div class="edu-entry">
+          <div class="field-row">
+            <div class="field-group">
+              <label>Institution name</label>
+              <div class="field-input-wrap">
+                <input type="text" placeholder="University / School">
+                <span class="field-icon">🏫</span>
+              </div>
+            </div>
+            <div class="field-group">
+              <label>Degree / Certificate</label>
+              <div class="field-input-wrap">
+                <select>
+                  <option value="">Select degree</option>
+                  <option>High School Diploma</option>
+                  <option>Associate Degree</option>
+                  <option>Bachelor's Degree</option>
+                  <option>Master's Degree</option>
+                  <option>PhD / Doctorate</option>
+                  <option>Professional Certification</option>
+                </select>
+                <span class="field-icon">🎓</span>
+              </div>
+            </div>
+          </div>
+          <div class="field-row" style="margin-top:18px;">
+            <div class="field-group">
+              <label>Field of study</label>
+              <div class="field-input-wrap">
+                <input type="text" placeholder="Computer Science, Design…">
+              </div>
+            </div>
+            <div class="field-group">
+              <label>Graduation year</label>
+              <div class="field-input-wrap">
+                <input type="number" placeholder="2024" min="1990" max="2030">
+                <span class="field-icon">📆</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="edu-entry">
+          <div class="field-row">
+            <div class="field-group">
+              <label>Institution name</label>
+              <div class="field-input-wrap">
+                <input type="text" placeholder="University / School (optional)">
+                <span class="field-icon">🏫</span>
+              </div>
+            </div>
+            <div class="field-group">
+              <label>Degree / Certificate</label>
+              <div class="field-input-wrap">
+                <select>
+                  <option value="">Select degree</option>
+                  <option>High School Diploma</option>
+                  <option>Associate Degree</option>
+                  <option>Bachelor's Degree</option>
+                  <option>Master's Degree</option>
+                  <option>PhD / Doctorate</option>
+                  <option>Professional Certification</option>
+                </select>
+                <span class="field-icon">🎓</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="field-full field-group" style="margin-top:8px;">
+          <label>Relevant skills &amp; technologies</label>
+          <div class="field-input-wrap">
+            <input type="text" placeholder="e.g. React, Python, Figma, AWS…">
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn-prev" onclick="prevStep()">Previous</button>
+          <button class="btn-next" onclick="nextStep()">Next</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 — Attachments -->
+      <div class="form-step" id="step-3">
+        <label class="upload-area" for="cv-upload">
+          <div class="upload-icon">📄</div>
+          <p>Upload your CV / Resume</p>
+          <span>PDF, DOC, DOCX — max 5 MB</span>
+          <input type="file" id="cv-upload" accept=".pdf,.doc,.docx">
+        </label>
+
+        <label class="upload-area" for="cover-upload" style="margin-top:0;">
+          <div class="upload-icon">📝</div>
+          <p>Cover letter <span style="color:var(--cb-text-muted);font-weight:400;">(optional)</span></p>
+          <span>PDF, DOC, DOCX — max 5 MB</span>
+          <input type="file" id="cover-upload" accept=".pdf,.doc,.docx">
+        </label>
+
+        <ul class="upload-list" id="fileList"></ul>
+
+        <div class="field-full field-group">
+          <label>Additional note to the hiring team</label>
+          <div class="field-input-wrap" style="align-items:flex-start;padding-top:8px;">
+            <textarea rows="3" placeholder="Any additional information you'd like us to know…" style="resize:vertical;"></textarea>
+          </div>
+        </div>
+
+        <div class="form-nav">
+          <button class="btn-prev" onclick="prevStep()">Previous</button>
+          <button class="btn-submit" onclick="submitForm()">Submit application</button>
+        </div>
+      </div>
+
+      <!-- SUCCESS -->
+      <div class="success-msg" id="successMsg">
+        <div class="check">✅</div>
+        <h3>Application submitted!</h3>
+        <p>Thank you for applying to Codebridge. We'll review your application and reach out within 5–7 business days.</p>
+        <a href="careers.html" class="btn btn-navy">Back to careers</a>
+      </div>
+
+    </div><!-- /.form-panel -->
+  </div><!-- /max-width wrap -->
+
+  <p class="copyright-bar">codebridge. All rights reserved</p>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">CB</div>
+        <p class="footer-tagline">We create comprehensive digital solutions</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="X / Twitter">x</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">GET IN TOUCH</div>
+        <p>Kigali — Nyarugenge</p>
+        <p>KG 123 Maple Street, Apt 4B</p>
+        <p>Mon–Fri: 8:00 AM – 5:00 PM</p>
+        <p>Sat &amp; Sun: 12:00 PM –5:00 PM</p>
+      </div>
+      <div>
+        <div class="footer-heading">QUICK LINKS</div>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="news.html">Blogs</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-watermark">CODEBRIDGE</div>
+  </div>
+</footer>
+
+<script>
+  let currentStep = 0;
+  const totalSteps = 4;
+
+  function updateUI() {
+    // Steps
+    document.querySelectorAll('.form-step').forEach((s, i) => {
+      s.classList.toggle('active', i === currentStep);
+    });
+    // Tab buttons
+    document.querySelectorAll('.form-step-tabs button').forEach((b, i) => {
+      b.classList.toggle('active', i === currentStep);
+    });
+    // Progress dots
+    document.querySelectorAll('.step-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === currentStep);
+    });
+  }
+
+  function nextStep() {
+    if (currentStep < totalSteps - 1) {
+      currentStep++;
+      updateUI();
+    }
+  }
+
+  function prevStep() {
+    if (currentStep > 0) {
+      currentStep--;
+      updateUI();
+    }
+  }
+
+  function submitForm() {
+    document.querySelectorAll('.form-step').forEach(s => s.style.display = 'none');
+    document.querySelector('.form-step-tabs').style.display = 'none';
+    document.getElementById('successMsg').style.display = 'block';
+  }
+
+  // Tab click navigation
+  document.querySelectorAll('.form-step-tabs button').forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      currentStep = i;
+      updateUI();
+    });
+  });
+
+  // Position card selection highlight
+  document.querySelectorAll('.position-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.position-card').forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+    });
+  });
+
+  // File upload display
+  function handleFiles(files, label) {
+    const list = document.getElementById('fileList');
+    Array.from(files).forEach(f => {
+      const li = document.createElement('li');
+      li.innerHTML = `<span>📎 ${f.name}</span><span>${(f.size / 1024).toFixed(0)} KB</span>`;
+      list.appendChild(li);
+    });
+  }
+
+  document.getElementById('cv-upload').addEventListener('change', function() {
+    handleFiles(this.files);
+  });
+  document.getElementById('cover-upload').addEventListener('change', function() {
+    handleFiles(this.files);
+  });
+</script>
+</body>
+</html>

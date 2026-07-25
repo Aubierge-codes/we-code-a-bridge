@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Codebridge — Bridge the ideas into digital reality</title>
+<link rel="stylesheet" href="style.css">
+<style>
+/* =====================================================
+   HOMEPAGE — Hero only (navbar is in style.css)
+   ===================================================== */
+
+.home-hero-wrap {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #02080f;
+}
+.home-hero-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  z-index: 0;
+  display: block;
+}
+.home-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(100deg,
+    rgba(2,8,20,0.88) 0%,
+    rgba(2,10,28,0.78) 28%,
+    rgba(2,12,32,0.45) 52%,
+    rgba(2,12,32,0.10) 72%,
+    transparent 100%);
+}
+.home-hero-content {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 150px 36px 100px 120px;
+  max-width: 640px;
+  color: var(--cb-white);
+}
+.home-hero-kicker {
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.80);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+.home-hero-title {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.12;
+  margin: 0 0 22px;
+  color: var(--cb-white);
+}
+.home-hero-title em {
+  font-family: var(--font-accent);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--cb-white);
+  display: block;
+}
+.home-hero-desc {
+  font-size: 15px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.80);
+  margin-bottom: 36px;
+  max-width: 400px;
+}
+.home-hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+.home-btn-primary {
+  background: var(--cb-navy);
+  color: var(--cb-white);
+  border: none;
+  border-radius: 999px;
+  padding: 15px 30px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 4px 14px rgba(26,26,77,0.35);
+}
+.home-btn-primary:hover { background: var(--cb-navy-dark); transform: translateY(-1px); }
+.home-btn-secondary {
+  background: var(--cb-white);
+  color: var(--cb-navy);
+  border: none;
+  border-radius: 999px;
+  padding: 15px 30px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+}
+.home-btn-secondary:hover { background: #eef0fa; transform: translateY(-1px); }
+.hero-ai-btn {
+  position: absolute;
+  bottom: 36px;
+  right: 36px;
+  z-index: 10;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.95);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a4d;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.22);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: ai-pulse 3s ease-in-out infinite;
+}
+.hero-ai-btn:hover { transform: scale(1.12); box-shadow: 0 10px 32px rgba(0,0,0,0.30); }
+.hero-ai-btn:hover svg { transform: rotate(20deg) scale(1.1); }
+.hero-ai-btn svg { transition: transform 0.3s ease; }
+@keyframes ai-pulse {
+  0%,100% { box-shadow: 0 6px 24px rgba(0,0,0,0.22), 0 0 0 0 rgba(255,255,255,0.4); }
+  50%      { box-shadow: 0 6px 24px rgba(0,0,0,0.22), 0 0 0 10px rgba(255,255,255,0); }
+}
+@media (max-width: 680px) {
+  .home-hero-title { font-size: 34px; }
+  .home-hero-content { padding: 120px 24px 60px 40px; max-width: 100%; }
+  .home-hero-wrap { min-height: 90vh; }
+  .hero-ai-btn { bottom: 24px; right: 20px; width: 50px; height: 50px; }
+}
+</style>
+</head>
+<body class="home-page">
+
+<!-- ========================================================
+     HERO SECTION — full-bleed with navbar inside
+     ======================================================== -->
+<div class="home-hero-wrap">
+
+  <!-- Background image -->
+  <img class="home-hero-bg" src="images/handsb.png" alt="" aria-hidden="true">
+
+  <!-- Left gradient overlay for text legibility -->
+  <div class="home-hero-overlay" aria-hidden="true"></div>
+
+  <!-- Navbar — unified site-nav -->
+  <nav class="site-nav" aria-label="Main navigation">
+    <div class="site-nav-pill">
+      <a href="index.html" class="site-nav-logo" aria-label="Codebridge home">
+        <img src="images/logo.png" alt="Codebridge logo">
+      </a>
+      <div class="site-nav-links">
+        <a href="index.html" class="active">Home</a>
+        <a href="about.html">About us</a>
+        <a href="news.html">News</a>
+        <a href="services.html">Services</a>
+        <a href="careers.html">Careers</a>
+        <a href="innovations.html">Innovations</a>
+        <a href="gallery.html">Gallery</a>
+      </div>
+      <button class="site-nav-lang" aria-label="Language: English">EN</button>
+      <button class="site-nav-toggle" aria-label="Open menu">☰</button>
+    </div>
+    <a href="contact.html" class="site-nav-contact">Contact us</a>
+  </nav>
+
+  <!-- Hero copy -->
+  <div class="home-hero-content">
+    <div class="home-hero-kicker">Codebridge . Kigali . Rwanda</div>
+    <h1 class="home-hero-title">
+      Bridge&nbsp; the ideas into
+      <em>digital reality</em>
+    </h1>
+    <p class="home-hero-desc">
+      Transform complex problems into elegant software solutions.
+      We specialize in web development, AI/ML, and cybersecurity, cloud infrastructure, and digital transformation, delivering innovative solutions that ignite your business growth.
+    </p>
+    <div class="home-hero-actions">
+      <a href="services.html" class="home-btn-primary">Our services</a>
+      <a href="about.html" class="home-btn-secondary">Learn more</a>
+    </div>
+  </div>
+
+  <!-- AI floating button — bottom-right corner of hero -->
+  <button class="hero-ai-btn" aria-label="AI assistant">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5Z"/>
+      <path d="M19 3L19.8 5.2L22 6L19.8 6.8L19 9L18.2 6.8L16 6L18.2 5.2Z"/>
+      <path d="M5 17L5.6 18.4L7 19L5.6 19.6L5 21L4.4 19.6L3 19L4.4 18.4Z"/>
+    </svg>
+  </button>
+
+</div>
+<!-- /hero wrap -->
+
+<main class="container">
+
+  <!-- COMPANY NEWS -->
+  <section>
+    <div class="section-title">Our company <span class="accent">news</span></div>
+    <p class="section-subtitle">Rwandan youth have emerged victorious in the inaugural national Cyberlympics, a competition that is designed to encourage and elevate cybersecurity…</p>
+    <div class="news-grid">
+      <article class="news-card">
+        <div class="placeholder-img" style="aspect-ratio:16/10;border-radius:18px;margin-bottom:22px;background:linear-gradient(135deg,#dfe6e9,#b2bec3);"></div>
+        <div class="news-date">Friday, June 12 2026</div>
+        <h3 class="news-title">The Future of Coding in 2025</h3>
+        <p class="news-excerpt">Exploring emerging technologies, frameworks, and best practices.</p>
+        <a href="#" class="read-more">Read more →</a>
+      </article>
+      <article class="news-card">
+        <div class="placeholder-img" style="aspect-ratio:16/10;border-radius:18px;margin-bottom:22px;background:linear-gradient(135deg,#dfe6e9,#b2bec3);"></div>
+        <div class="news-date">Friday, June 12 2026</div>
+        <h3 class="news-title">The Future of Coding in 2025</h3>
+        <p class="news-excerpt">Exploring emerging technologies, frameworks, and best practices.</p>
+        <a href="#" class="read-more">Read more →</a>
+      </article>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHTED SERVICES — sticky scroll stack -->
+  <section class="scroll-stack-section" id="servicesSection">
+    <div class="scroll-stack-header">
+      <div class="section-title">Highlighted <span class="accent">services</span></div>
+      <p class="section-subtitle">Comprehensive digital solutions and safety services to transform your business</p>
+    </div>
+
+    <div class="scroll-stack-track">
+
+      <!-- Card 1 -->
+      <div class="scroll-stack-panel" data-index="0">
+        <div class="ssc-card ssc-card--1">
+         
+          <div class="ssc-card-body">
+            <div class="ssc-card-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="M7 8l3 3-3 3"/><path d="M13 14h4"/></svg>
+            </div>
+            <h3 class="ssc-card-title">Software &amp; Digital Solutions</h3>
+            <p class="ssc-card-desc">We engineer scalable digital products that solve real problems — from web &amp; mobile apps to AI-powered systems and secure infrastructure.</p>
+            <ul class="ssc-card-list">
+              <li><span class="ssc-dot"></span>Web &amp; mobile apps with full API integration</li>
+              <li><span class="ssc-dot"></span>AI / ML with LLM integration &amp; data analytics</li>
+              <li><span class="ssc-dot"></span>Business process automation &amp; DevOps</li>
+              <li><span class="ssc-dot"></span>Cybersecurity solutions &amp; penetration testing</li>
+            </ul>
+            <a href="services.html" class="ssc-btn">Explore services <span>→</span></a>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="scroll-stack-panel" data-index="1">
+        <div class="ssc-card ssc-card--2">
+      
+          <div class="ssc-card-body">
+            <div class="ssc-card-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3.53 1.67 8.47 1.67 12 0v-5"/></svg>
+            </div>
+            <h3 class="ssc-card-title">Trainings &amp; Professional Development</h3>
+            <p class="ssc-card-desc">Building the next generation of tech talent in Rwanda — from young coders to enterprise teams and university graduates.</p>
+            <ul class="ssc-card-list">
+              <li><span class="ssc-dot"></span>Robotics &amp; coding bootcamps (ages 9–15)</li>
+              <li><span class="ssc-dot"></span>TVET &amp; university student programmes</li>
+              <li><span class="ssc-dot"></span>Corporate digital skills workshops</li>
+              <li><span class="ssc-dot"></span>IT internships for graduating students</li>
+            </ul>
+            <a href="services.html" class="ssc-btn">Explore services <span>→</span></a>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="scroll-stack-panel" data-index="2">
+        <div class="ssc-card ssc-card--3">
+          
+          <div class="ssc-card-body">
+            <div class="ssc-card-icon">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h3 class="ssc-card-title">IT Services &amp; Business Support</h3>
+            <p class="ssc-card-desc">End-to-end IT operations support — from strategic consulting and hardware supply to e-government integration and safety systems.</p>
+            <ul class="ssc-card-list">
+              <li><span class="ssc-dot"></span>IT consultancy &amp; digital transformation strategy</li>
+              <li><span class="ssc-dot"></span>Computer &amp; CCTV equipment supply &amp; install</li>
+              <li><span class="ssc-dot"></span>IREMBO, RSSB, RURA &amp; RDB integrations</li>
+              <li><span class="ssc-dot"></span>Fire safety systems &amp; incident alert solutions</li>
+            </ul>
+            <a href="services.html" class="ssc-btn">Explore services <span>→</span></a>
+          </div>
+          
+        </div>
+      </div>
+
+    </div><!-- /.scroll-stack-track -->
+  </section>
+
+  <!-- FEATURED PROJECTS -->
+  <section class="fp-section">
+    <div class="fp-inner">
+
+    <!-- LEFT: sticky sidebar with filters -->
+    <div class="fp-sidebar">
+      <p class="fp-eyebrow">Our Featured</p>
+      <h2 class="fp-heading">projects</h2>
+      <div class="fp-tabs" role="tablist" aria-label="Project categories">
+        <button class="fp-tab fp-tab--active" data-cat="mobile"  role="tab" aria-selected="true">Mobile</button>
+        <button class="fp-tab"                data-cat="webapp"  role="tab" aria-selected="false">Web app</button>
+        <button class="fp-tab"                data-cat="devops"  role="tab" aria-selected="false">Devops</button>
+        <button class="fp-tab"                data-cat="aiml"    role="tab" aria-selected="false">AI/ML</button>
+      </div>
+    </div>
+
+    <!-- RIGHT: scrollable project list — one per row -->
+    <div class="fp-list" id="fpList">
+
+      <!-- ── Mobile ── -->
+      <div class="fp-item" data-cat="mobile">
+        <div class="fp-item-img">
+          <img src="images/handsb.png" alt="Food Delivery App screenshot">
+          <div class="fp-item-img-overlay"></div>
+        </div>
+        <div class="fp-item-info">
+          <span class="fp-item-tag">Mobile App</span>
+          <h3 class="fp-item-title">Food Delivery App</h3>
+          <p class="fp-item-desc">A seamless food ordering experience with real-time tracking, smart filters, and instant payment — built for iOS and Android with RURA compliance.</p>
+          <a href="#" class="fp-item-link">Visit the site <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="fp-item" data-cat="mobile">
+        <div class="fp-item-img">
+          <img src="images/globeb.png" alt="Health Tracker screenshot">
+          <div class="fp-item-img-overlay"></div>
+        </div>
+        <div class="fp-item-info">
+          <span class="fp-item-tag">Mobile App</span>
+          <h3 class="fp-item-title">Health Tracker</h3>
+          <p class="fp-item-desc">A personal wellness companion that monitors vitals, tracks fitness goals, and connects to wearables for daily health insights on the go.</p>
+          <a href="#" class="fp-item-link">Visit the site <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="fp-item" data-cat="mobile">
+        <div class="fp-item-img">
+          <img src="images/person.png" alt="FinPay Wallet screenshot">
+          <div class="fp-item-img-overlay"></div>
+        </div>
+        <div class="fp-item-info">
+          <span class="fp-item-tag">Mobile App</span>
+          <h3 class="fp-item-title">FinPay Wallet</h3>
+          <p class="fp-item-desc">A secure mobile wallet enabling instant money transfers, bill payments, and savings goals — RURA verified and lightning fast.</p>
+          <a href="#" class="fp-item-link">Visit the site <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- ── Web App ── -->
+      <div class="fp-item fp-item--hidden" data-cat="webapp">
+        <div class="fp-item-img">
+          <img src="images/handsb.png" alt="E-Commerce Platform screenshot">
+          <div class="fp-item-img-overlay"></div>
+        </div>
+        <div class="fp-item-info">
+          <span class="fp-item-tag">Web App</span>
+          <h3 class="fp-item-title">E-Commerce Platform</h3>
+          <p class="fp-item-desc">A full-featured online store with dynamic product listings, cart management, and integrated payment gateways — visible on all devices and RURA certified.</p>
+          <a href="#" class="fp-item-link">Visit the site <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="fp-item fp-item--hidden" data-cat="webapp">
+        <div class="fp-item-img">
+          <img src="images/globeb.png" alt="School Management System screenshot">
+          <div class="fp-item-img-overlay"></div>
+        </div>
+        <div class="fp-item-info">
+          <span class="fp-item-tag">Web App</span>
+          <h3 class="fp-item-title">School Management System</h3>
+          <p class="fp-item-desc">An end-to-end school admin dashboard covering enrollment, grading, attendance, and parent communication — all in one platform.</p>
+          <a href="#" class="fp-item-link">Visit the site <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="fp-item fp-item--hidden" data-cat="webapp">
+        <div class="fp-item-img">
+          <img src="images/person.png" alt="HR Portal screenshot">
+          <div class="fp-item-img-overlay"></div>
+        </div>
+        <div class="fp-item-info">
+          <span class="fp-item-tag">Web App</span>
+          <h3 class="fp-item-title">HR Portal</h3>
+          <p class="fp-item-desc">A modern HR system for leave tracking, payroll management, performance reviews, and employee self-service — all in the browser.</p>
+          <a href="#" class="fp-item-link">Visit the site <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- ── DevOps ── -->
+      <div class="fp-item fp-item--hidden" data-cat="devops">
+        <div class="fp-item-img">
+          <img src="images/handsb.png" alt="CI/CD Pipeline screenshot">
+          <div class="fp-item-img-overlay"></div>
+        </div>
+        <div class="fp-item-info">
+          <span class="fp-item-tag">DevOps</span>
+          <h3 class="fp-item-title">CI/CD Pipeline</h3>
+          <p class="fp-item-desc">Automated build, test, and deployment pipelines using Docker, GitHub Actions, and AWS — reducing release time by 70% for a fintech client.</p>
+          <a href="#" class="fp-item-link">Visit the site <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="fp-item fp-item--hidden" data-cat="devops">
+        <div class="fp-item-img">
+          <img src="images/globeb.png" alt="Cloud Migration screenshot">
+          <div class="fp-item-img-overlay"></div>
+        </div>
+        <div class="fp-item-info">
+          <span class="fp-item-tag">DevOps</span>
+          <h3 class="fp-item-title">Cloud Migration</h3>
+          <p class="fp-item-desc">Lifted and shifted a legacy enterprise system to AWS with zero downtime, full monitoring stack, and automated scaling policies.</p>
+          <a href="#" class="fp-item-link">Visit the site <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="fp-item fp-item--hidden" data-cat="devops">
+        <div class="fp-item-img">
+          <img src="images/person.png" alt="Kubernetes Cluster screenshot">
+          <div class="fp-item-img-overlay"></div>
+        </div>
+        <div class="fp-item-info">
+          <span class="fp-item-tag">DevOps</span>
+          <h3 class="fp-item-title">Kubernetes Cluster</h3>
+          <p class="fp-item-desc">Deployed and managed a production-grade Kubernetes cluster for microservices with auto-healing and rolling update strategies.</p>
+          <a href="#" class="fp-item-link">Visit the site <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- ── AI/ML ── -->
+      <div class="fp-item fp-item--hidden" data-cat="aiml">
+        <div class="fp-item-img">
+          <img src="images/handsb.png" alt="Crop Disease Detector screenshot">
+          <div class="fp-item-img-overlay"></div>
+        </div>
+        <div class="fp-item-info">
+          <span class="fp-item-tag">AI / ML</span>
+          <h3 class="fp-item-title">Crop Disease Detector</h3>
+          <p class="fp-item-desc">A vision AI model that identifies crop diseases from photos with 94% accuracy, helping Rwandan farmers act fast and reduce harvest losses.</p>
+          <a href="#" class="fp-item-link">Visit the site <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="fp-item fp-item--hidden" data-cat="aiml">
+        <div class="fp-item-img">
+          <img src="images/globeb.png" alt="Smart Chatbot screenshot">
+          <div class="fp-item-img-overlay"></div>
+        </div>
+        <div class="fp-item-info">
+          <span class="fp-item-tag">AI / ML</span>
+          <h3 class="fp-item-title">Smart Chatbot</h3>
+          <p class="fp-item-desc">An LLM-powered customer support assistant handling FAQs, ticket routing, and escalation — available 24/7 in English and Kinyarwanda.</p>
+          <a href="#" class="fp-item-link">Visit the site <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="fp-item fp-item--hidden" data-cat="aiml">
+        <div class="fp-item-img">
+          <img src="images/person.png" alt="Fraud Detection Engine screenshot">
+          <div class="fp-item-img-overlay"></div>
+        </div>
+        <div class="fp-item-info">
+          <span class="fp-item-tag">AI / ML</span>
+          <h3 class="fp-item-title">Fraud Detection Engine</h3>
+          <p class="fp-item-desc">Real-time ML model that flags suspicious transactions for a fintech client, cutting fraud losses by 60% in the first deployment quarter.</p>
+          <a href="#" class="fp-item-link">Visit the site <span>→</span></a>
+        </div>
+      </div>
+
+    </div><!-- /fp-list -->
+    </div><!-- /fp-inner -->
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner">
+    <h2>Ready to get the <span class="accent" style="color:#7fdcef;">best</span> experience</h2>
+    <a href="contact.html" class="btn btn-light">Get in touch</a>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="ts-section">
+    <div class="ts-inner">
+
+      <div class="ts-header">
+        <h2 class="ts-title">
+          <em>Codebridge</em> success <span class="ts-title-italic">stories</span>
+        </h2>
+        <p class="ts-subtitle">We combine engineering, research and creative thinking to turn ambitious ideas into scalable digital products.</p>
+      </div>
+
+      <div class="ts-slider" id="tsSlider">
+
+        <!-- Slide 1 -->
+        <div class="ts-slide ts-slide--active">
+          <div class="made">
+            <img src="images/nd.png" alt="Stretch Cloud CEO" 
+            class="image">
+          </div>
+          <div class="ts-body">
+            <div class="ts-quote-mark" aria-hidden="true">&#x201C;</div>
+            <p class="ts-quote">&#x201C;Exploring emerging technologies, frameworks, and best practices that are revolutionizing how we build modern web applications and experiences.&#x201D;</p>
+            <div class="ts-author">Stretch cloud</div>
+            <div class="ts-role">CEO</div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="ts-slide">
+          <div >
+            <img src="images/nd.png" alt="Patrick Rwamagana" class="image">
+          </div>
+          <div class="ts-body">
+            <div class="ts-quote-mark" aria-hidden="true">&#x201C;</div>
+            <p class="ts-quote">&#x201C;Codebridge delivered our platform ahead of schedule and beyond expectations. Their team&#x2019;s technical depth and attention to detail is unmatched in Rwanda.&#x201D;</p>
+            <div class="ts-author">Patrick Rwamagana</div>
+            <div class="ts-role">CTO, FinTech Rwanda</div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="ts-slide">
+          <div >
+            <img src="images/nd.png" alt="Amina Uwase" class="image">
+          </div>
+          <div class="ts-body">
+            <div class="ts-quote-mark" aria-hidden="true">&#x201C;</div>
+            <p class="ts-quote">&#x201C;From discovery to launch, the Codebridge team felt like an extension of our own. Their AI solution transformed how we serve our customers every day.&#x201D;</p>
+            <div class="ts-author">Amina Uwase</div>
+            <div class="ts-role">Product Director, Irembo</div>
+          </div>
+        </div>
+
+      </div><!-- /ts-slider -->
+
+      <div class="ts-nav">
+        <button class="ts-btn" id="tsPrev" aria-label="Previous testimonial">&#8592;</button>
+        <button class="ts-btn" id="tsNext" aria-label="Next testimonial">&#8594;</button>
+      </div>
+
+    </div><!-- /ts-inner -->
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo"><img src="images/logow.png" alt="Codebridge" style="width:44px;height:44px;object-fit:contain;"></div>
+        <p class="footer-tagline">We create comprehensive digital solutions</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Facebook">f</a>
+          <a href="#" aria-label="X / Twitter">x</a>
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="YouTube">▶</a>
+        </div>
+      </div>
+      <div>
+        <div class="footer-heading">GET IN TOUCH</div>
+        <p>Kigali — Nyarugenge</p>
+        <p>KG 123 Maple Street, Apt 4B</p>
+        <p>Mon–Fri: 8:00 AM – 5:00 PM</p>
+        <p>Sat &amp; Sun: 12:00 PM –5:00 PM</p>
+      </div>
+      <div>
+        <div class="footer-heading">QUICK LINKS</div>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="news.html">Blogs</a></li>
+          <li><a href="careers.html">Careers</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-watermark">CODEBRIDGE</div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   Scroll-Stack — sticky cards scale + blur as next one arrives
+   ============================================================ */
+(function () {
+  const panels = document.querySelectorAll('.scroll-stack-panel');
+  if (!panels.length) return;
+
+  const MIN_SCALE = 0.88;
+  const MAX_BLUR  = 5;
+
+  function clamp(v, min, max) { return Math.max(min, Math.min(max, v)); }
+  function lerp(a, b, t) { return a + (b - a) * clamp(t, 0, 1); }
+
+  function tick() {
+    panels.forEach((panel, i) => {
+      const card = panel.querySelector('.ssc-card');
+      if (!card) return;
+
+      const rect     = panel.getBoundingClientRect();
+      const vh       = window.innerHeight;
+      /* progress 0 = card at bottom of viewport, 1 = card fully scrolled past top */
+      const progress = clamp(-rect.top / vh, 0, 1);
+
+      if (i < panels.length - 1) {
+        /* cards below the last scale down and blur as they get covered */
+        const scale = lerp(1, MIN_SCALE, progress);
+        const blur  = lerp(0, MAX_BLUR, progress);
+        const opacity = lerp(1, 0.5, progress);
+        card.style.transform = `scale(${scale.toFixed(4)})`;
+        card.style.filter    = blur > 0.1 ? `blur(${blur.toFixed(2)}px)` : '';
+        card.style.opacity   = opacity.toFixed(3);
+      } else {
+        card.style.transform = '';
+        card.style.filter    = '';
+        card.style.opacity   = '';
+      }
+    });
+  }
+
+  window.addEventListener('scroll', tick, { passive: true });
+  window.addEventListener('resize', tick, { passive: true });
+  tick();
+})();
+</script>
+
+<script>
+/* ============================================================
+   Featured Projects — filter tabs
+   ============================================================ */
+(function () {
+  const tabs  = document.querySelectorAll('.fp-tab');
+  const items = document.querySelectorAll('.fp-item');
+
+  function activate(cat) {
+    tabs.forEach(t => {
+      const on = t.dataset.cat === cat;
+      t.classList.toggle('fp-tab--active', on);
+      t.setAttribute('aria-selected', on);
+    });
+
+    /* hide all first */
+    items.forEach(item => {
+      item.classList.add('fp-item--hidden');
+      item.style.transitionDelay = '0ms';
+    });
+
+    /* reveal matching with stagger */
+    const matching = [...items].filter(item => item.dataset.cat === cat);
+    matching.forEach((item, i) => {
+      setTimeout(() => {
+        item.classList.remove('fp-item--hidden');
+        item.style.transitionDelay = (i * 80) + 'ms';
+      }, 20);
+    });
+  }
+
+  tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.cat)));
+})();
+</script>
+
+<script>
+/* ============================================================
+   Testimonials slider
+   ============================================================ */
+(function () {
+  const slides = document.querySelectorAll('.ts-slide');
+  const prev   = document.getElementById('tsPrev');
+  const next   = document.getElementById('tsNext');
+  if (!slides.length) return;
+
+  let current = 0;
+
+  function goTo(index) {
+    slides[current].classList.remove('ts-slide--active');
+    current = (index + slides.length) % slides.length;
+    slides[current].classList.add('ts-slide--active');
+  }
+
+  prev.addEventListener('click', () => goTo(current - 1));
+  next.addEventListener('click', () => goTo(current + 1));
+})();
+</script>
+
+</body>
+</html>
