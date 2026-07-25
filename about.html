@@ -116,9 +116,19 @@
 
   <div class="section-title">Trusted <span class="accent">partners</span></div>
   <p class="section-subtitle">Working with leading institutions that drive digital transformation across Rwanda and Africa.</p>
+  <div class="partners-marquee">
   <div class="partners-row">
-    <div>RDB</div><div>QT Global Software</div><div>Codible Group</div><div>Irembo</div>
+    <div><img src="images/codible.png" alt="" class="code"></div>
+    <div><img src="images/irembo.png" alt="" class="code"></div>
+    <div><img src="images/qt.png" alt="" class="code"></div>
+    <div><img src="images/rdb.png" alt="" class="code"></div>
+    <!-- duplicate set so the loop is seamless -->
+    <div><img src="images/codible.png" alt="" class="code"></div>
+    <div><img src="images/irembo.png" alt="" class="code"></div>
+    <div><img src="images/qt.png" alt="" class="code"></div>
+    <div><img src="images/rdb.png" alt="" class="code"></div>
   </div>
+</div>
 
   <section class="video-banner">
     <h2>Know more about <em class="accent" style="color:#7fdcef;">Codebridge</em></h2>
@@ -200,24 +210,6 @@
     <div class="footer-watermark">CODEBRIDGE</div>
   </div>
 </footer>
-<script>
-(function () {
-  const stack = document.querySelector('.mvv-stack');
-  if (!stack) return;
 
-  function cycle() {
-    const first = stack.querySelector('.mvv-card:first-child');
-    if (first) {
-      stack.appendChild(first); // moves it to the back of the DOM order
-    }
-  }
-
-  // Auto-rotate every 2.5s (tweak this number to match the speed you want)
-  setInterval(cycle, 2500);
-
-  // Optional: also let people click the stack to advance it manually
-  stack.addEventListener('click', cycle);
-})();
-</script>
 </body>
 </html>

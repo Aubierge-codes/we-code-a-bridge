@@ -1473,7 +1473,7 @@ border-bottom-left-radius: 999px;
 .mvv-card {
   position: absolute;
   background: var(--cb-white);
-  border-radius: 10px;
+  border-radius: 15px;
   padding: 32px 36px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.30);
   width: 80%;
@@ -1487,13 +1487,7 @@ border-bottom-left-radius: 999px;
   overflow: hidden;
 }
 
-/* Hide content by default */
-.mvv-card p,
-.mvv-card .mvv-label {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity 0.28s ease 0.08s, transform 0.28s ease 0.08s;
-}
+
 
 /* Card 3 — bottom of stack, most tilted, peeking behind */
 .mvv-card:nth-child(3) {
@@ -1527,9 +1521,9 @@ border-bottom-left-radius: 999px;
   min-height: 210px;
   box-shadow: 0 32px 80px rgba(0,0,0,0.40);
 }
-.mvv-card:nth-child(1):hover { transform: rotate(-4deg) translateY(-8px); }
-.mvv-card:nth-child(2):hover { transform: rotate(5deg)  translateY(-8px); }
-.mvv-card:nth-child(3):hover { transform: rotate(-5deg) translateY(-8px); }
+.mvv-card:nth-child(1):hover { transform: rotate(1deg); scale: 1.05; transition: 0.3s ease all; }
+.mvv-card:nth-child(2):hover { transform: rotate(-1deg); scale: 1.05; transition: 0.3s ease all;  }
+.mvv-card:nth-child(3):hover { transform: rotate(-4deg); scale: 1.05; transition: 0.3s ease all; }
 
 .mvv-card:hover p,
 .mvv-card:hover .mvv-label {
@@ -1586,11 +1580,14 @@ border-bottom-left-radius: 999px;
 /* Stats banner */
 .stats-banner {
   background: var(--cb-navy);
-  border-radius: 28px;
+  width: 100%;
   padding: 60px 40px;
   text-align: center;
   color: var(--cb-white);
   margin-bottom: 90px;
+  width: 100vw;
+  position: relative;
+  left: -17%;
 }
 .stats-banner h2 { font-size: 28px; margin: 0 0 10px; }
 .stats-banner .section-subtitle { color: rgba(255,255,255,0.7); margin-bottom: 40px; }
@@ -1599,9 +1596,38 @@ border-bottom-left-radius: 999px;
 .stat-label { font-size: 14px; color: rgba(255,255,255,0.7); margin-top: 6px; }
 
 /* Partners */
-.partners-row { display: flex; justify-content: center; align-items: center; gap: 60px; flex-wrap: wrap; margin-bottom: 90px; opacity: 0.75; }
-.partners-row div { font-weight: 700; font-size: 18px; color: var(--cb-text-muted); }
+.partners-marquee {
+  overflow: hidden;
+  margin-bottom: 90px;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
 
+.partners-row {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: nowrap;
+  width: max-content;
+  opacity: 0.75;
+  animation: partners-scroll 20s linear infinite;
+}
+
+.partners-row div {
+  font-weight: 700;
+  font-size: 18px;
+  color: var(--cb-text-muted);
+  flex-shrink: 0;
+}
+
+.partners-marquee:hover .partners-row {
+  animation-play-state: paused;
+}
+
+@keyframes partners-scroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
 /* Video banner */
 .video-banner {
   background: var(--cb-navy);
@@ -1786,3 +1812,7 @@ border-bottom-left-radius: 999px;
   height: auto;
 }
 
+.code{
+  width: 200px;
+  height: auto;
+}
