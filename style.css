@@ -1659,14 +1659,49 @@ border-bottom-left-radius: 999px;
 
 /* Team */
 .team-member {
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 34px;
+  
   margin-bottom: 50px;
+  
+}
+.team-member-row{
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 34px;
   align-items: start;
 }
 .team-role { font-weight: 700; font-size: 14px; color: var(--cb-text-muted); text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 14px; }
-.team-photo { border-radius: 18px; aspect-ratio: 4/5; object-fit: cover; background: linear-gradient(160deg,#f2a93b,#e8862e); }
+.team-photo-wrap {
+  position: relative;
+  width: 100%;
+}
+
+/* the colored rectangle behind */
+.team-photo-wrap::before {
+  content: '';
+  position: absolute;
+  top: 26px;
+  left: -16px;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #f2a93b, #e8862e);
+  z-index: 1;
+}
+
+/* the photo sits above the rectangle */
+.team-photo {
+  position: relative;
+  z-index: 2;
+  border-radius: 12px;
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  display: block;
+}
+.team-member--blue .team-photo-wrap::before { background: linear-gradient(160deg, #7fdcef, #1a1a4d); }
+.team-member--orange .team-photo-wrap::before { background: linear-gradient(160deg, #f2a93b, #e8862e); }
+.team-member--teal .team-photo-wrap::before { background: linear-gradient(160deg, #00d4aa, #031a1a); }
+.team-member--red .team-photo-wrap::before { background: linear-gradient(160deg, #ee3a2f, #c72a20); }
 .team-name { font-size: 20px; font-weight: 700; margin: 0 0 12px; }
 .team-name em { font-family: var(--font-accent); font-style: italic; color: var(--cb-red); font-weight: 500; }
 .team-bio { color: var(--cb-text-muted); font-size: 15px; line-height: 1.6; margin-bottom: 12px; }
