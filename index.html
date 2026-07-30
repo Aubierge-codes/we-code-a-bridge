@@ -141,6 +141,161 @@
   .home-hero-wrap { min-height: 90vh; }
   .hero-ai-btn { bottom: 24px; right: 20px; width: 50px; height: 50px; }
 }
+/* ===== AI Chat Widget ===== */
+.ai-chat-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,8,20,0.35);
+  z-index: 998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+.ai-chat-overlay.active { opacity: 1; visibility: visible; }
+
+.ai-chat-panel {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 380px;
+  max-width: calc(100vw - 32px);
+  height: 560px;
+  max-height: calc(100vh - 48px);
+  background: var(--cb-white);
+  border-radius: 20px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transform: translateY(24px) scale(0.96);
+  opacity: 0;
+  visibility: hidden;
+  transition: transform 0.28s ease, opacity 0.28s ease, visibility 0.28s ease;
+}
+.ai-chat-panel.active {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.ai-chat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 18px;
+  background: var(--cb-navy);
+  color: var(--cb-white);
+  flex-shrink: 0;
+}
+.ai-chat-header-info { display: flex; align-items: center; gap: 12px; }
+.ai-chat-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.ai-chat-title { font-size: 14px; font-weight: 700; }
+.ai-chat-status { font-size: 11px; color: rgba(255,255,255,0.7); }
+.ai-chat-status::before {
+  content: '';
+  display: inline-block;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  margin-right: 5px;
+}
+.ai-chat-close {
+  background: none; border: none; color: var(--cb-white);
+  font-size: 24px; line-height: 1; cursor: pointer;
+  opacity: 0.8; transition: opacity 0.2s;
+  padding: 0 4px;
+}
+.ai-chat-close:hover { opacity: 1; }
+
+.ai-chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #f7f8fb;
+}
+.ai-msg { display: flex; }
+.ai-msg--user { justify-content: flex-end; }
+.ai-msg--bot { justify-content: flex-start; }
+.ai-msg-bubble {
+  max-width: 80%;
+  padding: 10px 14px;
+  border-radius: 16px;
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.ai-msg--bot .ai-msg-bubble {
+  background: var(--cb-white);
+  color: #1a1a2e;
+  border-bottom-left-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.ai-msg--user .ai-msg-bubble {
+  background: var(--cb-navy);
+  color: var(--cb-white);
+  border-bottom-right-radius: 4px;
+}
+.ai-msg--typing .ai-msg-bubble { display: flex; gap: 4px; align-items: center; padding: 12px 14px; }
+.ai-typing-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: #b2bec3;
+  animation: ai-typing-bounce 1.2s infinite ease-in-out;
+}
+.ai-typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.ai-typing-dot:nth-child(3) { animation-delay: 0.3s; }
+@keyframes ai-typing-bounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+
+.ai-chat-input-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid #eceef2;
+  background: var(--cb-white);
+  flex-shrink: 0;
+}
+.ai-chat-input {
+  flex: 1;
+  border: 1px solid #dfe3ea;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-size: 13.5px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.ai-chat-input:focus { border-color: var(--cb-navy); }
+.ai-chat-send {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: var(--cb-navy);
+  color: var(--cb-white);
+  border: none;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s, transform 0.15s;
+}
+.ai-chat-send:hover { background: var(--cb-navy-dark); transform: scale(1.05); }
+.ai-chat-send:disabled { opacity: 0.5; cursor: not-allowed; }
+
+@media (max-width: 480px) {
+  .ai-chat-panel {
+    right: 8px; left: 8px; bottom: 8px;
+    width: auto; height: calc(100vh - 80px);
+  }
+}
 </style>
 </head>
 <body class="home-page">
@@ -209,7 +364,39 @@
       <path d="M5 17L5.6 18.4L7 19L5.6 19.6L5 21L4.4 19.6L3 19L4.4 18.4Z"/>
     </svg>
   </button>
+<!-- AI Chat Panel -->
+<div class="ai-chat-overlay" id="aiChatOverlay"></div>
+<div class="ai-chat-panel" id="aiChatPanel" role="dialog" aria-label="AI Assistant">
+  <div class="ai-chat-header">
+    <div class="ai-chat-header-info">
+      <div class="ai-chat-avatar">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 2L13.5 8.5L20 10L13.5 11.5L12 18L10.5 11.5L4 10L10.5 8.5Z"/>
+        </svg>
+      </div>
+      <div>
+        <div class="ai-chat-title">Codebridge Assistant</div>
+        <div class="ai-chat-status">Online</div>
+      </div>
+    </div>
+    <button class="ai-chat-close" id="aiChatClose" aria-label="Close chat">&times;</button>
+  </div>
 
+  <div class="ai-chat-messages" id="aiChatMessages">
+    <div class="ai-msg ai-msg--bot">
+      <div class="ai-msg-bubble">Hi! I'm the Codebridge assistant. Ask me about our services, projects, or how to get in touch.</div>
+    </div>
+  </div>
+
+  <div class="ai-chat-input-row">
+    <input type="text" id="aiChatInput" class="ai-chat-input" placeholder="Type your message..." autocomplete="off">
+    <button class="ai-chat-send" id="aiChatSend" aria-label="Send message">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+      </svg>
+    </button>
+  </div>
+</div>
 </div>
 <!-- /hero wrap -->
 
@@ -707,7 +894,87 @@
   next.addEventListener('click', () => goTo(current + 1));
 })();
 </script>
+<script>
+/* ============================================================
+   AI Chat Widget — open/close + send messages
+   ============================================================ */
+(function () {
+  const openBtn   = document.querySelector('.hero-ai-btn');
+  const panel     = document.getElementById('aiChatPanel');
+  const overlay   = document.getElementById('aiChatOverlay');
+  const closeBtn  = document.getElementById('aiChatClose');
+  const messages  = document.getElementById('aiChatMessages');
+  const input     = document.getElementById('aiChatInput');
+  const sendBtn   = document.getElementById('aiChatSend');
 
-<script src="lang-switcher.js"></script>
+  function openChat() {
+    panel.classList.add('active');
+    overlay.classList.add('active');
+    setTimeout(() => input.focus(), 200);
+  }
+  function closeChat() {
+    panel.classList.remove('active');
+    overlay.classList.remove('active');
+  }
+
+  openBtn.addEventListener('click', openChat);
+  closeBtn.addEventListener('click', closeChat);
+  overlay.addEventListener('click', closeChat);
+
+  function addMessage(text, sender) {
+    const row = document.createElement('div');
+    row.className = 'ai-msg ai-msg--' + sender;
+    const bubble = document.createElement('div');
+    bubble.className = 'ai-msg-bubble';
+    bubble.textContent = text;
+    row.appendChild(bubble);
+    messages.appendChild(row);
+    messages.scrollTop = messages.scrollHeight;
+    return row;
+  }
+
+  function showTyping() {
+    const row = document.createElement('div');
+    row.className = 'ai-msg ai-msg--bot ai-msg--typing';
+    row.innerHTML = '<div class="ai-msg-bubble"><span class="ai-typing-dot"></span><span class="ai-typing-dot"></span><span class="ai-typing-dot"></span></div>';
+    messages.appendChild(row);
+    messages.scrollTop = messages.scrollHeight;
+    return row;
+  }
+
+  async function sendMessage() {
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMessage(text, 'user');
+    input.value = '';
+    sendBtn.disabled = true;
+
+    const typingRow = showTyping();
+
+    try {
+      // Replace this URL with your own backend endpoint.
+      const res = await fetch('/chat.php', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text })
+      });
+      const data = await res.json();
+      typingRow.remove();
+      addMessage(data.reply || "Sorry, I couldn't process that.", 'bot');
+    } catch (err) {
+      typingRow.remove();
+      addMessage("I'm having trouble connecting right now. Please try again shortly.", 'bot');
+    } finally {
+      sendBtn.disabled = false;
+    }
+  }
+
+  sendBtn.addEventListener('click', sendMessage);
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendMessage();
+  });
+})();
+</script>
 </body>
 </html>
