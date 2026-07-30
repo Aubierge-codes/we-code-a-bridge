@@ -22,7 +22,14 @@
         <a href="innovations.html">Innovations</a>
         <a href="gallery.html" class="active">Gallery</a>
       </div>
-      <button class="site-nav-lang" aria-label="Language: English">EN</button>
+      <div class="site-nav-lang-wrap">
+        <button class="site-nav-lang" aria-label="Language: English" aria-expanded="false">EN</button>
+        <div class="site-nav-lang-menu" role="menu">
+          <button class="site-nav-lang-option active" data-value="EN" data-label="English" role="menuitem">English</button>
+          <button class="site-nav-lang-option" data-value="FR" data-label="Français" role="menuitem">Français</button>
+          <button class="site-nav-lang-option" data-value="KINY" data-label="Kinyarwanda" role="menuitem">Kinyarwanda</button>
+        </div>
+      </div>
       <button class="site-nav-toggle" aria-label="Open menu">☰</button>
     </div>
     <a href="contact.html" class="site-nav-contact">Contact us</a>
@@ -113,5 +120,6 @@
   </div>
 </footer>
 
+<script src="lang-switcher.js"></script>
 </body>
 </html>

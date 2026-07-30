@@ -21,7 +21,14 @@
           <a href="innovations.html">Innovations</a>
           <a href="gallery.html">Gallery</a>
         </div>
-        <button class="site-nav-lang" aria-label="Language: English">EN</button>
+        <div class="site-nav-lang-wrap">
+          <button class="site-nav-lang" aria-label="Language: English" aria-expanded="false">EN</button>
+          <div class="site-nav-lang-menu" role="menu">
+            <button class="site-nav-lang-option active" data-value="EN" data-label="English" role="menuitem">English</button>
+            <button class="site-nav-lang-option" data-value="FR" data-label="Français" role="menuitem">Français</button>
+            <button class="site-nav-lang-option" data-value="KINY" data-label="Kinyarwanda" role="menuitem">Kinyarwanda</button>
+          </div>
+        </div>
         <button class="site-nav-toggle" aria-label="Open menu">☰</button>
       </div>
       <a href="contact.html" class="site-nav-contact">Contact us</a>
@@ -36,10 +43,15 @@
         business
       </p>
 
+      <!-- ============ CATEGORY 01 — IT SERVICES ============ -->
       <div class="category-card">
         <span class="category-eyebrow">01</span>
         <div class="category-head">
-          <div class="category-icon">💻</div>
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="4" width="20" height="13" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/>
+            </svg>
+          </div>
           <h3 class="category-title">IT Services</h3>
         </div>
         <p class="category-desc">
@@ -49,8 +61,12 @@
         </p>
 
         <div class="subcard-grid">
-          <div class="subcard subcard-featured">
-            <div class="subcard-icon">🖥️</div>
+          <div class="subcard">
+            <div class="subcard-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18L3 12L9 6"/><path d="M15 6L21 12L15 18"/>
+              </svg>
+            </div>
             <h4>Software Development</h4>
             <ul class="subcard-list">
               <li>Custom Software Solutions</li>
@@ -60,7 +76,11 @@
             </ul>
           </div>
           <div class="subcard">
-            <div class="subcard-icon">📱</div>
+            <div class="subcard-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="7" y="2" width="10" height="20" rx="2"/><line x1="11" y1="18" x2="13" y2="18"/>
+              </svg>
+            </div>
             <h4>Web &amp; Mobile Development</h4>
             <ul class="subcard-list">
               <li>Responsive Websites</li>
@@ -70,7 +90,11 @@
             </ul>
           </div>
           <div class="subcard">
-            <div class="subcard-icon">🎓</div>
+            <div class="subcard-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10L12 5L2 10L12 15L22 10Z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/>
+              </svg>
+            </div>
             <h4>IT Training</h4>
             <ul class="subcard-list">
               <li>Programming Courses</li>
@@ -84,10 +108,16 @@
         <a href="contact.html" class="category-btn">Get Started →</a>
       </div>
 
+      <!-- ============ CATEGORY 02 — ONLINE SERVICES INTEGRATION ============ -->
       <div class="category-card">
         <span class="category-eyebrow">02</span>
         <div class="category-head">
-          <div class="category-icon">🔗</div>
+          <div class="category-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="18" r="3"/>
+              <path d="M6 9v3a3 3 0 003 3h1"/><path d="M18 9v3a3 3 0 01-3 3h-1"/>
+            </svg>
+          </div>
           <h3 class="category-title">Online Services Integration</h3>
         </div>
         <p class="category-desc">
@@ -96,8 +126,12 @@
         </p>
 
         <div class="subcard-grid">
-          <div class="subcard subcard-featured">
-            <div class="subcard-icon">🏛️</div>
+          <div class="subcard">
+            <div class="subcard-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 22V8l8-5 8 5v14"/><path d="M9 22V13h6v9"/>
+              </svg>
+            </div>
             <h4>Irembo Integration</h4>
             <ul class="subcard-list">
               <li>Connect your business with Rwanda's e-government platform</li>
@@ -105,7 +139,11 @@
             </ul>
           </div>
           <div class="subcard">
-            <div class="subcard-icon">🛡️</div>
+            <div class="subcard-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/>
+              </svg>
+            </div>
             <h4>RURA Integration</h4>
             <ul class="subcard-list">
               <li>Regulatory compliance</li>
@@ -113,7 +151,12 @@
             </ul>
           </div>
           <div class="subcard">
-            <div class="subcard-icon">🤝</div>
+            <div class="subcard-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="8" r="3"/><path d="M2 21v-1c0-3 3-5 7-5s7 2 7 5v1"/>
+                <circle cx="17" cy="9" r="2.5"/><path d="M15 21v-1c0-2 1-3.5 3-4"/>
+              </svg>
+            </div>
             <h4>RSSB Integration</h4>
             <ul class="subcard-list">
               <li>Social security integration</li>
@@ -125,6 +168,7 @@
         <a href="contact.html" class="category-btn">Learn More →</a>
       </div>
 
+      <!-- ============ SAFETY SERVICES ============ -->
       <div style="margin-top: 80px">
         <div
           style="
@@ -137,9 +181,7 @@
           <h2 style="font-size: 26px; margin: 0">
             Safety <span class="accent">services</span>
           </h2>
-          <span
-            style="height: 2px; width: 80px; background: var(--cb-orange)"
-          ></span>
+          <span style="height: 2px; width: 80px; background: #111"></span>
         </div>
         <p
           style="
@@ -155,7 +197,11 @@
         <div class="category-card">
           <span class="category-eyebrow">01</span>
           <div class="category-head">
-            <div class="category-icon">🛟</div>
+            <div class="category-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/>
+              </svg>
+            </div>
             <h3 class="category-title">Safety Services</h3>
           </div>
           <p class="category-desc">
@@ -164,8 +210,12 @@
           </p>
 
           <div class="subcard-grid">
-            <div class="subcard subcard-featured">
-              <div class="subcard-icon">📹</div>
+            <div class="subcard">
+              <div class="subcard-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="7" width="14" height="9" rx="2"/><circle cx="9" cy="11.5" r="2.3"/><path d="M16 10l6-3v10l-6-3"/>
+                </svg>
+              </div>
               <h4>CCTV Camera</h4>
               <ul class="subcard-list">
                 <li>Supply and installation</li>
@@ -173,7 +223,11 @@
               </ul>
             </div>
             <div class="subcard">
-              <div class="subcard-icon">🔔</div>
+              <div class="subcard-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8a6 6 0 10-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 01-3.4 0"/>
+                </svg>
+              </div>
               <h4>Incident Alert System</h4>
               <ul class="subcard-list">
                 <li>Smart AI powered smoke and heat detectors</li>
@@ -182,7 +236,11 @@
               </ul>
             </div>
             <div class="subcard">
-              <div class="subcard-icon">🧯</div>
+              <div class="subcard-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M8 6h6l1 3H7z"/><path d="M8 9v10a2 2 0 002 2h2a2 2 0 002-2V9"/><path d="M11 3v3"/><path d="M9 3h4"/><path d="M16 11l4-2"/>
+                </svg>
+              </div>
               <h4>Fire Extinguishers Services</h4>
               <ul class="subcard-list">
                 <li>Supply and installation of extinguishers</li>
@@ -231,5 +289,6 @@
         <div class="footer-watermark">CODEBRIDGE</div>
       </div>
     </footer>
+    <script src="lang-switcher.js"></script>
   </body>
 </html>

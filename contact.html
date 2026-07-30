@@ -5,6 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact us — Codebridge</title>
 <link rel="stylesheet" href="style.css">
+
+<!-- Leaflet CSS -->
+<link 
+  rel="stylesheet" 
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+/>
+
+<style>
+  /* Ensure the Leaflet container fills the existing map-embed div */
+  .map-embed {
+    width: 100%;
+    min-height: 300px;
+    border-radius: 8px;
+    z-index: 1; /* Keeps map layers cleanly contained */
+  }
+</style>
 </head>
 <body>
 
@@ -22,13 +38,18 @@
         <a href="innovations.html">Innovations</a>
         <a href="gallery.html">Gallery</a>
       </div>
-      <button class="site-nav-lang" aria-label="Language: English">EN</button>
+      <div class="site-nav-lang-wrap">
+        <button class="site-nav-lang" aria-label="Language: English" aria-expanded="false">EN</button>
+        <div class="site-nav-lang-menu" role="menu">
+          <button class="site-nav-lang-option active" data-value="EN" data-label="English" role="menuitem">English</button>
+          <button class="site-nav-lang-option" data-value="FR" data-label="Français" role="menuitem">Français</button>
+          <button class="site-nav-lang-option" data-value="KINY" data-label="Kinyarwanda" role="menuitem">Kinyarwanda</button>
+        </div>
+      </div>
       <button class="site-nav-toggle" aria-label="Open menu">☰</button>
     </div>
     <a href="contact.html" class="site-nav-contact">Contact us</a>
   </nav>
-
-
 
 <main class="container">
 
@@ -53,7 +74,9 @@
     </div>
 
     <div>
-      <div class="map-embed"></div>
+      <!-- Leaflet Map Container -->
+      <div id="map" class="map-embed"></div>
+      
       <div class="contact-mini-cards">
         <div class="contact-mini-card">
           <span class="field-label">Direct line</span>
@@ -117,5 +140,26 @@
   </div>
 </footer>
 
+<!-- Leaflet JavaScript -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+  // Initialize map centered on Kigali, Rwanda [-1.9441, 30.0619] at zoom level 13
+  const map = L.map('map').setView([-1.9441, 30.0619], 13);
+
+  // Load OpenStreetMap tiles
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  // Add marker for Codebridge HQ in Kigali
+  const marker = L.marker([-1.9441, 30.0619]).addTo(map);
+  
+  // Attach popup window
+  marker.bindPopup('<b>Codebridge HQ</b><br>Nyarugenge, Kigali, Rwanda').openPopup();
+</script>
+
+<script src="lang-switcher.js"></script>
 </body>
 </html>
