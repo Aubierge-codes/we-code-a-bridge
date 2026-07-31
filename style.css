@@ -548,7 +548,7 @@ body.home-page {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 32px;
-  margin-bottom: 30px;
+  margin-bottom: 70px;
 }
 
 .news-card {
@@ -1298,7 +1298,7 @@ body.home-page {
 .ts-section::before {
   width: 340px;
   height: 340px;
-  top: -90px;
+  top: -100px;
   left: -90px;
 }
 .ts-section::after {
@@ -1361,6 +1361,7 @@ body.home-page {
   gap: 72px;
   text-align: left;
   margin-top: -70px;
+  margin-bottom: -90px;
 }
 
 .ts-slide--active {
@@ -1533,6 +1534,7 @@ body.home-page {
   color: var(--cb-text-on-navy);
   padding-top: 70px;
   overflow: hidden;
+  margin-top: -90px;
 }
 .footer-grid {
   display: grid;
@@ -1548,7 +1550,7 @@ body.home-page {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 22px;
+ 
 }
 .footer-logo img {
   width: 44px;
@@ -2212,7 +2214,7 @@ body.home-page {
 }
 
 .team-member--blue .team-photo-wrap::before {
-  background: linear-gradient(0deg, #7fdcef, #1a1a4d);
+  background: orange;
 }
 .team-member--orange .team-photo-wrap::before {
   background: rgb(0, 0, 0);
@@ -2586,6 +2588,7 @@ main.container {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 22px;
+  
 }
 .job-card {
   background: var(--cb-white);
@@ -3008,6 +3011,7 @@ main.container {
   grid-template-columns: repeat(3, 1fr);
   gap: 22px;
   margin-top: 22px;
+  margin-bottom: 50px;
 }
 
 @media (max-width: 900px) {
