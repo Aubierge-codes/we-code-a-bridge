@@ -85,7 +85,7 @@ button {
 .accent-navy {
   font-family: var(--font-accent);
   font-style: italic;
-  color: red;
+  color: var(--cb-navy);
   font-weight: 600;
 }
 
@@ -112,8 +112,7 @@ button {
   display: flex;
   align-items: center;
   background: rgba(255, 255, 255, 0.82);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+
   border-radius: 999px;
   padding: 8px 20px 8px 8px;
   flex: 1;
@@ -123,7 +122,6 @@ button {
   overflow: hidden;
 }
 
-/* Noise grain on the pill */
 /* Noise grain on the pill — sits above pill background, below logo/links */
 .site-nav-pill::after {
   content: "";
@@ -209,7 +207,7 @@ button {
   gap: 8px;
 }
 .site-nav-lang::after {
-  content: '▾';
+  content: "▾";
   font-size: 12px;
   line-height: 1;
 }
@@ -249,10 +247,10 @@ button {
 
 /* Contact us — outside the pill */
 .site-nav-contact {
-  background: var(--cb-navy-dark);
+  background: rgba(26, 26, 77, 1);
+
   color: var(--cb-white);
-  opacity: 0.999999;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 999px;
   padding: 16px 28px;
   font-size: 15px;
@@ -263,13 +261,20 @@ button {
   text-decoration: none;
   transition:
     background 0.2s,
-    transform 0.2s;
-  box-shadow: 0 4px 16px rgba(26, 26, 77, 0.3);
-  
+    transform 0.2s,
+    box-shadow 0.2s;
+  box-shadow:
+    0 4px 16px rgba(26, 26, 77, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
 }
 .site-nav-contact:hover {
-  background: var(--cb-navy-dark);
+  background: rgba(26, 26, 77, 1);
   transform: translateY(-1px);
+  box-shadow:
+    0 6px 20px rgba(26, 26, 77, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 /* Mobile hamburger */
@@ -436,10 +441,15 @@ body.home-page {
 
 .section-title {
   text-align: center;
-  font-size: 34px;
+  font-size: clamp(28px, 4vw, 40px);
   font-weight: 700;
   margin: 50px 0 30px;
-  color: black;
+  color: var(--cb-navy);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+.section-title .accent {
+  color: var(--cb-orange);
 }
 
 .section-subtitle {
@@ -2033,14 +2043,14 @@ body.home-page {
 /* Stats banner */
 .stats-banner {
   background: var(--cb-navy);
-  width: 100%;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
   padding: 60px 40px;
   text-align: center;
   color: var(--cb-white);
   margin-bottom: 90px;
-  width: 100vw;
-  position: relative;
-  left: -17%;
 }
 .stats-banner h2 {
   font-size: 28px;
@@ -2202,7 +2212,7 @@ body.home-page {
 }
 
 .team-member--blue .team-photo-wrap::before {
-  background: (0deg, #7fdcef, #1a1a4d);
+  background: linear-gradient(0deg, #7fdcef, #1a1a4d);
 }
 .team-member--orange .team-photo-wrap::before {
   background: rgb(0, 0, 0);
@@ -2217,24 +2227,11 @@ body.home-page {
 .team-bio {
   opacity: 0.7;
 }
-/* /* ==========================================================================
-   Services page
+
+/* ==========================================================================
+   Services page — layout + connecting spine
    ========================================================================== */
 
-.section-title {
-  font-size: clamp(28px, 4vw, 40px);
-  font-weight: 700;
-  color: var(--cb-navy);
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-}
-.section-title .accent {
-  color: var(--cb-orange);
-}
-
-
-
-/* ---- layout + card column ---- */
 .services-layout {
   display: grid;
   grid-template-columns: 1.5fr 1fr;
@@ -2262,15 +2259,8 @@ body.home-page {
   );
 }
 
-/* ---- service card ---- */
 /* ==========================================================================
    SERVICES PAGE — Category cards + subcards
-   Paste this whole block into style.css, REPLACING any old rules for:
-   .category-card, .category-eyebrow, .category-head, .category-icon,
-   .category-title, .category-desc, .subcard-grid, .subcard, .subcard-icon,
-   .subcard h4, .subcard-list, .subcard-featured, .category-btn,
-   .services-layout, .request-form, .form-field, .btn-send
-   (delete those old rules if present — this block fully replaces them)
    ========================================================================== */
 
 .category-card {
@@ -2311,7 +2301,10 @@ body.home-page {
   align-items: center;
   justify-content: center;
 }
-.category-icon svg { width: 22px; height: 22px; }
+.category-icon svg {
+  width: 22px;
+  height: 22px;
+}
 
 .category-title {
   font-size: 20px;
@@ -2341,7 +2334,10 @@ body.home-page {
   border-radius: 16px;
   padding: 46px 22px 30px;
   text-align: center;
-  transition: background .3s ease, transform .3s ease, box-shadow .3s ease;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
   transform-origin: center bottom;
 }
 .subcard:hover {
@@ -2366,9 +2362,14 @@ body.home-page {
   align-items: center;
   justify-content: center;
   box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
-  transition: background .3s ease, color .3s ease;
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
 }
-.subcard-icon svg { width: 22px; height: 22px; }
+.subcard-icon svg {
+  width: 22px;
+  height: 22px;
+}
 .subcard:hover .subcard-icon {
   background: #fff;
   color: #111;
@@ -2379,25 +2380,57 @@ body.home-page {
   font-weight: 700;
   color: #111;
   margin: 4px 0 12px;
-  transition: color .3s ease;
+  transition: color 0.3s ease;
 }
-.subcard:hover h4 { color: #fff; }
+.subcard:hover h4 {
+  color: #fff;
+}
 
+/* Checkmark bullet list */
 .subcard-list {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 10px;
+  text-align: left;
 }
+
 .subcard-list li {
+  position: relative;
+  padding-left: 26px;
   font-size: 13px;
   color: var(--cb-text-muted);
   line-height: 1.5;
-  transition: color .3s ease;
+  transition: color 0.3s ease;
 }
-.subcard:hover .subcard-list li { color: rgba(255, 255, 255, 0.65); }
+
+.subcard-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #111;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 10px 10px;
+  flex-shrink: 0;
+  transition: background-color 0.3s ease;
+}
+
+.subcard:hover .subcard-list li {
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.subcard:hover .subcard-list li::before {
+  background-color: #fff;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+}
 
 .category-btn {
   display: inline-flex;
@@ -2410,21 +2443,36 @@ body.home-page {
   padding: 12px 22px;
   border-radius: 10px;
   text-decoration: none;
-  transition: filter .2s ease, transform .2s ease;
+  transition:
+    filter 0.2s ease,
+    transform 0.2s ease;
 }
-.category-btn:hover { filter: brightness(1.4); transform: translateY(-1px); }
-.category-btn:focus-visible { outline: 2px solid #111; outline-offset: 2px; }
+.category-btn:hover {
+  filter: brightness(1.4);
+  transform: translateY(-1px);
+}
+.category-btn:focus-visible {
+  outline: 2px solid #111;
+  outline-offset: 2px;
+}
 
-main.container { padding-bottom: 60px; }
+main.container {
+  padding-bottom: 60px;
+}
 
 @media (max-width: 900px) {
-  .subcard-grid { grid-template-columns: 1fr; }
-  .category-card { padding: 28px 24px; }
+  .subcard-grid {
+    grid-template-columns: 1fr;
+  }
+  .category-card {
+    padding: 28px 24px;
+  }
 }
+
 /* ==========================================================================
    Careers
    ========================================================================== */
-   .feature-row {
+.feature-row {
   display: flex;
   gap: 40px;
   margin-top: 30px;
@@ -2461,10 +2509,7 @@ main.container { padding-bottom: 60px; }
   line-height: 1.35;
   color: var(--cb-text);
 }
-.class{
-  margin-top: 50px;
 
-}
 .careers-hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -2473,7 +2518,6 @@ main.container { padding-bottom: 60px; }
   padding: 50px 0;
   margin-top: 50px;
   margin-bottom: 90px;
-
 }
 .tab-pill-group {
   display: inline-flex;
@@ -2548,6 +2592,13 @@ main.container { padding-bottom: 60px; }
   border-radius: 18px;
   padding: 26px;
   box-shadow: var(--shadow-card);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.job-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 32px rgba(20, 20, 58, 0.12);
 }
 .job-card-top {
   display: flex;
@@ -2881,23 +2932,39 @@ main.container { padding-bottom: 60px; }
   border-radius: 50%;
   cursor: pointer;
 }
-.lb-arrow:hover { background: rgba(255, 255, 255, 0.2); }
-.lb-prev { left: 24px; }
-.lb-next { right: 24px; }
+.lb-arrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+.lb-prev {
+  left: 24px;
+}
+.lb-next {
+  right: 24px;
+}
 .gallery-grid .g-secondary {
   display: grid;
   grid-template-columns: 1fr;
   gap: 22px;
 }
-.gallery-item { cursor: pointer; }
-.gallery-item img { transition: transform 0.3s ease; }
-.gallery-item:hover img { transform: scale(1.05); }
+.gallery-item {
+  cursor: pointer;
+}
+.gallery-item img {
+  transition: transform 0.3s ease;
+}
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
 .gallery-item {
   position: relative;
   border-radius: 18px;
   overflow: hidden;
   aspect-ratio: 4/3;
-  background: linear-gradient(160deg, #232345, #0d0d22); /* fallback while no img loads */
+  background: linear-gradient(
+    160deg,
+    #232345,
+    #0d0d22
+  ); /* fallback while no img loads */
 }
 
 .gallery-item img {
