@@ -83,14 +83,14 @@
 
       <div class="gallery-grid">
         <div class="gallery-item" style="aspect-ratio: 3/2.2">
-          <img src="images/person.png" alt="">
+          <img src="images/person.png" alt="" />
           <div class="g-overlay">
             <div class="g-tag">Project case</div>
             <div class="g-title">Neural Mesh Interface V2</div>
           </div>
         </div>
         <div class="gallery-item" style="aspect-ratio: 3/3.5">
-          <img src="images/person.png" alt="">
+          <img src="images/person.png" alt="" />
           <div class="g-overlay">
             <div class="g-tag">Project case</div>
             <div class="g-title">Neural Mesh Interface V2</div>
@@ -98,7 +98,7 @@
         </div>
         <div class="g-secondary">
           <div class="gallery-item" style="aspect-ratio: 4/3.4">
-            <img src="images/u2.svg" alt="">
+            <img src="images/u2.svg" alt="" />
             <div class="g-overlay">
               <div class="g-tag">Global event</div>
               <div class="g-title">Code Summit '24</div>
@@ -109,21 +109,21 @@
 
       <div class="gallery-bottom-row">
         <div class="gallery-item">
-          <img src="images/globeb.png" alt="" >
+          <img src="images/globeb.png" alt="" />
           <div class="g-overlay">
             <div class="g-tag">Hardware lab</div>
             <div class="g-title">Bionic Integration</div>
           </div>
         </div>
         <div class="gallery-item">
-          <img src="images/handsb.png" alt="">
+          <img src="images/handsb.png" alt="" />
           <div class="g-overlay">
             <div class="g-tag">Campus life</div>
             <div class="g-title">Innovation Commons</div>
           </div>
         </div>
         <div class="gallery-item">
-          <img src="images/person.png" alt="">
+          <img src="images/person.png" alt="" />
           <div class="g-overlay">
             <div class="g-tag">The team</div>
             <div class="g-title">Class of Pioneers</div>
@@ -132,10 +132,16 @@
       </div>
 
       <div id="lightbox" class="lightbox">
-        <button id="lb-close" class="lb-close" aria-label="Close">&times;</button>
-        <button id="lb-prev" class="lb-arrow lb-prev" aria-label="Previous">&#10094;</button>
-        <img id="lightbox-img" src="" alt="">
-        <button id="lb-next" class="lb-arrow lb-next" aria-label="Next">&#10095;</button>
+        <button id="lb-close" class="lb-close" aria-label="Close">
+          &times;
+        </button>
+        <button id="lb-prev" class="lb-arrow lb-prev" aria-label="Previous">
+          &#10094;
+        </button>
+        <img id="lightbox-img" src="" alt="" />
+        <button id="lb-next" class="lb-arrow lb-next" aria-label="Next">
+          &#10095;
+        </button>
       </div>
     </main>
 
@@ -177,30 +183,30 @@
 
     <script src="lang-switcher.js"></script>
     <script>
-      const galleryItems = document.querySelectorAll('.gallery-item');
+      const galleryItems = document.querySelectorAll(".gallery-item");
       let currentIndex = 0;
       let lastClickedImg = null;
 
       galleryItems.forEach((item, i) => {
-        item.addEventListener('click', () => openLightbox(i));
+        item.addEventListener("click", () => openLightbox(i));
       });
 
       function openLightbox(index) {
         currentIndex = index;
-        const clickedImg = galleryItems[index].querySelector('img');
-        const lightboxImg = document.getElementById('lightbox-img');
+        const clickedImg = galleryItems[index].querySelector("img");
+        const lightboxImg = document.getElementById("lightbox-img");
 
         const doUpdate = () => {
           lightboxImg.src = clickedImg.src;
-          document.getElementById('lightbox').classList.add('active');
+          document.getElementById("lightbox").classList.add("active");
         };
 
         if (document.startViewTransition) {
           if (lastClickedImg && lastClickedImg !== clickedImg) {
-            lastClickedImg.style.viewTransitionName = '';
+            lastClickedImg.style.viewTransitionName = "";
           }
-          clickedImg.style.viewTransitionName = 'active-photo';
-          lightboxImg.style.viewTransitionName = 'active-photo';
+          clickedImg.style.viewTransitionName = "active-photo";
+          lightboxImg.style.viewTransitionName = "active-photo";
           lastClickedImg = clickedImg;
           document.startViewTransition(doUpdate);
         } else {
@@ -213,27 +219,30 @@
         openLightbox(currentIndex);
       }
       function showPrev() {
-        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
+        currentIndex =
+          (currentIndex - 1 + galleryItems.length) % galleryItems.length;
         openLightbox(currentIndex);
       }
 
-      document.getElementById('lb-next').addEventListener('click', (e) => {
+      document.getElementById("lb-next").addEventListener("click", (e) => {
         e.stopPropagation();
         showNext();
       });
-      document.getElementById('lb-prev').addEventListener('click', (e) => {
+      document.getElementById("lb-prev").addEventListener("click", (e) => {
         e.stopPropagation();
         showPrev();
       });
-      document.getElementById('lb-close').addEventListener('click', () => {
-        document.getElementById('lightbox').classList.remove('active');
+      document.getElementById("lb-close").addEventListener("click", () => {
+        document.getElementById("lightbox").classList.remove("active");
       });
 
-      document.addEventListener('keydown', (e) => {
-        if (!document.getElementById('lightbox').classList.contains('active')) return;
-        if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
-        if (e.key === 'ArrowRight') showNext();
-        if (e.key === 'ArrowLeft') showPrev();
+      document.addEventListener("keydown", (e) => {
+        if (!document.getElementById("lightbox").classList.contains("active"))
+          return;
+        if (e.key === "Escape")
+          document.getElementById("lightbox").classList.remove("active");
+        if (e.key === "ArrowRight") showNext();
+        if (e.key === "ArrowLeft") showPrev();
       });
     </script>
   </body>
