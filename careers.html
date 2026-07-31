@@ -39,93 +39,125 @@
 
 <main class="container">
 
-  <div style="display:flex;justify-content:flex-end;margin-top:40px;">
-    <div class="tab-pill-group">
-      <button class="active">Careers</button>
-      <a href="application.html"><button>Application form</button></a>
-      <a href="hr.html"><button>Job details</button></a>
-    </div>
-  </div>
-
   <section class="careers-hero">
-    <div>
+    <div class="class">
       <h1 style="font-size:38px;margin:0 0 4px;">Build your career</h1>
-      <p style="font-family:var(--font-accent);font-style:italic;color:var(--cb-orange);font-size:30px;margin:0 0 26px;font-weight:600;">with us!</p>
-      <p style="color:var(--cb-text-muted);max-width:440px;line-height:1.6;margin-bottom:30px;">You can change colors, plus them — great for business, HR, careers, dashboards, and contact pages.</p>
-      <div class="page-hero-shapes" style="margin-top:0;">
-        <span></span><span></span><span></span>
-      </div>
+      <p style="font-family:var(--font-accent);font-style:italic;color:red;font-size:30px;margin:0 0 26px;font-weight:600;">with us!</p>
+      <p style="color:var(--cb-text-muted);max-width:440px;line-height:1.6;margin-bottom:30px;">"Great work happens where people are trusted to build, break, and grow.
+
+That's Codebridge — where careers move as fast as the technology we build.
+
+We hire for curiosity, not just credentials.
+
+Every project here is a chance to ship something that matters.
+
+Come build the future with us."
+      </p>
+     <div class="feature-row">
+  <div class="feature-item">
+    <div class="feature-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="8" r="3"></circle>
+        <path d="M12 11v2"></path>
+        <path d="M3 21v-4l4-2 4 3 4-4 6 3v4z"></path>
+        <path d="M3 21h18"></path>
+      </svg>
+    </div>
+    <span class="feature-label">Business<br>Growth</span>
+  </div>
+  <div class="feature-item">
+    <div class="feature-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 18h6"></path>
+        <path d="M10 22h4"></path>
+        <path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1v.2h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"></path>
+        <circle cx="18" cy="6" r="1.2"></circle>
+      </svg>
+    </div>
+    <span class="feature-label">High End<br>Technologies</span>
+  </div>
+</div>
     </div>
     <div class="placeholder-img" ><img src="images/u2.svg" alt=""></div>
   </section>
 
-  <section class="jobs-section">
-    <div class="jobs-header">
-      <div>
-        <h3>Job opportunities</h3>
-        <p>Review and manage 128 active candidate applications.</p>
-      </div>
-      <div class="filter-pills">
-        <button>All</button>
-        <button class="active">UI/UX</button>
-        <button>AI/ML</button>
-      </div>
+ <!-- JOBS SECTION -->
+<section class="jobs-section">
+  <div class="jobs-header">
+    <div>
+      <h3>Job opportunities</h3>
+      <p>Review and manage 128 active candidate applications.</p>
     </div>
-    <div class="jobs-grid">
-      <div class="job-card">
-        <div class="job-card-top"><h4>Javascript Senior developer</h4><span class="badge-active">Active</span></div>
-        <p class="job-meta">3 skills · Remote · Kigali</p>
-        <div class="job-stats"><span class="job-candidates">42 candidates</span><span class="job-screened">Last screened 2 days ago</span></div>
-        <div class="job-actions"><button class="btn-apply">Apply</button><a href="#" class="view-job">View job →</a></div>
-      </div>
-      <div class="job-card">
-        <div class="job-card-top"><h4>Javascript Senior developer</h4><span class="badge-active">Active</span></div>
-        <p class="job-meta">3 skills · Remote · Kigali</p>
-        <div class="job-stats"><span class="job-candidates">42 candidates</span><span class="job-screened">Last screened 2 days ago</span></div>
-        <div class="job-actions"><button class="btn-apply">Apply</button><a href="#" class="view-job">View job →</a></div>
-      </div>
-      <div class="job-card">
-        <div class="job-card-top"><h4>Javascript Senior developer</h4><span class="badge-active">Active</span></div>
-        <p class="job-meta">3 skills · Remote · Kigali</p>
-        <div class="job-stats"><span class="job-candidates">42 candidates</span><span class="job-screened">Last screened 2 days ago</span></div>
-        <div class="job-actions"><button class="btn-apply">Apply</button><a href="#" class="view-job">View job →</a></div>
-      </div>
+    <div class="filter-pills">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="uiux">UI/UX</button>
+      <button data-filter="aiml">AI/ML</button>
     </div>
-  </section>
+  </div>
+  <div class="jobs-grid">
 
-  <section class="jobs-section">
-    <div class="jobs-header">
-      <div>
-        <h3>Job opportunities</h3>
-        <p>Review and manage 128 active candidate applications.</p>
-      </div>
-      <div class="filter-pills">
-        <button>All</button>
-        <button class="active">UI/UX</button>
-        <button>AI/ML</button>
-      </div>
+    <div class="job-card" data-category="dev">
+      <div class="job-card-top"><h4>Senior JavaScript Developer</h4><span class="badge-active">Active</span></div>
+      <p class="job-meta">React · Node.js · Remote · Kigali</p>
+      <div class="job-stats"><span class="job-candidates">42 candidates</span><span class="job-screened">Last screened 2 days ago</span></div>
+      <div class="job-actions"><button class="btn-apply">Apply</button><a href="#" class="view-job">View job →</a></div>
     </div>
-    <div class="jobs-grid">
-      <div class="job-card">
-        <div class="job-card-top"><h4>Javascript Senior developer</h4><span class="badge-active">Active</span></div>
-        <p class="job-meta">3 skills · Remote · Kigali</p>
-        <div class="job-stats"><span class="job-candidates">42 candidates</span><span class="job-screened">Last screened 2 days ago</span></div>
-        <div class="job-actions"><button class="btn-apply">Apply</button><a href="#" class="view-job">View job →</a></div>
-      </div>
-      <div class="job-card">
-        <div class="job-card-top"><h4>Javascript Senior developer</h4><span class="badge-active">Active</span></div>
-        <p class="job-meta">3 skills · Remote · Kigali</p>
-        <div class="job-stats"><span class="job-candidates">42 candidates</span><span class="job-screened">Last screened 2 days ago</span></div>
-        <div class="job-actions"><button class="btn-apply">Apply</button><a href="#" class="view-job">View job →</a></div>
-      </div>
-      <div class="job-card">
-        <div class="job-card-top"><h4>Javascript Senior developer</h4><span class="badge-active">Active</span></div>
-        <p class="job-meta">3 skills · Remote · Kigali</p>
-        <div class="job-stats"><span class="job-candidates">42 candidates</span><span class="job-screened">Last screened 2 days ago</span></div>
-        <div class="job-actions"><button class="btn-apply">Apply</button><a href="#" class="view-job">View job →</a></div>
-      </div>
+
+    <div class="job-card" data-category="uiux">
+      <div class="job-card-top"><h4>UI/UX Designer</h4><span class="badge-inactive">Active</span></div>
+      <p class="job-meta">Figma · Design Systems · Hybrid · Kigali</p>
+      <div class="job-stats"><span class="job-candidates">28 candidates</span><span class="job-screened">Last screened 1 day ago</span></div>
+      <div class="job-actions"><button class="btn-apply">Apply</button><a href="#" class="view-job">View job →</a></div>
     </div>
-  </section>
+
+    <div class="job-card" data-category="aiml">
+      <div class="job-card-top"><h4>Machine Learning Engineer</h4><span class="badge-active">Active</span></div>
+      <p class="job-meta">Python · TensorFlow · Remote</p>
+      <div class="job-stats"><span class="job-candidates">19 candidates</span><span class="job-screened">Last screened 4 hours ago</span></div>
+      <div class="job-actions"><button class="btn-apply">Apply</button><a href="#" class="view-job">View job →</a></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- INTERNSHIPS SECTION -->
+<section class="jobs-section">
+  <div class="jobs-header">
+    <div>
+      <h3>Internship programs</h3>
+      <p>Kickstart your career with hands-on experience — 46 spots currently open.</p>
+    </div>
+    <div class="filter-pills">
+      <button class="active" data-filter="all">All</button>
+      <button data-filter="uiux">UI/UX</button>
+      <button data-filter="aiml">AI/ML</button>
+    </div>
+  </div>
+  <div class="jobs-grid">
+
+    <div class="job-card" data-category="dev">
+      <div class="job-card-top"><h4>Frontend Development Intern</h4><span class="badge-active">Active</span></div>
+      <p class="job-meta">HTML/CSS/JS · Onsite · Kigali · 3 months</p>
+      <div class="job-stats"><span class="job-candidates">67 candidates</span><span class="job-screened">Last screened 5 hours ago</span></div>
+      <div class="job-actions"><button class="btn-apply">Apply</button><a href="#" class="view-job">View job →</a></div>
+    </div>
+
+    <div class="job-card" data-category="uiux">
+      <div class="job-card-top"><h4>UI/UX Design Intern</h4><span class="badge-active">Active</span></div>
+      <p class="job-meta">Figma · Portfolio required · Hybrid · 6 months</p>
+      <div class="job-stats"><span class="job-candidates">31 candidates</span><span class="job-screened">Last screened 2 days ago</span></div>
+      <div class="job-actions"><button class="btn-apply">Apply</button><a href="#" class="view-job">View job →</a></div>
+    </div>
+
+    <div class="job-card" data-category="aiml">
+      <div class="job-card-top"><h4>AI/ML Research Intern</h4><span class="badge-active">Active</span></div>
+      <p class="job-meta">Python · Data Science · Remote · 4 months</p>
+      <div class="job-stats"><span class="job-candidates">22 candidates</span><span class="job-screened">Last screened 1 day ago</span></div>
+      <div class="job-actions"><button class="btn-apply">Apply</button><a href="#" class="view-job">View job →</a></div>
+    </div>
+
+  </div>
+</section>
 
 </main>
 
@@ -163,6 +195,20 @@
   </div>
 </footer>
 
-<script src="lang-switcher.js"></script>
+<script src="lang-switcher.js"></script>\
+<script>document.querySelectorAll('.jobs-section').forEach(section => {
+  section.querySelectorAll('.filter-pills button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      section.querySelectorAll('.filter-pills button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      section.querySelectorAll('.job-card').forEach(card => {
+        const match = filter === 'all' || card.dataset.category === filter;
+        card.style.display = match ? '' : 'none';
+      });
+    });
+  });
+});</script>
 </body>
 </html>
