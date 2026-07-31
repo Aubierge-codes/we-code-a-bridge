@@ -120,68 +120,8 @@
           <div class="g-overlay">
             <div class="g-tag">Campus life</div>
             <div class="g-title">Innovation Commons</div>
-    <script src="lang-switcher.js"></script>
-    <script>
-      const galleryItems = document.querySelectorAll('.gallery-item');
-      let currentIndex = 0;
-      let lastClickedImg = null;
-
-      galleryItems.forEach((item, i) => {
-        item.addEventListener('click', () => openLightbox(i));
-      });
-
-      function openLightbox(index) {
-        currentIndex = index;
-        const clickedImg = galleryItems[index].querySelector('img');
-        const lightboxImg = document.getElementById('lightbox-img');
-
-        const doUpdate = () => {
-          lightboxImg.src = clickedImg.src;
-          document.getElementById('lightbox').classList.add('active');
-        };
-
-        if (document.startViewTransition) {
-          if (lastClickedImg && lastClickedImg !== clickedImg) {
-            lastClickedImg.style.viewTransitionName = '';
-          }
-          clickedImg.style.viewTransitionName = 'active-photo';
-          lightboxImg.style.viewTransitionName = 'active-photo';
-          lastClickedImg = clickedImg;
-          document.startViewTransition(doUpdate);
-        } else {
-          doUpdate();
-        }
-      }
-
-      function showNext() {
-        currentIndex = (currentIndex + 1) % galleryItems.length;
-        openLightbox(currentIndex);
-      }
-      function showPrev() {
-        currentIndex = (currentIndex - 1 + galleryItems.length) % galleryItems.length;
-        openLightbox(currentIndex);
-      }
-
-      document.getElementById('lb-next').addEventListener('click', (e) => {
-        e.stopPropagation();
-        showNext();
-      });
-      document.getElementById('lb-prev').addEventListener('click', (e) => {
-        e.stopPropagation();
-        showPrev();
-      });
-      document.getElementById('lb-close').addEventListener('click', () => {
-        document.getElementById('lightbox').classList.remove('active');
-      });
-
-      document.addEventListener('keydown', (e) => {
-        if (!document.getElementById('lightbox').classList.contains('active')) return;
-        if (e.key === 'Escape') document.getElementById('lightbox').classList.remove('active');
-        if (e.key === 'ArrowRight') showNext();
-        if (e.key === 'ArrowLeft') showPrev();
-      });
-    </script>
-  </body>
+          </div>
+        </div>
         <div class="gallery-item">
           <img src="images/person.png" alt="">
           <div class="g-overlay">
