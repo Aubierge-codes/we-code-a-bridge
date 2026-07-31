@@ -1,516 +1,739 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Innovations — Codebridge</title>
-<link rel="stylesheet" href="style.css">
-<style>
-  /* ---- Innovations page-specific styles ---- */
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Innovations — Codebridge</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* ---- Innovations page-specific styles ---- */
 
-  .innov-hero {
-    padding: 52px 0 36px;
-    text-align: center;
-  }
-  .innov-hero h1 {
-    font-size: 38px; font-weight: 700;
-    margin: 0 0 12px;
-    line-height: 1.2;
-  }
-  .innov-hero p {
-    color: var(--cb-text-muted);
-    font-size: 16px;
-    max-width: 560px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
+      .innov-hero {
+        background: var(--cb-navy);
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 170px 40px 0px;
+        text-align: center;
+        margin-top: -100px;
+      
+      }
+      .innov-hero h1 {
+        font-size: 38px;
+        font-weight: 700;
+        margin: 0 0 12px;
+        line-height: 1.2;
+        color: var(--cb-white);
+      }
+      .innov-hero p {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 16px;
+        max-width: 560px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+      /* ---- Technical Reels section ---- */
+      .reels-section {
+        background: var(--cb-navy);
+        padding: 0 94px 90px; /* top padding removed since hero already provides spacing above the title */
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .reels-section-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--cb-white);
+        font-size: 20px;
+        font-weight: 700;
+        margin-bottom: 28px;
+      }
+      .reels-section-title::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--cb-red);
+        flex-shrink: 0;
+      }
 
-  /* ---- Technical Reels section ---- */
-  .reels-section {
-    background: var(--cb-navy);
-    border-radius: 28px;
-    padding: 40px 44px;
-    margin-bottom: 40px;
-  }
-  .reels-section-title {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--cb-white);
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 28px;
-  }
-  .reels-section-title::before {
-    content: '';
-    width: 10px; height: 10px;
-    border-radius: 50%;
-    background: var(--cb-red);
-    flex-shrink: 0;
-  }
+      .reels-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+      }
+      @media (max-width: 740px) {
+        .reels-grid {
+          grid-template-columns: 1fr;
+        }
+      }
 
-  .reels-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-  @media (max-width: 740px) { .reels-grid { grid-template-columns: 1fr; } }
+      .reel-card {
+        border-radius: 14px;
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+      }
+      .reel-thumb {
+        aspect-ratio: 4/3;
+        background: linear-gradient(160deg, #1a2a4a, #0a1a2e);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .reel-thumb-1 {
+        background: linear-gradient(135deg, #0a1628, #1a3c58, #0d2840);
+      }
+      .reel-thumb-2 {
+        background: linear-gradient(135deg, #0c0c2e, #1a1a4d, #2d1b4e);
+      }
+      .reel-thumb-3 {
+        background: linear-gradient(135deg, #081420, #0a2030, #162840);
+      }
 
-  .reel-card {
-    border-radius: 14px;
-    overflow: hidden;
-    position: relative;
-    cursor: pointer;
-  }
-  .reel-thumb {
-    aspect-ratio: 4/3;
-    background: linear-gradient(160deg, #1a2a4a, #0a1a2e);
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .reel-thumb-1 { background: linear-gradient(135deg,#0a1628,#1a3c58,#0d2840); }
-  .reel-thumb-2 { background: linear-gradient(135deg,#0c0c2e,#1a1a4d,#2d1b4e); }
-  .reel-thumb-3 { background: linear-gradient(135deg,#081420,#0a2030,#162840); }
+      /* Simulated city/tech background dots */
+      .reel-thumb::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          circle,
+          rgba(100, 160, 255, 0.15) 1px,
+          transparent 1px
+        );
+        background-size: 20px 20px;
+      }
 
-  /* Simulated city/tech background dots */
-  .reel-thumb::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      radial-gradient(circle, rgba(100,160,255,0.15) 1px, transparent 1px);
-    background-size: 20px 20px;
-  }
+      .play-circle {
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: rgba(100, 160, 255, 0.85);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--cb-white);
+        font-size: 18px;
+        position: relative;
+        z-index: 1;
+        transition:
+          transform 0.2s,
+          background 0.2s;
+      }
+      .reel-card:hover .play-circle {
+        transform: scale(1.1);
+        background: var(--cb-red);
+      }
 
-  .play-circle {
-    width: 52px; height: 52px;
-    border-radius: 50%;
-    background: rgba(100,160,255,0.85);
-    display: flex; align-items: center; justify-content: center;
-    color: var(--cb-white);
-    font-size: 18px;
-    position: relative; z-index: 1;
-    transition: transform 0.2s, background 0.2s;
-  }
-  .reel-card:hover .play-circle {
-    transform: scale(1.1);
-    background: var(--cb-red);
-  }
+      .reel-info {
+        padding: 14px 4px 4px;
+      }
+      .reel-title {
+        color: var(--cb-white);
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 4px;
+      }
+      .reel-tag {
+        color: rgba(255, 255, 255, 0.45);
+        font-size: 12px;
+      }
 
-  .reel-info { padding: 14px 4px 4px; }
-  .reel-title { color: var(--cb-white); font-weight: 600; font-size: 14px; margin-bottom: 4px; }
-  .reel-tag { color: rgba(255,255,255,0.45); font-size: 12px; }
+      /* ---- Innovation in action ---- */
+      .innovation-action {
+        display: grid;
+        grid-template-columns: 1fr 1.1fr;
+        gap: 150px;
+        align-items: center;
 
-  /* ---- Innovation in action ---- */
-  .innovation-action {
-    display: grid;
-    grid-template-columns: 1fr 1.1fr;
-    gap: 50px;
-    align-items: center;
-    background: var(--cb-navy);
-    border-radius: 28px;
-    padding: 52px 56px;
-    margin-bottom: 40px;
-    color: var(--cb-white);
-  }
-  @media (max-width: 800px) { .innovation-action { grid-template-columns: 1fr; padding: 36px 28px; } }
+        border-radius: 28px;
+        padding: 52px 56px;
+        margin-bottom: 40px;
+        color: black;
+      }
+      @media (max-width: 800px) {
+        .innovation-action {
+          grid-template-columns: 1fr;
+          padding: 36px 28px;
+        }
+      }
 
-  .innovation-action h2 {
-    font-size: 28px; font-weight: 700;
-    margin: 0 0 20px;
-    line-height: 1.3;
-  }
-  .innovation-action p {
-    color: rgba(255,255,255,0.72);
-    font-size: 15px;
-    line-height: 1.7;
-    margin: 0;
-  }
+      .innovation-action h2 {
+        font-size: 28px;
+        font-weight: 700;
+        margin: 0 0 20px;
+        line-height: 1.3;
+        opacity: 0.8;
+      }
+      .innovation-action p {
+        color: black;
+        font-size: 15px;
+        line-height: 1.7;
+        margin: 0;
+        opacity: 0.8;
+      }
 
-  .video-preview {
-    border-radius: 14px;
-    overflow: hidden;
-    position: relative;
-    aspect-ratio: 16/9;
-    background: linear-gradient(135deg,#0a1628,#1a2a40);
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-  }
-  .video-preview img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    opacity: 0.7;
-  }
-  .video-preview-overlay {
-    position: absolute; inset: 0;
-    background: rgba(10,22,40,0.55);
-    display: flex; align-items: center; justify-content: center;
-  }
-  .video-preview .vp-label {
-    position: absolute;
-    top: 14px; left: 14px;
-    background: var(--cb-red);
-    color: var(--cb-white);
-    font-size: 11px; font-weight: 700;
-    letter-spacing: 0.06em;
-    padding: 4px 12px;
-    border-radius: var(--radius-pill);
-    text-transform: uppercase;
-  }
-  .video-preview .vp-title {
-    position: absolute;
-    bottom: 14px; left: 14px; right: 14px;
-    color: var(--cb-white);
-    font-size: 13px; font-weight: 700;
-    line-height: 1.4;
-  }
-  .video-play-btn {
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.9);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px;
-    color: var(--cb-navy);
-    position: relative; z-index: 2;
-    border: none;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  .video-preview:hover .video-play-btn { transform: scale(1.08); }
+      .video-preview {
+        border-radius: 14px;
+        overflow: hidden;
+        position: relative;
+        aspect-ratio: 16/9;
+        background: linear-gradient(135deg, #0a1628, #1a2a40);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      .video-preview img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0.7;
+      }
+      .video-preview-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(10, 22, 40, 0.55);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .video-preview .vp-label {
+        position: absolute;
+        top: 14px;
+        left: 14px;
+        background: var(--cb-red);
+        color: var(--cb-white);
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        padding: 4px 12px;
+        border-radius: var(--radius-pill);
+        text-transform: uppercase;
+      }
+      .video-preview .vp-title {
+        position: absolute;
+        bottom: 14px;
+        left: 14px;
+        right: 14px;
+        color: var(--cb-white);
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+      .video-play-btn {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        color: var(--cb-navy);
+        position: relative;
+        z-index: 2;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s;
+      }
+      .video-preview:hover .video-play-btn {
+        transform: scale(1.08);
+      }
 
-  /* Simulated video thumbnail grid inside preview */
-  .vp-grid {
-    position: absolute; inset: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2px;
-    opacity: 0.5;
-  }
-  .vp-grid div { background: linear-gradient(135deg,#1a2a4a,#0a1020); }
+      /* Simulated video thumbnail grid inside preview */
+      .vp-grid {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2px;
+        opacity: 0.5;
+      }
+      .vp-grid div {
+        background: linear-gradient(135deg, #1a2a4a, #0a1020);
+      }
+      .reel-thumb .vp-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
 
-  /* ---- Newsletter / Stay ahead ---- */
-  .newsletter-section {
-    background: var(--cb-navy);
-    border-radius: 28px;
-    padding: 60px 40px;
-    text-align: center;
-    color: var(--cb-white);
-    margin-bottom: 40px;
-  }
-  .newsletter-section h2 {
-    font-size: 26px; font-weight: 700;
-    margin: 0 0 10px;
-  }
-  .newsletter-section .sub {
-    color: rgba(255,255,255,0.65);
-    font-size: 14px;
-    margin-bottom: 6px;
-  }
-  .newsletter-section .sub2 {
-    color: rgba(255,255,255,0.5);
-    font-size: 13px;
-    margin-bottom: 28px;
-  }
-  .newsletter-form {
-    display: flex;
-    max-width: 400px;
-    margin: 0 auto;
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: var(--radius-pill);
-    overflow: hidden;
-    padding: 4px;
-  }
-  .newsletter-form input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    outline: none;
-    color: var(--cb-white);
-    font-family: inherit;
-    font-size: 14px;
-    padding: 10px 16px;
-  }
-  .newsletter-form input::placeholder { color: rgba(255,255,255,0.45); }
-  .newsletter-form button {
-    background: var(--cb-navy-dark);
-    color: var(--cb-white);
-    border: none;
-    border-radius: var(--radius-pill);
-    padding: 10px 22px;
-    font-size: 13px;
-    font-weight: 700;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: background 0.2s;
-  }
-  .newsletter-form button:hover { background: var(--cb-red); }
+      /* ---- Newsletter / Stay ahead ---- */
+      .newsletter-section {
+        background: var(--cb-navy);
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 0; /* remove the rounded corners */
+        padding: 80px 40px;
+        text-align: center;
+        color: var(--cb-white);
+        margin-bottom: 40px;
+      }
+      .newsletter-section h2 {
+        font-size: 26px;
+        font-weight: 700;
+        margin: 0 0 10px;
+      }
+      .newsletter-section .sub {
+        color: rgba(255, 255, 255, 0.65);
+        font-size: 14px;
+        margin-bottom: 6px;
+      }
+      .newsletter-section .sub2 {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 13px;
+        margin-bottom: 28px;
+      }
+      .newsletter-form {
+        display: flex;
+        max-width: 400px;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: var(--radius-pill);
+        overflow: hidden;
+        padding: 4px;
+      }
+      .newsletter-form input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--cb-white);
+        font-family: inherit;
+        font-size: 14px;
+        padding: 10px 16px;
+      }
+      .newsletter-form input::placeholder {
+        color: rgba(255, 255, 255, 0.45);
+      }
+      .newsletter-form button {
+        background: var(--cb-navy-dark);
+        color: var(--cb-white);
+        border: none;
+        border-radius: var(--radius-pill);
+        padding: 10px 22px;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        white-space: nowrap;
+        transition: background 0.2s;
+      }
+      .newsletter-form button:hover {
+        background: var(--cb-red);
+      }
 
-  /* ---- Projects showcase ---- */
-  .projects-showcase {
-    margin-bottom: 80px;
-  }
-  .projects-showcase-header {
-    display: flex; justify-content: space-between; align-items: center;
-    margin-bottom: 28px;
-    flex-wrap: wrap; gap: 14px;
-  }
-  .projects-showcase-header h2 { font-size: 26px; margin: 0; }
+      /* ---- Projects showcase ---- */
+      .projects-showcase {
+        margin-bottom: 80px;
+      }
+      .projects-showcase-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 28px;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+      .projects-showcase-header h2 {
+        font-size: 26px;
+        margin: 0;
+      }
 
-  .project-cards-row {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 22px;
-  }
-  @media (max-width: 840px) { .project-cards-row { grid-template-columns: 1fr; } }
+      .project-cards-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+      }
+      @media (max-width: 840px) {
+        .project-cards-row {
+          grid-template-columns: 1fr;
+        }
+      }
 
-  .proj-card {
-    border-radius: 20px;
-    overflow: hidden;
-    background: var(--cb-bg-soft);
-    border: 1px solid var(--cb-border);
-    transition: box-shadow 0.2s, transform 0.2s;
-  }
-  .proj-card:hover { box-shadow: var(--shadow-card); transform: translateY(-3px); }
-  .proj-card-img {
-    aspect-ratio: 16/9;
-    background: linear-gradient(160deg, #1a1a4d, #0f3b4d);
-    position: relative;
-    display: flex; align-items: center; justify-content: center;
-    overflow: hidden;
-  }
-  .proj-card-img-1 { background: linear-gradient(135deg,#0f3b4d,#1a4d6a); }
-  .proj-card-img-2 { background: linear-gradient(135deg,#1a1a4d,#2d1b4e); }
-  .proj-card-img-3 { background: linear-gradient(135deg,#0a2436,#1a3a50); }
-  .proj-card-img::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
-    background-size: 18px 18px;
-  }
-  .proj-badge {
-    position: absolute; top: 12px; left: 12px;
-    background: rgba(26,26,77,0.85);
-    color: var(--cb-white);
-    font-size: 11px; font-weight: 700;
-    padding: 4px 12px;
-    border-radius: var(--radius-pill);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-  .proj-card-body { padding: 20px 22px; }
-  .proj-card-body h4 { font-size: 16px; font-weight: 700; margin: 0 0 8px; color: var(--cb-navy); }
-  .proj-card-body p { font-size: 13px; color: var(--cb-text-muted); margin: 0 0 14px; line-height: 1.5; }
-  .proj-tags { display: flex; gap: 6px; flex-wrap: wrap; }
-  .proj-tag {
-    background: var(--cb-bg-pill);
-    border-radius: var(--radius-pill);
-    padding: 4px 12px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--cb-text-muted);
-  }
-</style>
-</head>
-<body>
-
-<nav class="site-nav" aria-label="Main navigation">
-    <div class="site-nav-pill">
-      <a href="index.html" class="site-nav-logo" aria-label="Codebridge home">
-        <img src="images/logo.png" alt="Codebridge logo">
-      </a>
-      <div class="site-nav-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About us</a>
-        <a href="news.html">News</a>
-        <a href="services.html">Services</a>
-        <a href="careers.html">Careers</a>
-        <a href="innovations.html" class="active">Innovations</a>
-        <a href="gallery.html">Gallery</a>
-      </div>
-      <div class="site-nav-lang-wrap">
-        <button class="site-nav-lang" aria-label="Language: English" aria-expanded="false">EN</button>
-        <div class="site-nav-lang-menu" role="menu">
-          <button class="site-nav-lang-option active" data-value="EN" data-label="English" role="menuitem">English</button>
-          <button class="site-nav-lang-option" data-value="FR" data-label="Français" role="menuitem">Français</button>
-          <button class="site-nav-lang-option" data-value="KINY" data-label="Kinyarwanda" role="menuitem">Kinyarwanda</button>
+      .proj-card {
+        border-radius: 20px;
+        overflow: hidden;
+        background: var(--cb-bg-soft);
+        border: 1px solid var(--cb-border);
+        transition:
+          box-shadow 0.2s,
+          transform 0.2s;
+      }
+      .proj-card:hover {
+        box-shadow: var(--shadow-card);
+        transform: translateY(-3px);
+      }
+      .proj-card-img {
+        aspect-ratio: 16/9;
+        background: linear-gradient(160deg, #1a1a4d, #0f3b4d);
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+      .proj-card-img-1 {
+        background: linear-gradient(135deg, #0f3b4d, #1a4d6a);
+      }
+      .proj-card-img-2 {
+        background: linear-gradient(135deg, #1a1a4d, #2d1b4e);
+      }
+      .proj-card-img-3 {
+        background: linear-gradient(135deg, #0a2436, #1a3a50);
+      }
+      .proj-card-img::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.06) 1px,
+          transparent 1px
+        );
+        background-size: 18px 18px;
+      }
+      .proj-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: rgba(26, 26, 77, 0.85);
+        color: var(--cb-white);
+        font-size: 11px;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: var(--radius-pill);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .proj-card-body {
+        padding: 20px 22px;
+      }
+      .proj-card-body h4 {
+        font-size: 16px;
+        font-weight: 700;
+        margin: 0 0 8px;
+        color: var(--cb-navy);
+      }
+      .proj-card-body p {
+        font-size: 13px;
+        color: var(--cb-text-muted);
+        margin: 0 0 14px;
+        line-height: 1.5;
+      }
+      .proj-tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .proj-tag {
+        background: var(--cb-bg-pill);
+        border-radius: var(--radius-pill);
+        padding: 4px 12px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--cb-text-muted);
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav" aria-label="Main navigation">
+      <div class="site-nav-pill">
+        <a href="index.html" class="site-nav-logo" aria-label="Codebridge home">
+          <img src="images/logo.png" alt="Codebridge logo" />
+        </a>
+        <div class="site-nav-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About us</a>
+          <a href="news.html">News</a>
+          <a href="services.html">Services</a>
+          <a href="careers.html">Careers</a>
+          <a href="innovations.html" class="active">Innovations</a>
+          <a href="gallery.html">Gallery</a>
         </div>
-      </div>
-      <button class="site-nav-toggle" aria-label="Open menu">☰</button>
-    </div>
-    <a href="contact.html" class="site-nav-contact">Contact us</a>
-  </nav>
-
-<!-- NAVBAR -->
-
-
-<main class="container">
-
-  <!-- Hero -->
-  <section class="innov-hero">
-    <h1>Know our innovation <span class="accent">projects</span></h1>
-    <p>Discover the best moments captured — the projects Codebridge showcases and events highlights</p>
-  </section>
-
-  <!-- Technical Reels -->
-  <section class="reels-section">
-    <div class="reels-section-title">Technical Reels</div>
-    <div class="reels-grid">
-      <div class="reel-card">
-        <div class="reel-thumb reel-thumb-1">
-          <button class="play-circle" aria-label="Play Data Flow Dynamics">▶</button>
-        </div>
-        <div class="reel-info">
-          <div class="reel-title">Data Flow Dynamics</div>
-          <div class="reel-tag">Series</div>
-        </div>
-      </div>
-      <div class="reel-card">
-        <div class="reel-thumb reel-thumb-2">
-          <button class="play-circle" aria-label="Play User Experience 2.0">▶</button>
-        </div>
-        <div class="reel-info">
-          <div class="reel-title">User Experience 2.0</div>
-          <div class="reel-tag">Series</div>
-        </div>
-      </div>
-      <div class="reel-card">
-        <div class="reel-thumb reel-thumb-3">
-          <button class="play-circle" aria-label="Play The Quantum Core">▶</button>
-        </div>
-        <div class="reel-info">
-          <div class="reel-title">The Quantum Core</div>
-          <div class="reel-tag">Series</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Innovation in action -->
-  <section class="innovation-action">
-    <div>
-      <h2>Innovation in action</h2>
-      <p>
-        Innovation isn't just words at Codebridge — it is action. We work
-        with people in order to develop them and bring transformative ideas
-        to life through cutting-edge technology and collaborative thinking.
-      </p>
-    </div>
-    <div class="video-preview">
-      <div class="vp-grid">
-        <div></div><div style="background:linear-gradient(135deg,#0d1e30,#1a2a40)"></div>
-        <div style="background:linear-gradient(135deg,#1a2030,#0a1828)"></div><div></div>
-      </div>
-      <div class="video-preview-overlay">
-        <button class="video-play-btn" aria-label="Play video">▶</button>
-      </div>
-      <span class="vp-label">Codebridge Fire</span>
-      <span class="vp-title">CODEBRIDGE FIRE<br>TECH SOLUTIONS</span>
-    </div>
-  </section>
-
-  <!-- Featured Projects -->
-  <section class="projects-showcase">
-    <div class="projects-showcase-header">
-      <h2>Featured <span class="accent">projects</span></h2>
-      <a href="gallery.html" class="btn btn-navy" style="font-size:14px;padding:12px 24px;">View gallery →</a>
-    </div>
-    <div class="project-cards-row">
-      <div class="proj-card">
-        <div class="proj-card-img proj-card-img-1">
-          <span class="proj-badge">AI / ML</span>
-        </div>
-        <div class="proj-card-body">
-          <h4>Intelligent Analytics Platform</h4>
-          <p>Real-time data processing and machine learning insights for enterprise clients across Rwanda.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">Python</span>
-            <span class="proj-tag">TensorFlow</span>
-            <span class="proj-tag">AWS</span>
+        <div class="site-nav-lang-wrap">
+          <button
+            class="site-nav-lang"
+            aria-label="Language: English"
+            aria-expanded="false"
+          >
+            EN
+          </button>
+          <div class="site-nav-lang-menu" role="menu">
+            <button
+              class="site-nav-lang-option active"
+              data-value="EN"
+              data-label="English"
+              role="menuitem"
+            >
+              English
+            </button>
+            <button
+              class="site-nav-lang-option"
+              data-value="FR"
+              data-label="Français"
+              role="menuitem"
+            >
+              Français
+            </button>
+            <button
+              class="site-nav-lang-option"
+              data-value="KINY"
+              data-label="Kinyarwanda"
+              role="menuitem"
+            >
+              Kinyarwanda
+            </button>
           </div>
         </div>
+        <button class="site-nav-toggle" aria-label="Open menu">☰</button>
       </div>
-      <div class="proj-card">
-        <div class="proj-card-img proj-card-img-2">
-          <span class="proj-badge">Web App</span>
-        </div>
-        <div class="proj-card-body">
-          <h4>Digital Government Portal</h4>
-          <p>Streamlining IREMBO, RSSB, and RDB services into a unified accessible interface for citizens.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">React</span>
-            <span class="proj-tag">Node.js</span>
-            <span class="proj-tag">PostgreSQL</span>
+      <a href="contact.html" class="site-nav-contact">Contact us</a>
+    </nav>
+
+    <!-- NAVBAR -->
+
+    <main class="container">
+      <!-- Hero -->
+      <section class="innov-hero">
+        <h1>Know our innovation <span class="accent">projects</span></h1>
+        <p>
+          Discover the best moments captured — the projects Codebridge showcases
+          and events highlights
+        </p>
+      </section>
+
+      <!-- Technical Reels -->
+      <section class="reels-section">
+        <div class="reels-section-title">Technical Reels</div>
+        <div class="reels-grid">
+          <div class="reel-card">
+            
+            <div class="reel-thumb reel-thumb-1" data-video="images/visit.mp4">
+              <img src="images/handsb.png" alt="" class="vp-poster">
+              <button class="play-circle" aria-label="Play Data Flow Dynamics">
+                ▶
+              </button>
+            </div>
+            <div class="reel-info">
+              <div class="reel-title">Data Flow Dynamics</div>
+              <div class="reel-tag">Series</div>
+            </div>
+          </div>
+          <div class="reel-card">
+            <div class="reel-thumb reel-thumb-2">
+               <img src="images/globeb.png" alt="" class="vp-poster">
+              <button class="play-circle" aria-label="Play User Experience 2.0">
+                ▶
+              </button>
+            </div>
+            <div class="reel-info">
+              <div class="reel-title">User Experience 2.0</div>
+              <div class="reel-tag">Series</div>
+            </div>
+          </div>
+          <div class="reel-card">
+            <div class="reel-thumb reel-thumb-3">
+               <img src="images/handsb.png" alt="" class="vp-poster">
+              <button class="play-circle" aria-label="Play The Quantum Core">
+                ▶
+              </button>
+            </div>
+            <div class="reel-info">
+              <div class="reel-title">The Quantum Core</div>
+              <div class="reel-tag">Series</div>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="proj-card">
-        <div class="proj-card-img proj-card-img-3">
-          <span class="proj-badge">Cybersecurity</span>
+      </section>
+
+      <!-- Innovation in action -->
+      <section class="innovation-action">
+        <div>
+          <h2>Innovation in action</h2>
+          <p>
+            Innovation isn't just words at Codebridge — it is action. We work
+            with people in order to develop them and bring transformative ideas
+            to life through cutting-edge technology and collaborative thinking.
+          </p>
         </div>
-        <div class="proj-card-body">
-          <h4>Cyberlympics Training System</h4>
-          <p>Competitive cybersecurity training platform that powered Rwanda's inaugural Cyberlympics event.</p>
-          <div class="proj-tags">
-            <span class="proj-tag">CTF</span>
-            <span class="proj-tag">Docker</span>
-            <span class="proj-tag">Kubernetes</span>
+        <div class="video-preview" data-video="images/visit.mp4">
+           <img src="images/handsb.png" alt="" class="vp-poster">
+          <div class="vp-grid">
+            
+          </div>
+          <div class="video-preview-overlay">
+            <button class="video-play-btn" aria-label="Play video">▶</button>
+          </div>
+          <span class="vp-label">Codebridge Fire</span>
+          <span class="vp-title">CODEBRIDGE FIRE<br />TECH SOLUTIONS</span>
+        </div>
+      </section>
+
+      <!-- Newsletter / Stay ahead -->
+      <section class="newsletter-section">
+        <h2>Stay ahead of the bridge.</h2>
+        <p class="sub">
+          Receive and be always updated about all of our projects and upcoming
+          events.
+        </p>
+        <p class="sub2">Notify me your professional inbox</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input
+            type="email"
+            placeholder="professional@email.com"
+            aria-label="Email address"
+          />
+          <button type="submit">Subscribe</button>
+        </form>
+      </section>
+      <!-- Featured Projects -->
+      <section class="projects-showcase">
+        <div class="projects-showcase-header">
+          <h2>Featured <span class="accent">projects</span></h2>
+          <a
+            href="gallery.html"
+            class="btn btn-navy"
+            style="font-size: 14px; padding: 12px 24px"
+            >View gallery →</a
+          >
+        </div>
+        <div class="project-cards-row">
+          <div class="proj-card">
+            <div class="proj-card-img proj-card-img-1">
+              <img src="images/person.png" alt="" />
+              <span class="proj-badge">AI / ML</span>
+            </div>
+            <div class="proj-card-body">
+              <h4>Intelligent Analytics Platform</h4>
+              <p>
+                Real-time data processing and machine learning insights for
+                enterprise clients across Rwanda.
+              </p>
+              <div class="proj-tags">
+                <span class="proj-tag">Python</span>
+                <span class="proj-tag">TensorFlow</span>
+                <span class="proj-tag">AWS</span>
+              </div>
+            </div>
+          </div>
+          <div class="proj-card">
+            <div class="proj-card-img proj-card-img-2">
+              <img src="images/handsb.png" alt="" />
+              <span class="proj-badge">Web App</span>
+            </div>
+            <div class="proj-card-body">
+              <h4>Digital Government Portal</h4>
+              <p>
+                Streamlining IREMBO, RSSB, and RDB services into a unified
+                accessible interface for citizens.
+              </p>
+              <div class="proj-tags">
+                <span class="proj-tag">React</span>
+                <span class="proj-tag">Node.js</span>
+                <span class="proj-tag">PostgreSQL</span>
+              </div>
+            </div>
+          </div>
+          <div class="proj-card">
+            <div class="proj-card-img proj-card-img-3">
+              <span class="proj-badge">Cybersecurity</span>
+              <img src="images/globeb.png" alt="" />
+            </div>
+            <div class="proj-card-body">
+              <h4>Cyberlympics Training System</h4>
+              <p>
+                Competitive cybersecurity training platform that powered
+                Rwanda's inaugural Cyberlympics event.
+              </p>
+              <div class="proj-tags">
+                <span class="proj-tag">CTF</span>
+                <span class="proj-tag">Docker</span>
+                <span class="proj-tag">Kubernetes</span>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
+      </section>
+    </main>
 
-  <!-- Newsletter / Stay ahead -->
-  <section class="newsletter-section">
-    <h2>Stay ahead of the bridge.</h2>
-    <p class="sub">Receive and be always updated about all of our projects and upcoming events.</p>
-    <p class="sub2">Notify me your professional inbox</p>
-    <form class="newsletter-form" onsubmit="return false;">
-      <input type="email" placeholder="professional@email.com" aria-label="Email address">
-      <button type="submit">Subscribe</button>
-    </form>
-  </section>
-
-</main>
-
-<!-- FOOTER -->
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo">CB</div>
-        <p class="footer-tagline">We create comprehensive digital solutions</p>
-        <div class="footer-social">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="X / Twitter">x</a>
-          <a href="#" aria-label="LinkedIn">in</a>
-          <a href="#" aria-label="YouTube">▶</a>
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">CB</div>
+            <p class="footer-tagline">
+              We create comprehensive digital solutions
+            </p>
+            <div class="footer-social">
+              <a href="#" aria-label="Facebook">f</a>
+              <a href="#" aria-label="X / Twitter">x</a>
+              <a href="#" aria-label="LinkedIn">in</a>
+              <a href="#" aria-label="YouTube">▶</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-heading">GET IN TOUCH</div>
+            <p>Kigali — Nyarugenge</p>
+            <p>KG 123 Maple Street, Apt 4B</p>
+            <p>Mon–Fri: 8:00 AM – 5:00 PM</p>
+            <p>Sat &amp; Sun: 12:00 PM –5:00 PM</p>
+          </div>
+          <div>
+            <div class="footer-heading">QUICK LINKS</div>
+            <ul>
+              <li><a href="about.html">About</a></li>
+              <li><a href="news.html">Blogs</a></li>
+              <li><a href="careers.html">Careers</a></li>
+              <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+          </div>
         </div>
+        <div class="footer-watermark">CODEBRIDGE</div>
       </div>
-      <div>
-        <div class="footer-heading">GET IN TOUCH</div>
-        <p>Kigali — Nyarugenge</p>
-        <p>KG 123 Maple Street, Apt 4B</p>
-        <p>Mon–Fri: 8:00 AM – 5:00 PM</p>
-        <p>Sat &amp; Sun: 12:00 PM –5:00 PM</p>
-      </div>
-      <div>
-        <div class="footer-heading">QUICK LINKS</div>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="news.html">Blogs</a></li>
-          <li><a href="careers.html">Careers</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-watermark">CODEBRIDGE</div>
-  </div>
-</footer>
+    </footer>
 
-<script src="lang-switcher.js"></script>
-</body>
+    <script src="lang-switcher.js"></script>
+    <script>
+      document.querySelectorAll(".reel-thumb").forEach((thumb) => {
+        thumb.addEventListener("click", () => {
+          const videoSrc = thumb.dataset.video;
+          const video = document.createElement("video");
+          video.src = videoSrc;
+          video.controls = true;
+          video.autoplay = true;
+          video.style.cssText =
+            "position:absolute;inset:0;width:100%;height:100%;object-fit:cover;";
+          thumb.innerHTML = "";
+          thumb.appendChild(video);
+        });
+      });
+    </script>
+    <script>document.querySelectorAll('.video-preview').forEach(preview => {
+  preview.addEventListener('click', () => {
+    const videoSrc = preview.dataset.video;
+    if (!videoSrc) return;
+    const video = document.createElement('video');
+    video.src = videoSrc;
+    video.controls = true;
+    video.autoplay = true;
+    video.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;';
+    preview.innerHTML = '';
+    preview.appendChild(video);
+  });
+});</script>
+  </body>
 </html>

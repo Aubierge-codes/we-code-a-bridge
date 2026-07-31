@@ -249,8 +249,9 @@ button {
 
 /* Contact us — outside the pill */
 .site-nav-contact {
-  background: var(--cb-navy);
+  background: var(--cb-navy-dark);
   color: var(--cb-white);
+  opacity: 0.999999;
   border: none;
   border-radius: 999px;
   padding: 16px 28px;
@@ -264,6 +265,7 @@ button {
     background 0.2s,
     transform 0.2s;
   box-shadow: 0 4px 16px rgba(26, 26, 77, 0.3);
+  
 }
 .site-nav-contact:hover {
   background: var(--cb-navy-dark);
