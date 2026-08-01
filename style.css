@@ -667,29 +667,72 @@ body.home-page {
 
 /* Card 1 — deep navy */
 .ssc-card--1 {
-  background: var(--cb-navy);
+  background: #1a1a40;
   color: var(--cb-white);
 }
 .ssc-card--1 .ssc-card-body {
-  background: var(--cb-navy);
+  background: #1a1a40;
 }
 
 /* Card 2 — rich dark red/maroon */
 .ssc-card--2 {
-  background: #1e0a0a;
+  background: #32347d;
   color: var(--cb-white);
 }
 .ssc-card--2 .ssc-card-body {
-  background: #1e0a0a;
+  background: #32347d;
+}
+/* Floating bubble — top right of each service card */
+.ssc-bubble {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  top: -50px;
+  right: -40px;
+  opacity: 1;
+  z-index: 1;
+  pointer-events: none;
+  transition: transform 0.3s ease;
+}
+.ssc-card:hover .ssc-bubble {
+  transform: scale(1.1);
+}
+
+/* Per-card bubble colors — matches your accent dots */
+.ssc-card--1 .ssc-bubble {
+  background: #12122e;
+}
+.ssc-card--2 .ssc-bubble {
+  background: #2c2e6c;
+}
+.ssc-card--3 .ssc-bubble {
+  background: #313281;
+}
+
+/* Icon tilts a small angle on its own hover */
+.ssc-card-icon {
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+.ssc-card-icon:hover {
+  transform: rotate(-8deg);
+}
+ .ssc-card:hover .ssc-card-icon {
+  transform: rotate(-15deg);
+}
+/* Keep body content above the bubble */
+.ssc-card-body {
+  z-index: 2;
 }
 
 /* Card 3 — deep teal */
 .ssc-card--3 {
-  background: #031a1a;
+  background: #36369d;
   color: var(--cb-white);
 }
 .ssc-card--3 .ssc-card-body {
-  background: #031a1a;
+  background: #36369d;
 }
 
 /* Tag pill */
