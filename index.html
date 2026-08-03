@@ -59,12 +59,8 @@
   to   { transform: scale(1); }
 }
 
-.home-hero-bg {
-  animation: hero-bg-zoom 1.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
-}
-.home-hero-overlay {
-  animation: hero-fade-in 1.2s ease forwards;
-}
+
+
 
 .home-hero-content {
   position: relative;
@@ -728,9 +724,11 @@
   </section>
 
   <!-- CTA -->
-  <section class="cta-banner" data-aos="zoom-in">
-    <h2>Ready to get the <span class="accent" style="color:#7fdcef;">best</span> experience</h2>
-    <a href="contact.html" class="btn btn-light">Get in touch</a>
+  <section class="cta-banner" >
+    <div data-aos="zoom-in">
+      <h2>Ready to get the <span class="accent" style="color:#7fdcef;">best</span> experience</h2>
+      <a href="contact.html" class="btn btn-light">Get in touch</a>
+    </div>
   </section>
 
   <!-- TESTIMONIALS -->
@@ -886,8 +884,9 @@
    Featured Projects — filter tabs
    ============================================================ */
 (function () {
-  const tabs  = document.querySelectorAll('.fp-tab');
-  const items = document.querySelectorAll('.fp-item');
+  const tabs   = document.querySelectorAll('.fp-tab');
+  const items  = document.querySelectorAll('.fp-item');
+  const fpList = document.getElementById('fpList');
 
   function activate(cat) {
     tabs.forEach(t => {
@@ -902,6 +901,14 @@
       item.style.transitionDelay = '0ms';
     });
 
+    
+   /* scroll the section into view — scroll-margin-top in CSS
+       handles the navbar offset for a smoother, more accurate scroll */
+    const fpSection = document.querySelector('.fp-section');
+    if (fpSection) {
+      fpSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
     /* reveal matching with stagger */
     const matching = [...items].filter(item => item.dataset.cat === cat);
     matching.forEach((item, i) => {
@@ -915,7 +922,6 @@
   tabs.forEach(t => t.addEventListener('click', () => activate(t.dataset.cat)));
 })();
 </script>
-
 <script>
 /* ============================================================
    Testimonials slider — direction-aware smooth transitions
@@ -941,7 +947,7 @@
     const inSlide  = slides[current];
 
     /* Animate the outgoing slide */
-    outSlide.classList.remove('ts-slide--active', 'ts-slide--enter-left');
+    outSlide.classList.remove('ts-slide--active', 'ts-slide--settled', 'ts-slide--enter-left');
     outSlide.classList.add(outClass);
 
     /* After exit animation, hide it and bring in the new slide */
@@ -950,15 +956,16 @@
       outSlide.classList.remove(outClass);
       outSlide.style.display = 'none';
 
-      /* Show and animate the incoming slide */
+      /* Show the incoming slide, force a reflow, THEN animate it in */
       inSlide.style.display = '';
+      void inSlide.offsetWidth; // force reflow so the animation reliably fires
       inSlide.classList.add(inClass);
 
       inSlide.addEventListener('animationend', function inHandler() {
         inSlide.removeEventListener('animationend', inHandler);
-        /* Normalise to ts-slide--active */
-        inSlide.classList.remove('ts-slide--enter-left');
-        inSlide.classList.add('ts-slide--active');
+        /* Settle into a resting state with no attached animation */
+        inSlide.classList.remove('ts-slide--enter-left', 'ts-slide--active');
+        inSlide.classList.add('ts-slide--settled');
         busy = false;
       });
     });
@@ -968,6 +975,7 @@
   next.addEventListener('click', () => goTo(current + 1, 'next'));
 })();
 </script>
+
 <script>
 /* ============================================================
    AI Chat Widget — open/close + send messages

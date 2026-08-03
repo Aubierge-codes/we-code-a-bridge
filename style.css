@@ -961,7 +961,7 @@ body.home-page {
   display: flex;
   align-items: stretch;
   background: #f2f3f7;
-
+scroll-margin-top: 100px;
   width: 100vw;
   position: relative;
   left: 50%;
@@ -1358,6 +1358,17 @@ body.home-page {
   padding: 0 80px;
   position: relative;
   z-index: 1;
+}
+.ts-slide--active {
+  display: flex;
+  pointer-events: auto;
+  animation: ts-slide-in-right 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ts-slide--settled {
+  display: flex;
+  pointer-events: auto;
+  animation: none;
 }
 
 .ts-header {
