@@ -5,59 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About us — Codebridge</title>
     <link rel="stylesheet" href="style.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
   <style>
-     .play-circle {
-        width: 52px;
-        height: 52px;
-        border-radius: 50%;
-        background: rgba(100, 160, 255, 0.85);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--cb-white);
-        font-size: 18px;
-        position: relative;
-        z-index: 1;
-        transition:
-          transform 0.2s,
-          background 0.2s;
-      }
-   .play-circle:hover {
-        transform: scale(1.1);
-        background: var(--cb-red);
-      }
-      .video-frame {
-  position: relative; /* Crucial: Keeps absolute children inside this container */
-  width: 100%;
-  max-width: 800px;  /* Or whatever width you prefer */
-  height: 450px;      /* Set a fixed or responsive height */
-  border-radius: 16px;
-  overflow: hidden;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .play-circle {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(100, 160, 255, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--cb-white);
+      font-size: 18px;
+      position: relative;
+      z-index: 1;
+      transition:
+        transform 0.2s,
+        background 0.2s;
+    }
+    .play-circle:hover {
+      transform: scale(1.1);
+      background: var(--cb-red);
+    }
+    .video-frame {
+      position: relative; /* Crucial: Keeps absolute children inside this container */
+      width: 100%;
+      max-width: 800px; /* Or whatever width you prefer */
+      height: 450px; /* Set a fixed or responsive height */
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.vp-poster {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
+    .vp-poster {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   </style>
   <body>
-    <div
-      class="about-hero-corner about-hero-corner--1"
-      aria-hidden="true"
-    ></div>
-    <div
-      class="about-hero-corner about-hero-corner--2"
-      aria-hidden="true"
-    ></div>
 
     <nav class="site-nav" aria-label="Main navigation">
       <div class="site-nav-pill">
@@ -114,35 +106,69 @@
     </nav>
 
     <main class="container">
-      <section class="about-hero">
-        <!-- Top-left decoration — two overlapping navy pills peeking from behind the nav -->
-
+      <section class="about-hero" data-aos="fade-up">
+        <div class="class">
+          <div class="about-hero-text">
+            <h1>Who we are</h1>
+            <p>
+              Codebridge is a tech and software company in Rwanda committed to
+              enhancing and improving the competitiveness and competence of its
+              clients by enabling them to succeed through the power of
+              information technology security. We have nine years of experience.
+            </p>
+          </div>
+          <div class="feature-row">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <circle cx="12" cy="8" r="3"></circle>
+                  <path d="M12 11v2"></path>
+                  <path d="M3 21v-4l4-2 4 3 4-4 6 3v4z"></path>
+                  <path d="M3 21h18"></path>
+                </svg>
+              </div>
+              <span class="feature-label"> Best tech company</span>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M9 18h6"></path>
+                  <path d="M10 22h4"></path>
+                  <path
+                    d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1v.2h6v-.2c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"
+                  ></path>
+                  <circle cx="18" cy="6" r="1.2"></circle>
+                </svg>
+              </div>
+              <span class="feature-label">The best<br />service</span>
+            </div>
+          </div>
+        </div>
+   <div class="placeholder-img" style="
+   width: 550px;
+   "><img src="images/un.svg" alt="" /></div>
         <!-- Left: text -->
-        <div class="about-hero-text">
-          <h1>Who we are</h1>
-          <p>
-            Codebridge is a tech and software company in Rwanda committed to
-            enhancing and improving the competitiveness and competence of its
-            clients by enabling them to succeed through the power of information
-            technology security. We have nine years of experience.
-          </p>
-        </div>
 
-        <!-- Right: decorative pill shapes -->
-        <div class="about-hero-shapes" aria-hidden="true">
-          <!-- Two overlapping wide pills — top right -->
-          <div class="ah-pill ah-pill--navy ah-pill--top1"></div>
-          <div class="ah-pill ah-pill--red ah-pill--top2"></div>
-          <!-- Three ascending bars — bottom right -->
-          <div class="ah-bar ah-bar--navy ah-bar--h1"></div>
-          <div class="ah-bar ah-bar--red ah-bar--h2"></div>
-          <div class="ah-bar ah-bar--navy ah-bar--h3"></div>
-        </div>
+        
       </section>
 
-      <section class="mvv-wrap">
+      <section class="mvv-wrap" data-aos="fade-up">
         <div class="mvv-inner">
-          <div class="mvv-copy">
+          <div class="mvv-copy" data-aos="fade-right">
             <h2>Our vision, mission &amp; <em>values</em></h2>
             <p>
               We bring clarity to strategy with a stacked system that shows how
@@ -150,7 +176,7 @@
             </p>
           </div>
           <div class="mvv-stack">
-            <div class="mvv-card">
+            <div class="mvv-card" data-aos="flip-left" data-aos-delay="100">
               <p>
                 We combine engineering, research and creative thinking to turn
                 ambitious ideas into scalable digital products for business, HR,
@@ -158,14 +184,14 @@
               </p>
               <div class="mvv-label">Our mission</div>
             </div>
-            <div class="mvv-card">
+            <div class="mvv-card" data-aos="flip-left" data-aos-delay="200">
               <p>
                 To be Rwanda's most trusted technology partner, bridging global
                 best practice with local expertise.
               </p>
               <div class="mvv-label">Our vision</div>
             </div>
-            <div class="mvv-card">
+            <div class="mvv-card" data-aos="flip-left" data-aos-delay="300">
               <p>
                 Integrity craftsmanship and continuous learning guide every
                 project we deliver.
@@ -176,11 +202,11 @@
         </div>
       </section>
 
-      <div class="section-title">Our <span class="accent">journey</span></div>
-      <p class="section-subtitle">Building the future, one step at a time</p>
+      <div class="section-title" data-aos="fade-up">Our <span class="accent">journey</span></div>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Building the future, one step at a time</p>
 
       <div class="timeline">
-        <div class="timeline-item">
+        <div class="timeline-item" data-aos="fade-right">
           <div class="timeline-year">2018 — The Foundation</div>
           <p class="timeline-desc">
             CodeBridge was founded in January 2018 with a simple mission: bridge
@@ -189,7 +215,7 @@
             three engineers built their first client project within six months.
           </p>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item" data-aos="fade-left" data-aos-delay="100">
           <div class="timeline-year">2019 — First Major Milestone</div>
           <p class="timeline-desc">
             We launched our proprietary workflow automation platform, securing
@@ -197,7 +223,7 @@
             service-based shop to a product-driven technology partner.
           </p>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
           <div class="timeline-year">2022 — Expansion &amp; Recognition</div>
           <p class="timeline-desc">
             We expanded into three new markets and were recognized as a "Top
@@ -205,7 +231,7 @@
             focusing on AI-driven process optimization.
           </p>
         </div>
-        <div class="timeline-item">
+        <div class="timeline-item" data-aos="fade-left" data-aos-delay="300">
           <div class="timeline-year">2024 — The Next Chapter</div>
           <p class="timeline-desc">
             Today, CodeBridge powers over 300+ businesses with secure, scalable
@@ -216,9 +242,9 @@
         </div>
       </div>
 
-      <section class="stats-banner">
+      <section class="stats-banner" data-aos="zoom-in">
         <h2>
-          The <em class="accent" style="color: #7fdcef">journey</em> so far
+          The <em class="accent" style="color: red">journey</em> so far
         </h2>
         <p class="section-subtitle">
           We believe that things don't have to stay the way they've always been
@@ -239,10 +265,10 @@
         </div>
       </section>
 
-      <div class="section-title">
+      <div class="section-title" data-aos="fade-up">
         Trusted <span class="accent">partners</span>
       </div>
-      <p class="section-subtitle">
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
         Working with leading institutions that drive digital transformation
         across Rwanda and Africa.
       </p>
@@ -260,26 +286,28 @@
         </div>
       </div>
 
-      <section class="video-banner">
+      <section class="video-banner" data-aos="fade-up">
         <h2>
           Know more about
           <em class="accent" style="color: red">Codebridge</em>
         </h2>
         <div class="video-frame" data-video="images/visit.mp4">
-          <img src="images/handsb.png" alt="" class="vp-poster">
-          <button class="play-circle" aria-label="Play Data Flow Dynamics">▶</button>
+          <img src="images/handsb.png" alt="" class="vp-poster" />
+          <button class="play-circle" aria-label="Play Data Flow Dynamics">
+            ▶
+          </button>
         </div>
       </section>
 
-      <div class="section-title">
+      <div class="section-title" data-aos="fade-up">
         The minds <span class="accent">behind</span> the mission
       </div>
-      <p class="section-subtitle">
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
         We are a distributed team of designers, developers, and strategists
         united by a love for seamless digital experiences.
       </p>
 
-      <div class="team-member team-member--orange">
+      <div class="team-member team-member--orange" data-aos="fade-up">
         <div class="team-role">Chief Executive Officer</div>
         <div class="team-member-row">
           <div class="team-photo-wrap">
@@ -334,7 +362,7 @@
           </div>
         </div>
       </div>
-      <div class="team-member team-member--teal">
+      <div class="team-member team-member--teal" data-aos="fade-up" data-aos-delay="100">
         <div class="team-role">Chief Financial Officer</div>
         <div class="team-member-row">
           <div class="team-photo-wrap">
@@ -389,7 +417,7 @@
           </div>
         </div>
       </div>
-      <div class="team-member team-member--red">
+      <div class="team-member team-member--red" data-aos="fade-up" data-aos-delay="200">
         <div class="team-role">Chief Financial Officer</div>
         <div class="team-member-row">
           <div class="team-photo-wrap">
@@ -447,7 +475,7 @@
           </div>
         </div>
       </div>
-      <div class="team-member team-member--blue">
+      <div class="team-member team-member--blue" data-aos="fade-up" data-aos-delay="300">
         <div class="team-role">Chief Financial Officer</div>
         <div class="team-member-row">
           <div class="team-photo-wrap">
@@ -536,30 +564,34 @@
             </ul>
           </div>
         </div>
-        <p style="text-align: center; font-size: 15px;">Codebridge All rights reserved 2026</p>
+        <p style="text-align: center; font-size: 15px">
+          Codebridge All rights reserved 2026
+        </p>
       </div>
     </footer>
 
     <script src="lang-switcher.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 700, once: true });</script>
     <script>
-  document.querySelectorAll('.video-frame').forEach((frame) => {
-    frame.addEventListener('click', () => {
-      const videoSrc = frame.dataset.video;
-      if (!videoSrc) return;
+      document.querySelectorAll(".video-frame").forEach((frame) => {
+        frame.addEventListener("click", () => {
+          const videoSrc = frame.dataset.video;
+          if (!videoSrc) return;
 
-      // Create video element
-      const video = document.createElement('video');
-      video.src = videoSrc;
-      video.controls = true;
-      video.autoplay = true;
-      video.style.cssText =
-        'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:10;';
+          // Create video element
+          const video = document.createElement("video");
+          video.src = videoSrc;
+          video.controls = true;
+          video.autoplay = true;
+          video.style.cssText =
+            "position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:10;";
 
-      // Clear the poster image & play button, then append video
-      frame.innerHTML = '';
-      frame.appendChild(video);
-    });
-  });
-</script>
+          // Clear the poster image & play button, then append video
+          frame.innerHTML = "";
+          frame.appendChild(video);
+        });
+      });
+    </script>
   </body>
 </html>

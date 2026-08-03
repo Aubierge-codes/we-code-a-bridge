@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>News room — Codebridge</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
@@ -50,7 +51,7 @@
     </div>
   </div>
 
-  <div class="news-featured">
+  <div class="news-featured" data-aos="fade-up">
     <div ><img src="images/handsb.png" alt=""></div>
     <div>
       <div class="news-date">Friday, June 12 2026</div>
@@ -60,17 +61,17 @@
     </div>
   </div>
 
-  <div class="section-title">Our company <span class="accent">news</span></div>
-  <p class="section-subtitle">Rwandan youth have emerged victorious in the inaugural national Cyberlympics, a competition that is designed to encourage and elevate cybersecurity…</p>
+  <div class="section-title" data-aos="fade-up">Our company <span class="accent">news</span></div>
+  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Rwandan youth have emerged victorious in the inaugural national Cyberlympics, a competition that is designed to encourage and elevate cybersecurity…</p>
   <div class="news-grid">
-    <article class="news-card">
+    <article class="news-card" data-aos="fade-up" data-aos-delay="100">
       <div><img src="images/globeb.png" alt=""></div>
       <div class="news-date">Friday, June 12 2026</div>
       <h3 class="news-title">The Future of Coding in 2025</h3>
       <p class="news-excerpt">Exploring emerging technologies, frameworks, and best practices.</p>
       <a href="#" class="read-more">Read more →</a>
     </article>
-    <article class="news-card">
+    <article class="news-card" data-aos="fade-up" data-aos-delay="200">
       <div ><img src="images/person.png" alt=""></div>
       <div class="news-date">Friday, June 12 2026</div>
       <h3 class="news-title">The Future of Coding in 2025</h3>
@@ -79,17 +80,17 @@
     </article>
   </div>
 
-  <div class="section-title" style="margin-top:90px;">Our latest <span class="accent">activities</span></div>
-  <p class="section-subtitle">Rwandan youth have emerged victorious in the inaugural national Cyberlympics, a competition that is designed to encourage and elevate cybersecurity…</p>
+  <div class="section-title" style="margin-top:90px;" data-aos="fade-up">Our latest <span class="accent">activities</span></div>
+  <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Rwandan youth have emerged victorious in the inaugural national Cyberlympics, a competition that is designed to encourage and elevate cybersecurity…</p>
   <div class="news-grid">
-    <article class="news-card">
+    <article class="news-card" data-aos="fade-up" data-aos-delay="100">
       <div ><img src="images/handsb.png" alt=""></div>
       <div class="news-date">Friday, June 12 2026</div>
       <h3 class="news-title">The Future of Coding in 2025</h3>
       <p class="news-excerpt">Exploring emerging technologies, frameworks, and best practices.</p>
       <a href="#" class="read-more">Read more →</a>
     </article>
-    <article class="news-card">
+    <article class="news-card" data-aos="fade-up" data-aos-delay="200">
       <div ><img src="images/globeb.png" alt=""></div>
       <div class="news-date">Friday, June 12 2026</div>
       <h3 class="news-title">The Future of Coding in 2025</h3>
@@ -135,5 +136,7 @@
 </footer>
 
 <script src="lang-switcher.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({ duration: 700, once: true });</script>
 </body>
 </html>

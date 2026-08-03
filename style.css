@@ -111,7 +111,7 @@ button {
 .site-nav-pill {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 1);
 
   border-radius: 999px;
   padding: 8px 20px 8px 8px;
@@ -130,7 +130,7 @@ button {
   border-radius: inherit;
   pointer-events: none;
   z-index: 1;
-  opacity: 0.3;
+  opacity: 0.4;
   mix-blend-mode: multiply;
   background-repeat: repeat;
   background-size: 120px 120px;
@@ -1405,11 +1405,31 @@ body.home-page {
   text-align: left;
   margin-top: -70px;
   margin-bottom: -90px;
+  pointer-events: none;
 }
 
 .ts-slide--active {
   display: flex;
-  animation: ts-fade 0.4s ease;
+  pointer-events: auto;
+  animation: ts-slide-in-right 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ts-slide--enter-left {
+  display: flex;
+  pointer-events: auto;
+  animation: ts-slide-in-left 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ts-slide--exit-left {
+  display: flex;
+  pointer-events: none;
+  animation: ts-slide-out-left 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ts-slide--exit-right {
+  display: flex;
+  pointer-events: none;
+  animation: ts-slide-out-right 0.35s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .ts-avatar-wrap {
@@ -1509,6 +1529,23 @@ body.home-page {
   transform: translateY(-2px);
 }
 
+@keyframes ts-slide-in-right {
+  from { opacity: 0; transform: translateX(60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes ts-slide-in-left {
+  from { opacity: 0; transform: translateX(-60px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes ts-slide-out-left {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(-60px); }
+}
+@keyframes ts-slide-out-right {
+  from { opacity: 1; transform: translateX(0); }
+  to   { opacity: 0; transform: translateX(60px); }
+}
+
 @keyframes ts-fade {
   from {
     opacity: 0;
@@ -1545,7 +1582,8 @@ body.home-page {
   .ts-inner {
     padding: 0 24px;
   }
-  .ts-slide--active {
+  .ts-slide--active,
+  .ts-slide--enter-left {
     flex-direction: column;
     text-align: center;
     gap: 28px;
@@ -1670,14 +1708,15 @@ body.home-page {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
+margin-bottom: 80px;
+margin-top: 20px;
   width: 100vw;
   left: 50%;
   transform: translateX(-50%);
   min-height: 460px;
   overflow: hidden;
-  padding: 80px 80px 80px 120px;
-  gap: 40px;
+  padding: 150px 80px 80px 120px;
+  gap: 0px;
 }
 
 /* ── Top-left: two overlapping pills, mostly hidden behind the fixed navbar ── */
@@ -1713,7 +1752,7 @@ body.home-page {
   z-index: 1;
   max-width: 440px;
   flex-shrink: 0;
-  margin-top: 30px;
+  margin-top: -90px;
 }
 
 .about-hero-text h1 {
@@ -1800,62 +1839,7 @@ body.home-page {
   height: 320px;
 } /* tallest */
 
-@media (max-width: 860px) {
-  .about-hero {
-    flex-direction: column;
-    padding: 60px 32px 50px;
-    min-height: auto;
-  }
-  .about-hero-shapes {
-    width: 100%;
-    height: 260px;
-    margin-right: 0;
-  }
-  .ah-pill--top1 {
-    right: 100px;
-    width: 130px;
-    height: 42px;
-    top: 10px;
-  }
-  .ah-pill--top2 {
-    right: -20px;
-    width: 230px;
-    height: 60px;
-    top: 55px;
-  }
-  .ah-bar--h1 {
-    right: 160px;
-    width: 56px;
-    height: 90px;
-  }
-  .ah-bar--h2 {
-    right: 100px;
-    width: 56px;
-    height: 140px;
-  }
-  .ah-bar--h3 {
-    right: 30px;
-    width: 56px;
-    height: 190px;
-  }
-}
 
-@media (max-width: 560px) {
-  .about-hero-text h1 {
-    font-size: 28px;
-  }
-  .about-hero-corner--1 {
-    width: 60px;
-    height: 180px;
-    top: -100px;
-  }
-  .about-hero-corner--2 {
-    width: 40px;
-    height: 120px;
-    top: -75px;
-    left: 46px;
-  }
-}
 
 /* ==========================================================================
    Page hero (simple, non-homepage pages)
@@ -2386,7 +2370,7 @@ body.home-page {
   transform-origin: center bottom;
 }
 .subcard:hover {
-  background: #111;
+  background: #111111;
   transform: rotate(-2deg) translateY(-6px);
   box-shadow: 0 20px 36px rgba(0, 0, 0, 0.22);
   z-index: 1;
@@ -2417,7 +2401,7 @@ body.home-page {
 }
 .subcard:hover .subcard-icon {
   background: #fff;
-  color: #111;
+  color: #111111;
 }
 
 .subcard h4 {
@@ -2520,7 +2504,7 @@ main.container {
 .feature-row {
   display: flex;
   gap: 40px;
-  margin-top: 30px;
+  margin-top: 60px;
   padding-bottom: 24px;
   border-bottom: 1px solid var(--cb-border);
 }
@@ -2558,11 +2542,11 @@ main.container {
 .careers-hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  gap: 100px;
   align-items: center;
   padding: 50px 0;
-  margin-top: 50px;
-  margin-bottom: 90px;
+  margin-top: 100px;
+  margin-bottom: 140px;
 }
 .tab-pill-group {
   display: inline-flex;

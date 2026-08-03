@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact us — Codebridge</title>
 <link rel="stylesheet" href="style.css">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
 <!-- Leaflet CSS -->
 <link 
@@ -52,9 +53,9 @@
   </nav>
 
 <main class="container">
- <div class="section-title">Contact <span class="accent">us</span>
+ <div class="section-title" data-aos="fade-up">Contact <span class="accent">us</span>
 <p class="section-subtitle" style="font-size: 17px; font-weight: 400;">Rwandan youth have emerged victorious in the inaugural </p></div>
-  <div class="contact-layout">
+  <div class="contact-layout" data-aos="fade-up" data-aos-delay="150">
     <div class="contact-card">
       <h3> Send us a Message</h3>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;">
@@ -91,7 +92,7 @@
     </div>
   </div>
 
- <div class="nodes-social">
+ <div class="nodes-social" data-aos="fade-up">
 
   <div class="social-card">
     <h3>Social Hub</h3>
@@ -183,5 +184,7 @@
 </script>
 
 <script src="lang-switcher.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>AOS.init({ duration: 700, once: true });</script>
 </body>
 </html>

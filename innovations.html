@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Innovations — Codebridge</title>
     <link rel="stylesheet" href="style.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <style>
       /* ---- Innovations page-specific styles ---- */
 
@@ -507,7 +508,7 @@
 
     <main class="container">
       <!-- Hero -->
-      <section class="innov-hero">
+      <section class="innov-hero" data-aos="fade-up">
         <h1>Know our innovation <span class="accent">projects</span></h1>
         <p>
           Discover the best moments captured — the projects Codebridge showcases
@@ -519,7 +520,7 @@
       <section class="reels-section">
         <div class="reels-section-title">Technical Reels</div>
         <div class="reels-grid">
-          <div class="reel-card">
+          <div class="reel-card" data-aos="fade-up" data-aos-delay="100">
             
             <div class="reel-thumb reel-thumb-1" data-video="images/visit.mp4">
               <img src="images/handsb.png" alt="" class="vp-poster">
@@ -532,7 +533,7 @@
               <div class="reel-tag">Series</div>
             </div>
           </div>
-          <div class="reel-card">
+          <div class="reel-card" data-aos="fade-up" data-aos-delay="200">
             <div class="reel-thumb reel-thumb-2">
                <img src="images/globeb.png" alt="" class="vp-poster">
               <button class="play-circle" aria-label="Play User Experience 2.0">
@@ -544,7 +545,7 @@
               <div class="reel-tag">Series</div>
             </div>
           </div>
-          <div class="reel-card">
+          <div class="reel-card" data-aos="fade-up" data-aos-delay="300">
             <div class="reel-thumb reel-thumb-3">
                <img src="images/handsb.png" alt="" class="vp-poster">
               <button class="play-circle" aria-label="Play The Quantum Core">
@@ -560,7 +561,7 @@
       </section>
 
       <!-- Innovation in action -->
-      <section class="innovation-action">
+      <section class="innovation-action" data-aos="fade-up">
         <div>
           <h2>Innovation in action</h2>
           <p>
@@ -583,7 +584,7 @@
       </section>
 
       <!-- Newsletter / Stay ahead -->
-      <section class="newsletter-section">
+      <section class="newsletter-section" data-aos="zoom-in">
         <h2>Stay ahead of the bridge.</h2>
         <p class="sub">
           Receive and be always updated about all of our projects and upcoming
@@ -600,7 +601,7 @@
         </form>
       </section>
       <!-- Featured Projects -->
-      <section class="projects-showcase">
+      <section class="projects-showcase" data-aos="fade-up">
         <div class="projects-showcase-header">
           <h2>Featured <span class="accent">projects</span></h2>
           <a
@@ -611,7 +612,7 @@
           >
         </div>
         <div class="project-cards-row">
-          <div class="proj-card">
+          <div class="proj-card" data-aos="fade-up" data-aos-delay="100">
             <div class="proj-card-img proj-card-img-1">
               <img src="images/person.png" alt="" />
               <span class="proj-badge">AI / ML</span>
@@ -629,7 +630,7 @@
               </div>
             </div>
           </div>
-          <div class="proj-card">
+          <div class="proj-card" data-aos="fade-up" data-aos-delay="200">
             <div class="proj-card-img proj-card-img-2">
               <img src="images/handsb.png" alt="" />
               <span class="proj-badge">Web App</span>
@@ -647,7 +648,7 @@
               </div>
             </div>
           </div>
-          <div class="proj-card">
+          <div class="proj-card" data-aos="fade-up" data-aos-delay="300">
             <div class="proj-card-img proj-card-img-3">
               <span class="proj-badge">Cybersecurity</span>
               <img src="images/globeb.png" alt="" />
@@ -707,6 +708,8 @@
     </footer>
 
     <script src="lang-switcher.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 700, once: true });</script>
     <script>
       document.querySelectorAll(".reel-thumb").forEach((thumb) => {
         thumb.addEventListener("click", () => {

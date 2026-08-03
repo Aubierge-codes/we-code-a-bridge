@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Careers — Codebridge</title>
     <link rel="stylesheet" href="style.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
   <body>
     <nav class="site-nav" aria-label="Main navigation">
@@ -62,7 +63,7 @@
     </nav>
 
     <main class="container">
-      <section class="careers-hero">
+      <section class="careers-hero" data-aos="fade-up">
         <div class="class">
           <h1 style="font-size: 38px; margin: 0 0 4px">Build your career</h1>
           <p
@@ -88,8 +89,7 @@
             "Great work happens where people are trusted to build, break, and
             grow. That's Codebridge — where careers move as fast as the
             technology we build. We hire for curiosity, not just credentials.
-            Every project here is a chance to ship something that matters. Come
-            build the future with us."
+            
           </p>
           <div class="feature-row">
             <div class="feature-item">
@@ -136,7 +136,7 @@
       </section>
 
       <!-- JOBS SECTION -->
-      <section class="jobs-section">
+      <section class="jobs-section" data-aos="fade-up">
         <div class="jobs-header">
           <div>
             <h3>Job opportunities</h3>
@@ -149,7 +149,7 @@
           </div>
         </div>
         <div class="jobs-grid">
-          <div class="job-card" data-category="dev">
+          <div class="job-card" data-category="dev" data-aos="fade-up" data-aos-delay="100">
             <div class="job-card-top">
               <h4>Senior JavaScript Developer</h4>
               <span class="badge-active">Active</span>
@@ -306,6 +306,8 @@
     </footer>
 
     <script src="lang-switcher.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 700, once: true });</script>
     
     <script>
       document.querySelectorAll(".jobs-section").forEach((section) => {
