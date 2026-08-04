@@ -8,19 +8,20 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   </head>
   <body>
+    <!-- BEGIN: partial Header (nav) -->
     <nav class="site-nav" aria-label="Main navigation">
       <div class="site-nav-pill">
         <a href="index.html" class="site-nav-logo" aria-label="Codebridge home">
           <img src="images/logo.png" alt="Codebridge logo" />
         </a>
         <div class="site-nav-links">
-          <a href="index.html">Home</a>
-          <a href="about.html">About us</a>
-          <a href="news.html">News</a>
-          <a href="services.html">Services</a>
-          <a href="careers.html">Careers</a>
-          <a href="innovations.html">Innovations</a>
-          <a href="gallery.html" class="active">Gallery</a>
+          <a href="index.html" data-i18n="nav.home">Home</a>
+          <a href="about.html" data-i18n="nav.about">About us</a>
+          <a href="services.html" data-i18n="nav.services">Services</a>
+          <a href="careers.html" data-i18n="nav.careers">Careers</a>
+          <a href="innovations.html" data-i18n="nav.innovations">Innovations</a>
+          <a href="blog.html" data-i18n="nav.blog">Blog</a>
+          <a href="gallery.html" class="active" data-i18n="nav.gallery">Gallery</a>
         </div>
         <div class="site-nav-lang-wrap">
           <button
@@ -59,26 +60,27 @@
         </div>
         <button class="site-nav-toggle" aria-label="Open menu">☰</button>
       </div>
-      <a href="contact.html" class="site-nav-contact">Contact us</a>
+      <a href="contact.html" class="site-nav-contact" data-i18n="nav.contact">Contact us</a>
     </nav>
+    <!-- END: partial Header -->
 
     <main class="container">
       <div class="section-title" style="margin-top: 50px ; color: black;" data-aos="fade-up">
-        Our <span class="accent-navy">gallery</span>
+        <span data-i18n="gallery_page.title_pre">Our</span> <span class="accent-navy" data-i18n="gallery_page.title_accent">gallery</span>
       </div>
-      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
-        Discover the best moments captured the projects showcases and events
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="gallery_page.sub">
+        Discover the best moments captured from our projects, showcases and events
         highlights
       </p>
       <div class="gallery-header" data-aos="fade-up" data-aos-delay="150">
         <div>
-          <h3>Project &amp; Event Highlights</h3>
+          <h3 data-i18n="gallery_page.highlights_title">Project &amp; Event Highlights</h3>
           <span>ARCHIVE 2024 / Q3</span>
         </div>
         <div class="archive-filters">
-          <button class="active">FILTER: ALL</button>
-          <button>PROJECTS</button>
-          <button>EVENTS</button>
+          <button class="active" data-i18n="gallery_page.filter_all">FILTER: ALL</button>
+          <button data-i18n="gallery_page.filter_projects">PROJECTS</button>
+          <button data-i18n="gallery_page.filter_events">EVENTS</button>
         </div>
       </div>
 
@@ -86,14 +88,14 @@
         <div class="gallery-item" style="aspect-ratio: 3/2.2">
           <img src="images/person.png" alt="" />
           <div class="g-overlay">
-            <div class="g-tag">Project case</div>
+            <div class="g-tag" data-i18n="gallery_page.tag_project">Project case</div>
             <div class="g-title">Neural Mesh Interface V2</div>
           </div>
         </div>
         <div class="gallery-item" style="aspect-ratio: 3/3.5">
           <img src="images/person.png" alt="" />
           <div class="g-overlay">
-            <div class="g-tag">Project case</div>
+            <div class="g-tag" data-i18n="gallery_page.tag_project">Project case</div>
             <div class="g-title">Neural Mesh Interface V2</div>
           </div>
         </div>
@@ -101,7 +103,7 @@
           <div class="gallery-item" style="aspect-ratio: 4/3.4">
             <img src="images/u2.svg" alt="" />
             <div class="g-overlay">
-              <div class="g-tag">Global event</div>
+              <div class="g-tag" data-i18n="gallery_page.tag_event">Global event</div>
               <div class="g-title">Code Summit '24</div>
             </div>
           </div>
@@ -112,24 +114,48 @@
         <div class="gallery-item">
           <img src="images/globeb.png" alt="" />
           <div class="g-overlay">
-            <div class="g-tag">Hardware lab</div>
+            <div class="g-tag" data-i18n="gallery_page.tag_hardware">Hardware lab</div>
             <div class="g-title">Bionic Integration</div>
           </div>
         </div>
         <div class="gallery-item">
           <img src="images/handsb.png" alt="" />
           <div class="g-overlay">
-            <div class="g-tag">Campus life</div>
+            <div class="g-tag" data-i18n="gallery_page.tag_campus">Campus life</div>
             <div class="g-title">Innovation Commons</div>
           </div>
         </div>
         <div class="gallery-item">
           <img src="images/person.png" alt="" />
           <div class="g-overlay">
-            <div class="g-tag">The team</div>
+            <div class="g-tag" data-i18n="gallery_page.tag_team">The team</div>
             <div class="g-title">Class of Pioneers</div>
           </div>
         </div>
+      </div>
+
+      <!-- FROM OUR BLOG — cross-link so gallery and blog call each other -->
+      <div class="section-title" style="margin-top:20px;" data-aos="fade-up"><span data-i18n="gallery_page.from_blog_title_pre">From our</span> <span class="accent" data-i18n="gallery_page.from_blog_title_accent">blog</span></div>
+      <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="gallery_page.from_blog_sub">The stories and articles behind the moments captured here.</p>
+      <div class="news-grid">
+        <article class="news-card news-card--hot" data-aos="fade-up" data-aos-delay="100">
+          <span class="trending-badge" data-i18n="cta.trending_now">Trending now</span>
+          <div><img src="images/handsb.png" alt=""></div>
+          <div class="news-date">Friday, June 12 2026</div>
+          <h3 class="news-title" data-i18n="blog.card_title">The Future of Coding in 2025</h3>
+          <p class="news-excerpt" data-i18n="blog.card_excerpt">Exploring emerging technologies, frameworks, and best practices.</p>
+          <a href="blog.html" class="read-more" data-i18n="cta.read_more">Read more &rarr;</a>
+        </article>
+        <article class="news-card" data-aos="fade-up" data-aos-delay="200">
+          <div><img src="images/person.png" alt=""></div>
+          <div class="news-date">Friday, June 12 2026</div>
+          <h3 class="news-title" data-i18n="blog.card_title">The Future of Coding in 2025</h3>
+          <p class="news-excerpt" data-i18n="blog.card_excerpt">Exploring emerging technologies, frameworks, and best practices.</p>
+          <a href="blog.html" class="read-more" data-i18n="cta.explore_more">Explore more &rarr;</a>
+        </article>
+      </div>
+      <div style="text-align:center;margin-top:-40px;margin-bottom:50px;">
+        <a href="blog.html" class="btn btn-navy" data-i18n="cta.visit_blog">Visit the blog &rarr;</a>
       </div>
 
       <div id="lightbox" class="lightbox">
@@ -146,43 +172,69 @@
       </div>
     </main>
 
+    <!-- BEGIN: partial Footer -->
     <footer class="site-footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div>
-            <div class="footer-logo"><img src="images/logo.png" alt=""></div>
-            <p class="footer-tagline">
-              We create comprehensive digital solutions
-            </p>
-            <div class="footer-social">
-              <a href="#" aria-label="Facebook">f</a>
-              <a href="#" aria-label="X / Twitter">x</a>
-              <a href="#" aria-label="LinkedIn">in</a>
-              <a href="#" aria-label="YouTube">▶</a>
-            </div>
-          </div>
-          <div>
-            <div class="footer-heading">GET IN TOUCH</div>
-            <p>Kigali — Nyarugenge</p>
-            <p>KG 123 Maple Street, Apt 4B</p>
-            <p>Mon–Fri: 8:00 AM – 5:00 PM</p>
-            <p>Sat &amp; Sun: 12:00 PM –5:00 PM</p>
-          </div>
-          <div>
-            <div class="footer-heading">QUICK LINKS</div>
-            <ul>
-              <li><a href="about.html">About</a></li>
-              <li><a href="news.html">Blogs</a></li>
-              <li><a href="careers.html">Careers</a></li>
-              <li><a href="gallery.html">Gallery</a></li>
-            </ul>
+      <div class="footer-map-bg" aria-hidden="true"></div>
+      <div class="container footer-inner">
+        <div class="footer-col footer-col--brand">
+          <div class="footer-logo"><img src="images/logow.png" alt="Codebridge"></div>
+          <p class="footer-tagline" data-i18n="footer.tagline">We develop, secure, and deploy cutting-edge digital solutions.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="X / Twitter">X</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="YouTube">&#9654;</a>
           </div>
         </div>
-        <p style="text-align: center; font-size: 15px;">Codebridge All rights reserved 2026</p>
+        <div class="footer-col footer-col--contact">
+          <div class="footer-heading" data-i18n="footer.contact_us">Contact Us</div>
+          <div class="footer-info-row">
+            <span class="footer-info-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </span>
+            <span data-i18n="footer.address">Kigali &mdash; Nyarugenge, KG 123 Maple Street, Apt 4B</span>
+          </div>
+          <div class="footer-info-row">
+            <span class="footer-info-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            </span>
+            <div>
+              <strong data-i18n="footer.hours_label">Opening Hours:</strong>
+              <span data-i18n="footer.hours">Mon&ndash;Fri: 8:00 AM &ndash; 5:00 PM, Sat &amp; Sun: 12:00 PM &ndash; 5:00 PM</span>
+            </div>
+          </div>
+          <div class="footer-info-row">
+            <span class="footer-info-icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </span>
+            <div>
+              <strong data-i18n="footer.phone_label">Phone Call:</strong>
+              <span>+250 788 309 936</span>
+            </div>
+          </div>
+        </div>
+        <div class="footer-col footer-col--map">
+          <div class="footer-heading" data-i18n="footer.find_us">Find Us</div>
+          <div class="footer-map">
+            <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=30.0450%2C-1.9550%2C30.0790%2C-1.9330&amp;layer=mapnik&amp;marker=-1.9441%2C30.0619" title="Codebridge HQ location map" loading="lazy" aria-label="Map showing Codebridge HQ in Nyarugenge, Kigali"></iframe>
+          </div>
+        </div>
+        <div class="footer-col footer-col--links">
+          <div class="footer-heading" data-i18n="footer.quicklink">Quick Link</div>
+          <ul>
+            <li><a href="about.html"><span class="footer-chevron" aria-hidden="true">&raquo;</span><span data-i18n="nav.about">About us</span></a></li>
+            <li><a href="blog.html"><span class="footer-chevron" aria-hidden="true">&raquo;</span><span data-i18n="nav.blog">Blog</span></a></li>
+            <li><a href="services.html"><span class="footer-chevron" aria-hidden="true">&raquo;</span><span data-i18n="nav.services">Services</span></a></li>
+            <li><a href="careers.html"><span class="footer-chevron" aria-hidden="true">&raquo;</span><span data-i18n="nav.careers">Careers</span></a></li>
+          </ul>
+        </div>
       </div>
+      <p class="footer-copyright" data-i18n="footer.copyright">&copy; All rights reserved 2026 by Codebridge.</p>
     </footer>
+    <!-- END: partial Footer -->
 
-    <script src="lang-switcher.js"></script>
+    <script src="i18n.js"></script>
+<script src="lang-switcher.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>AOS.init({ duration: 700, once: true });</script>
     <script>

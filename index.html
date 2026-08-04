@@ -29,6 +29,50 @@
   object-position: center 30%;
   z-index: 0;
   display: block;
+  opacity: 0;
+  animation: hero-slideshow 20s infinite;
+}
+.home-hero-bg:nth-of-type(1) { animation-delay: 0s; }
+.home-hero-bg:nth-of-type(2) { animation-delay: 5s; }
+.home-hero-bg:nth-of-type(3) { animation-delay: 10s; }
+.home-hero-bg:nth-of-type(4) { animation-delay: 15s; }
+@keyframes hero-slideshow {
+  0%      { opacity: 0; transform: scale(1.06); }
+  4%      { opacity: 1; }
+  22%     { opacity: 1; transform: scale(1); }
+  28%     { opacity: 0; }
+  100%    { opacity: 0; }
+}
+.hero-slide-caption {
+  position: absolute;
+  left: 120px;
+  bottom: 30px;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255,255,255,0.85);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.hero-slide-caption .live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cb-red);
+  box-shadow: 0 0 0 0 rgba(238,58,47,0.6);
+  animation: live-dot-pulse 1.8s infinite;
+}
+@keyframes live-dot-pulse {
+  0%   { box-shadow: 0 0 0 0 rgba(238,58,47,0.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(238,58,47,0); }
+  100% { box-shadow: 0 0 0 0 rgba(238,58,47,0); }
+}
+@media (max-width: 680px) {
+  .hero-slide-caption { left: 24px; bottom: 20px; }
 }
 .home-hero-overlay {
   position: absolute;
@@ -341,26 +385,34 @@
      ======================================================== -->
 <div class="home-hero-wrap">
 
-  <!-- Background image -->
-  <img class="home-hero-bg" src="images/handsb.png" alt="" aria-hidden="true">
+  <!-- Background slideshow — cycles through highlights from our latest gallery event -->
+  <img class="home-hero-bg" src="images/u2.svg" alt="Code Summit '24 highlight" aria-hidden="true">
+  <img class="home-hero-bg" src="images/handsb.png" alt="Latest event highlight" aria-hidden="true">
+  <img class="home-hero-bg" src="images/globeb.png" alt="Latest event highlight" aria-hidden="true">
+  <img class="home-hero-bg" src="images/person.png" alt="Latest event highlight" aria-hidden="true">
 
   <!-- Left gradient overlay for text legibility -->
   <div class="home-hero-overlay" aria-hidden="true"></div>
 
-  <!-- Navbar — unified site-nav -->
+  <a href="gallery.html" class="hero-slide-caption">
+    <span class="live-dot" aria-hidden="true"></span>
+    <span data-i18n="hero.caption">Live from our latest event &mdash; Code Summit '24</span>
+  </a>
+
+  <!-- BEGIN: partial Header (nav) -->
   <nav class="site-nav" aria-label="Main navigation">
     <div class="site-nav-pill">
       <a href="index.html" class="site-nav-logo" aria-label="Codebridge home">
         <img src="images/logo.png" alt="Codebridge logo">
       </a>
       <div class="site-nav-links">
-        <a href="index.html" class="active">Home</a>
-        <a href="about.html">About us</a>
-        <a href="news.html">News</a>
-        <a href="services.html">Services</a>
-        <a href="careers.html">Careers</a>
-        <a href="innovations.html">Innovations</a>
-        <a href="gallery.html">Gallery</a>
+        <a href="index.html" class="active" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">About us</a>
+        <a href="services.html" data-i18n="nav.services">Services</a>
+        <a href="careers.html" data-i18n="nav.careers">Careers</a>
+        <a href="innovations.html" data-i18n="nav.innovations">Innovations</a>
+        <a href="blog.html" data-i18n="nav.blog">Blog</a>
+        <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
       </div>
       <div class="site-nav-lang-wrap">
         <button class="site-nav-lang" aria-label="Language: English" aria-expanded="false">EN</button>
@@ -372,23 +424,24 @@
       </div>
       <button class="site-nav-toggle" aria-label="Open menu">☰</button>
     </div>
-    <a href="contact.html" class="site-nav-contact">Contact us</a>
+    <a href="contact.html" class="site-nav-contact" data-i18n="nav.contact">Contact us</a>
   </nav>
+  <!-- END: partial Header -->
 
   <!-- Hero copy -->
   <div class="home-hero-content">
-    <div class="home-hero-kicker">Codebridge . Kigali . Rwanda</div>
+    <div class="home-hero-kicker" data-i18n="hero.kicker">Codebridge . Kigali . Rwanda</div>
     <h1 class="home-hero-title">
-      Bridge&nbsp; the ideas into
-      <em>digital reality</em>
+      <span data-i18n="hero.title_line1">Bridge the ideas into</span>
+      <em data-i18n="hero.title_line2">digital reality</em>
     </h1>
-    <p class="home-hero-desc">
+    <p class="home-hero-desc" data-i18n="hero.desc">
       Transform complex problems into elegant software solutions.
       We specialize in web development, AI/ML, and cybersecurity, cloud infrastructure, and digital transformation, delivering innovative solutions that ignite your business growth.
     </p>
     <div class="home-hero-actions">
-      <a href="services.html" class="home-btn-primary">Our services</a>
-      <a href="about.html" class="home-btn-secondary">Learn more</a>
+      <a href="services.html" class="home-btn-primary" data-i18n="hero.btn_primary">Our services</a>
+      <a href="about.html" class="home-btn-secondary" data-i18n="hero.btn_secondary">Learn more</a>
     </div>
   </div>
 
@@ -438,35 +491,39 @@
 
 <main class="container">
 
-  <!-- COMPANY NEWS -->
-  <section>
-    <div class="section-title" data-aos="fade-up">Our company <span class="accent">news</span></div>
-    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Rwandan youth have emerged victorious in the inaugural national Cyberlympics, a competition that is designed to encourage and elevate cybersecurity…</p>
-    <div class="news-grid">
-      <article class="news-card" data-aos="fade-up" data-aos-delay="100">
-        <div ><img src="images/handsb.png" alt=""></div>
-        <div class="news-date">Friday, June 12 2026</div>
-        <h3 class="news-title">The Future of Coding in 2025</h3>
-        <p class="news-excerpt">Exploring emerging technologies, frameworks, and best practices.</p>
-        <a href="#" class="read-more">Read more →</a>
-      </article>
-      <article class="news-card" data-aos="fade-up" data-aos-delay="200">
-        <div >
-          <img src="images/person.png" alt="">
-        </div>
-        <div class="news-date">Friday, June 12 2026</div>
-        <h3 class="news-title">The Future of Coding in 2025</h3>
-        <p class="news-excerpt">Exploring emerging technologies, frameworks, and best practices.</p>
-        <a href="#" class="read-more">Read more →</a>
-      </article>
+  <!-- ABOUT US — teaser, calls the About page onto the landing page -->
+  <section class="about-teaser" data-aos="fade-up">
+    <div class="about-teaser-copy">
+      <div class="section-eyebrow" style="text-align:left;" data-i18n="about_teaser.eyebrow">Who we are</div>
+      <h2 class="fp-heading" style="font-size:34px;"><span data-i18n="about_teaser.title_pre">Bridging Rwanda's</span> <span class="accent-navy" data-i18n="about_teaser.title_accent">digital future</span></h2>
+      <p data-i18n="about_teaser.desc">Codebridge is a tech and software company in Rwanda committed to enhancing and improving the competitiveness of our clients by enabling them to succeed through the power of information technology and security. Nine years of experience, one mission &mdash; bridge the gap between complex technology and real business needs.</p>
+      <a href="about.html" class="btn btn-navy" data-i18n="about_teaser.btn">Learn more about us &rarr;</a>
+    </div>
+    <div class="about-teaser-stats">
+      <div class="about-teaser-stat">
+        <div class="stat-num">9+</div>
+        <div class="stat-label" data-i18n="about_teaser.stat1">Years of experience</div>
+      </div>
+      <div class="about-teaser-stat">
+        <div class="stat-num">300+</div>
+        <div class="stat-label" data-i18n="about_teaser.stat2">Businesses powered</div>
+      </div>
+      <div class="about-teaser-stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-label" data-i18n="about_teaser.stat3">Enterprise clients</div>
+      </div>
+      <div class="about-teaser-stat">
+        <div class="stat-num">3</div>
+        <div class="stat-label" data-i18n="about_teaser.stat4">Markets served</div>
+      </div>
     </div>
   </section>
 
   <!-- HIGHLIGHTED SERVICES — sticky scroll stack -->
   <section class="scroll-stack-section" id="servicesSection">
     <div class="scroll-stack-header" data-aos="fade-up">
-      <div class="section-title">Highlighted <span class="accent">services</span></div>
-      <p class="section-subtitle">Comprehensive digital solutions and safety services to transform your business</p>
+      <div class="section-title"><span data-i18n="services.title_pre">Highlighted</span> <span class="accent" data-i18n="services.title_accent">services</span></div>
+      <p class="section-subtitle" data-i18n="services.sub">Comprehensive digital solutions and safety services to transform your business</p>
     </div>
 
     <div class="scroll-stack-track">
@@ -540,19 +597,79 @@
     </div><!-- /.scroll-stack-track -->
   </section>
 
+    <!-- PARTNERS — trusted institutions, slideshow strip -->
+  <section>
+    <div class="section-title" data-aos="fade-up"><span data-i18n="landing.partners_title_pre">Trusted</span> <span class="accent" data-i18n="landing.partners_title_accent">partners</span></div>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="landing.partners_sub">Working with leading institutions that drive digital transformation across Rwanda and Africa.</p>
+    <div class="partners-marquee" data-aos="fade-up" data-aos-delay="150">
+      <div class="partners-row">
+        <div><img src="images/codible.png" alt="Codible" class="code"></div>
+        <div><img src="images/irembo.png" alt="Irembo" class="code"></div>
+        <div><img src="images/qt.png" alt="QT Global" class="code"></div>
+        <div><img src="images/rdb.png" alt="RDB" class="code"></div>
+        <!-- duplicate set so the loop is seamless -->
+        <div><img src="images/codible.png" alt="Codible" class="code"></div>
+        <div><img src="images/irembo.png" alt="Irembo" class="code"></div>
+        <div><img src="images/qt.png" alt="QT Global" class="code"></div>
+        <div><img src="images/rdb.png" alt="RDB" class="code"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO / EXPERIENCE — know more about Codebridge -->
+  <section class="video-banner" data-aos="fade-up">
+    <h2><span data-i18n="landing.video_title_pre">Know more about</span> <em class="accent" style="color:#ee3a2f;" data-i18n="landing.video_title_accent">Codebridge</em></h2>
+    <div class="video-frame" data-video="images/visit.mp4">
+      <img src="images/handsb.png" alt="" class="vp-poster">
+      <button class="play-btn" aria-label="Play video">&#9654;</button>
+    </div>
+  </section>
+
+<!-- INNOVATIONS — preview, calls the Innovations page onto the landing page -->
+  <section>
+    <div class="section-title" data-aos="fade-up"><span data-i18n="landing.innov_title_pre">Our</span> <span class="accent" data-i18n="landing.innov_title_accent">innovations</span></div>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="landing.innov_sub">Innovation isn't just words at Codebridge &mdash; it's action, research and technical craft turned into real products.</p>
+    <div class="innov-preview-grid">
+      <div class="innov-preview-card" data-aos="fade-up" data-aos-delay="100">
+        <div class="innov-preview-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg>
+        </div>
+        <h4 data-i18n="innov.card1_title">Technical reels</h4>
+        <p data-i18n="innov.card1_desc">Behind-the-scenes series on the systems, data flows and UX craft that power our products.</p>
+      </div>
+      <div class="innov-preview-card" data-aos="fade-up" data-aos-delay="200">
+        <div class="innov-preview-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 12h8M12 8v8"/></svg>
+        </div>
+        <h4 data-i18n="innov.card2_title">Innovation in action</h4>
+        <p data-i18n="innov.card2_desc">We work hand-in-hand with partners to turn transformative ideas into cutting-edge, deployed technology.</p>
+      </div>
+      <div class="innov-preview-card" data-aos="fade-up" data-aos-delay="300">
+        <div class="innov-preview-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h4 data-i18n="innov.card3_title">Cyberlympics training system</h4>
+        <p data-i18n="innov.card3_desc">The competitive cybersecurity training platform that powered Rwanda's inaugural Cyberlympics.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin:-50px 0 90px;">
+      <a href="innovations.html" class="btn btn-navy" data-i18n="innov.explore_btn">Explore innovations &rarr;</a>
+    </div>
+  </section>
+
   <!-- FEATURED PROJECTS -->
   <section class="fp-section">
     <div class="fp-inner">
 
     <!-- LEFT: sticky sidebar with filters -->
     <div class="fp-sidebar" data-aos="fade-right">
-      <p class="fp-eyebrow">Our Featured</p>
-      <h2 class="fp-heading">projects</h2>
+      <p class="fp-eyebrow" data-i18n="fp.eyebrow">Our Featured</p>
+      <h2 class="fp-heading" data-i18n="fp.heading">projects</h2>
       <div class="fp-tabs" role="tablist" aria-label="Project categories">
-        <button class="fp-tab fp-tab--active" data-cat="mobile"  role="tab" aria-selected="true">Mobile</button>
-        <button class="fp-tab"                data-cat="webapp"  role="tab" aria-selected="false">Web app</button>
-        <button class="fp-tab"                data-cat="devops"  role="tab" aria-selected="false">Devops</button>
-        <button class="fp-tab"                data-cat="aiml"    role="tab" aria-selected="false">AI/ML</button>
+        <button class="fp-tab fp-tab--active" data-cat="mobile"  role="tab" aria-selected="true" data-i18n="fp.tab_mobile">Mobile</button>
+        <button class="fp-tab"                data-cat="webapp"  role="tab" aria-selected="false" data-i18n="fp.tab_webapp">Web app</button>
+        <button class="fp-tab"                data-cat="devops"  role="tab" aria-selected="false" data-i18n="fp.tab_devops">Devops</button>
+        <button class="fp-tab"                data-cat="aiml"    role="tab" aria-selected="false" data-i18n="fp.tab_aiml">AI/ML</button>
       </div>
     </div>
 
@@ -723,23 +840,25 @@
     </div><!-- /fp-inner -->
   </section>
 
-  <!-- CTA -->
-  <section class="cta-banner" >
-    <div data-aos="zoom-in">
-      <h2>Ready to get the <span class="accent" style="color:#7fdcef;">best</span> experience</h2>
-      <a href="contact.html" class="btn btn-light">Get in touch</a>
-    </div>
+    <!-- STAY AHEAD — newsletter -->
+  <section class="landing-newsletter" data-aos="zoom-in">
+    <h2 data-i18n="landing.newsletter_title">Stay ahead of the bridge.</h2>
+    <p class="sub" data-i18n="landing.newsletter_sub">Receive and be always updated about all of our projects and upcoming events.</p>
+    <form class="landing-newsletter-form" onsubmit="return false;">
+      <input type="email" placeholder="professional@email.com" aria-label="Email address" data-i18n-placeholder="landing.newsletter_placeholder">
+      <button type="submit" data-i18n="landing.newsletter_btn">Subscribe</button>
+    </form>
   </section>
 
-  <!-- TESTIMONIALS -->
+<!-- TESTIMONIALS -->
   <section class="ts-section">
     <div class="ts-inner">
 
       <div class="ts-header" data-aos="fade-up">
         <h2 class="ts-title">
-          <em>Codebridge</em> success <span class="ts-title-italic">stories</span>
+          <em>Codebridge</em> <span data-i18n="testi.title_mid">success</span> <span class="ts-title-italic" data-i18n="testi.title_accent">stories</span>
         </h2>
-        <p class="ts-subtitle">We combine engineering, research and creative thinking to turn ambitious ideas into scalable digital products.</p>
+        <p class="ts-subtitle" data-i18n="testi.sub">We combine engineering, research and creative thinking to turn ambitious ideas into scalable digital products.</p>
       </div>
 
       <div class="ts-slider" id="tsSlider">
@@ -794,44 +913,128 @@
     </div><!-- /ts-inner -->
   </section>
 
-</main>
+<!-- COMPANY NEWS / BLOG — trending highlight so the latest story pops -->
+  <section>
+    <div class="section-title" data-aos="fade-up"><span data-i18n="landing.blog_title_pre">Our company</span> <span class="accent" data-i18n="landing.blog_title_accent">blog</span></div>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="landing.blog_sub">Rwandan youth have emerged victorious in the inaugural national Cyberlympics, a competition that is designed to encourage and elevate cybersecurity&hellip;</p>
+    <div class="news-grid">
+      <article class="news-card news-card--hot" data-aos="fade-up" data-aos-delay="100">
+        <span class="trending-badge" data-i18n="cta.trending_now">Trending now</span>
+        <div ><img src="images/handsb.png" alt=""></div>
+        <div class="news-date">Friday, June 12 2026</div>
+        <h3 class="news-title" data-i18n="blog.card_title">The Future of Coding in 2025</h3>
+        <p class="news-excerpt" data-i18n="blog.card_excerpt">Exploring emerging technologies, frameworks, and best practices.</p>
+        <a href="blog.html" class="read-more" data-i18n="cta.explore_more">Explore more &rarr;</a>
+      </article>
+      <article class="news-card" data-aos="fade-up" data-aos-delay="200">
+        <div >
+          <img src="images/person.png" alt="">
+        </div>
+        <div class="news-date">Friday, June 12 2026</div>
+        <h3 class="news-title" data-i18n="blog.card_title">The Future of Coding in 2025</h3>
+        <p class="news-excerpt" data-i18n="blog.card_excerpt">Exploring emerging technologies, frameworks, and best practices.</p>
+        <a href="blog.html" class="read-more" data-i18n="cta.visit_blog">Visit the blog &rarr;</a>
+      </article>
+    </div>
+  </section>
 
-<!-- FOOTER -->
+  <!-- GALLERY — preview strip, calls the Gallery page onto the landing page -->
+  <section>
+    <div class="section-title" data-aos="fade-up"><span data-i18n="gallery_page.title_pre">Our</span> <span class="accent-navy" data-i18n="gallery_page.title_accent">gallery</span></div>
+    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100" data-i18n="landing.gallery_sub">Moments from our projects, showcases and latest event highlights.</p>
+    <div class="gallery-preview-grid">
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+        <img src="images/u2.svg" alt="">
+        <div class="g-overlay"><div class="g-tag">Global event</div><div class="g-title">Code Summit '24</div></div>
+      </div>
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="150">
+        <img src="images/person.png" alt="">
+        <div class="g-overlay"><div class="g-tag">Project case</div><div class="g-title">Neural Mesh Interface V2</div></div>
+      </div>
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+        <img src="images/globeb.png" alt="">
+        <div class="g-overlay"><div class="g-tag">Hardware lab</div><div class="g-title">Bionic Integration</div></div>
+      </div>
+      <div class="gallery-item" data-aos="fade-up" data-aos-delay="250">
+        <img src="images/handsb.png" alt="">
+        <div class="g-overlay"><div class="g-tag">Campus life</div><div class="g-title">Innovation Commons</div></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:-60px;margin-bottom:90px;">
+      <a href="gallery.html" class="btn btn-navy" data-i18n="cta.view_gallery">View full gallery &rarr;</a>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-banner" >
+    <div data-aos="zoom-in">
+      <h2><span data-i18n="cta_banner.title_pre">Ready to get the</span> <span class="accent" style="color:#7fdcef;" data-i18n="cta_banner.title_accent">best</span> <span data-i18n="cta_banner.title_post">experience</span></h2>
+      <a href="contact.html" class="btn btn-light" data-i18n="cta_banner.btn">Get in touch</a>
+    </div>
+  </section>
+
+  </main>
+
+<!-- BEGIN: partial Footer -->
 <footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo"><img src="images/logow.png" alt="Codebridge" style="width:44px;height:44px;object-fit:contain;"></div>
-        <p class="footer-tagline">We create comprehensive digital solutions</p>
-        <div class="footer-social">
-          <a href="#" aria-label="Facebook">f</a>
-          <a href="#" aria-label="X / Twitter">X</a>
-          <a href="#" aria-label="LinkedIn">in</a>
-          <a href="#" aria-label="YouTube">▶</a>
+  <div class="footer-map-bg" aria-hidden="true"></div>
+  <div class="container footer-inner">
+    <div class="footer-col footer-col--brand">
+      <div class="footer-logo"><img src="images/logow.png" alt="Codebridge"></div>
+      <p class="footer-tagline" data-i18n="footer.tagline">We develop, secure, and deploy cutting-edge digital solutions.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook">f</a>
+        <a href="#" aria-label="X / Twitter">X</a>
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="#" aria-label="YouTube">&#9654;</a>
+      </div>
+    </div>
+    <div class="footer-col footer-col--contact">
+      <div class="footer-heading" data-i18n="footer.contact_us">Contact Us</div>
+      <div class="footer-info-row">
+        <span class="footer-info-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </span>
+        <span data-i18n="footer.address">Kigali &mdash; Nyarugenge, KG 123 Maple Street, Apt 4B</span>
+      </div>
+      <div class="footer-info-row">
+        <span class="footer-info-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        </span>
+        <div>
+          <strong data-i18n="footer.hours_label">Opening Hours:</strong>
+          <span data-i18n="footer.hours">Mon&ndash;Fri: 8:00 AM &ndash; 5:00 PM, Sat &amp; Sun: 12:00 PM &ndash; 5:00 PM</span>
         </div>
       </div>
-      <div>
-        <div class="footer-heading">GET IN TOUCH</div>
-        <p>Kigali — Nyarugenge</p>
-        <p>KG 123 Maple Street, Apt 4B</p>
-        <p>Mon–Fri: 8:00 AM – 5:00 PM</p>
-        <p>Sat &amp; Sun: 12:00 PM –5:00 PM</p>
+      <div class="footer-info-row">
+        <span class="footer-info-icon" aria-hidden="true">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </span>
+        <div>
+          <strong data-i18n="footer.phone_label">Phone Call:</strong>
+          <span>+250 788 309 936</span>
+        </div>
       </div>
-      <div>
-        <div class="footer-heading">QUICK LINKS</div>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="news.html">Blogs</a></li>
-          <li><a href="careers.html">Careers</a></li>
-          <li><a href="gallery.html">Gallery</a></li>
-        </ul>
-      </div>
-    
     </div>
-     
+    <div class="footer-col footer-col--map">
+      <div class="footer-heading" data-i18n="footer.find_us">Find Us</div>
+      <div class="footer-map">
+        <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=30.0450%2C-1.9550%2C30.0790%2C-1.9330&amp;layer=mapnik&amp;marker=-1.9441%2C30.0619" title="Codebridge HQ location map" loading="lazy" aria-label="Map showing Codebridge HQ in Nyarugenge, Kigali"></iframe>
+      </div>
+    </div>
+    <div class="footer-col footer-col--links">
+      <div class="footer-heading" data-i18n="footer.quicklink">Quick Link</div>
+      <ul>
+        <li><a href="about.html"><span class="footer-chevron" aria-hidden="true">&raquo;</span><span data-i18n="nav.about">About us</span></a></li>
+        <li><a href="blog.html"><span class="footer-chevron" aria-hidden="true">&raquo;</span><span data-i18n="nav.blog">Blog</span></a></li>
+        <li><a href="services.html"><span class="footer-chevron" aria-hidden="true">&raquo;</span><span data-i18n="nav.services">Services</span></a></li>
+        <li><a href="careers.html"><span class="footer-chevron" aria-hidden="true">&raquo;</span><span data-i18n="nav.careers">Careers</span></a></li>
+      </ul>
+    </div>
   </div>
-   <p style="text-align: center; font-size: 15px;">Codebridge All rights reserved 2026</p>
+  <p class="footer-copyright" data-i18n="footer.copyright">&copy; All rights reserved 2026 by Codebridge.</p>
 </footer>
+<!-- END: partial Footer -->
 
 <script>
 /* ============================================================
@@ -1058,6 +1261,72 @@
   });
 })();
 </script>
+<script>
+/* ============================================================
+   "Know more about Codebridge" video — click poster to play
+   ============================================================ */
+document.querySelectorAll(".video-frame").forEach((frame) => {
+  frame.addEventListener("click", () => {
+    const videoSrc = frame.dataset.video;
+    if (!videoSrc) return;
+    const video = document.createElement("video");
+    video.src = videoSrc;
+    video.controls = true;
+    video.autoplay = true;
+    video.style.cssText = "position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:10;";
+    frame.innerHTML = "";
+    frame.appendChild(video);
+  });
+});
+</script>
+<script>
+/* ============================================================
+   Stats — count up from 0 when scrolled into view
+   ============================================================ */
+(function () {
+  const statEls = document.querySelectorAll('.stat-num');
+  if (!statEls.length) return;
+
+  const stats = Array.from(statEls).map((el) => {
+    const text = el.textContent.trim();
+    const match = text.match(/^(\d+)(.*)$/);
+    return { el, target: match ? parseInt(match[1], 10) : 0, suffix: match ? match[2] : '' };
+  });
+
+  function animateStats() {
+    stats.forEach(({ el, target, suffix }) => {
+      const duration = 1400;
+      const start = performance.now();
+      function tick(now) {
+        const progress = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        el.textContent = Math.round(eased * target) + suffix;
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
+  const statsContainer = document.querySelector('.about-teaser-stats');
+  if (!statsContainer) return;
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateStats();
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    observer.observe(statsContainer);
+  } else {
+    animateStats();
+  }
+})();
+</script>
+ <script src="i18n.js"></script>
+<script src="lang-switcher.js"></script>
  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({ duration: 700, once: true });
