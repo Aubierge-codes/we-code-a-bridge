@@ -3245,6 +3245,7 @@ main.container {
 }
 .gallery-item {
   position: relative;
+  display: block;
   border-radius: 18px;
   overflow: hidden;
   aspect-ratio: 4/3;
@@ -3253,6 +3254,8 @@ main.container {
     #232345,
     #0d0d22
   ); /* fallback while no img loads */
+  color: inherit;
+  text-decoration: none;
 }
 
 .gallery-item img {
