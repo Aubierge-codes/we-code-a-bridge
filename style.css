@@ -1309,8 +1309,8 @@ select:focus-visible {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  background: var(--cb-white);
-  color: var(--cb-navy);
+  background: var(--cb-red);
+  color: var(--cb-white);
   border-radius: 999px;
   padding: 14px 28px;
   font-size: 14px;
@@ -1321,15 +1321,15 @@ select:focus-visible {
     background 0.2s,
     transform 0.2s,
     box-shadow 0.2s;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px rgba(238, 58, 47, 0.35);
 }
 .ssc-btn span {
   transition: transform 0.2s;
 }
 .ssc-btn:hover {
-  background: #f0f2fc;
+  background: var(--cb-red-dark);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.26);
+  box-shadow: 0 8px 24px rgba(238, 58, 47, 0.45);
 }
 .ssc-btn:hover span {
   transform: translateX(4px);
@@ -1754,7 +1754,7 @@ scroll-margin-top: 100px;
    CTA banner — full-bleed with navy noise grain
    ========================================================================== */
 .cta-banner {
-  background: var(--cb-navy);
+  background: linear-gradient(120deg, var(--cb-red-dark) 0%, var(--cb-red) 100%);
   width: 100vw;
   position: relative;
   left: 50%;
@@ -1773,7 +1773,7 @@ scroll-margin-top: 100px;
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  background: rgba(100, 120, 200, 0.28);
+  background: rgba(255, 255, 255, 0.18);
   pointer-events: none;
   z-index: 1;
 }
@@ -2270,13 +2270,35 @@ scroll-margin-top: 100px;
   display: block;
   filter: grayscale(0.3) brightness(0.95) contrast(1.05);
 }
-.footer-copyright {
+.footer-bottom {
   position: relative;
   z-index: 1;
-  text-align: center;
-  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
   padding: 20px 0 40px;
   border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+.footer-copyright {
+  font-size: 14px;
+  margin: 0;
+}
+.footer-privacy-link {
+  font-size: 14px;
+  color: var(--cb-text-on-navy);
+  transition: color 0.2s;
+}
+.footer-privacy-link:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+@media (max-width: 500px) {
+  .footer-bottom {
+    justify-content: center;
+    text-align: center;
+  }
 }
 @media (max-width: 860px) {
   .footer-inner {
@@ -2739,6 +2761,49 @@ margin-top: 20px;
   animation-play-state: paused;
 }
 
+.partners-row .partner-logo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  opacity: 0.85;
+  filter: grayscale(0.1);
+  transition: opacity 0.2s ease, filter 0.2s ease;
+}
+.partner-logo-item:hover {
+  opacity: 1;
+  filter: grayscale(0);
+}
+.partner-logo-item img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
+.partner-logo-item .plogo-icon {
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 10px;
+}
+.partner-logo-item .plogo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+.partner-logo-item .plogo-name {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--cb-text);
+  white-space: nowrap;
+}
+.partner-logo-item .plogo-sub {
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--cb-text-muted);
+  white-space: nowrap;
+}
+
 @keyframes partners-scroll {
   from {
     transform: translateX(0);
@@ -2938,6 +3003,21 @@ margin-top: 20px;
 /* Team */
 .team-member {
   margin-bottom: 50px;
+}
+/* Leadership team — two members shown side by side, on one line */
+.team-leadership-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+}
+.team-leadership-row .team-member-row {
+  grid-template-columns: 130px 1fr;
+  gap: 22px;
+}
+@media (max-width: 860px) {
+  .team-leadership-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 .team-member-row {
@@ -3994,4 +4074,309 @@ main.container {
 @keyframes blog-ticker-scroll {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
+}
+
+/* ==========================================================================
+   Legal / Privacy Policy page
+   ========================================================================== */
+.legal-protected {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.legal-notice {
+  background: var(--cb-bg-soft);
+  border: 1px solid var(--cb-border);
+  border-radius: var(--radius-card);
+  padding: 18px 22px;
+  font-size: 13.5px;
+  color: var(--cb-text-muted);
+  margin: 0 0 40px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+.legal-notice svg {
+  flex-shrink: 0;
+  margin-top: 2px;
+  color: var(--cb-red);
+}
+.legal-content {
+  max-width: 780px;
+  margin: 0 auto 100px;
+  line-height: 1.75;
+  color: var(--cb-text);
+}
+.legal-content h2 {
+  font-size: 22px;
+  margin: 46px 0 14px;
+  color: var(--cb-navy);
+}
+.legal-content h2:first-child {
+  margin-top: 0;
+}
+.legal-content h3 {
+  font-size: 17px;
+  margin: 30px 0 10px;
+  color: var(--cb-text);
+}
+.legal-content p {
+  margin: 0 0 16px;
+  color: var(--cb-text-muted);
+  font-size: 15.5px;
+}
+.legal-content ul {
+  margin: 0 0 16px;
+  padding-left: 22px;
+  list-style: disc;
+}
+.legal-content li {
+  margin-bottom: 8px;
+  color: var(--cb-text-muted);
+  font-size: 15.5px;
+}
+.legal-content strong {
+  color: var(--cb-text);
+}
+.legal-updated {
+  color: var(--cb-text-muted);
+  font-size: 14px;
+  font-style: italic;
+  margin-bottom: 40px;
+}
+@media print {
+  .legal-protected {
+    display: none !important;
+  }
+  body::before {
+    content: "Printing of this page is disabled.";
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    padding: 100px 20px;
+  }
+}
+
+/* ==========================================================================
+   Partner cards — org name, tag, link (no logo assets needed)
+   ========================================================================== */
+.partners-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 90px;
+}
+.partner-card {
+  background: var(--cb-white);
+  border: 1px solid var(--cb-border);
+  border-radius: var(--radius-card);
+  padding: 28px 26px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.partner-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+  border-color: var(--cb-navy);
+}
+.partner-card-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #eef0fa;
+  color: var(--cb-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+.partner-card h4 {
+  font-size: 16px;
+  margin: 0 0 6px;
+}
+.partner-card p {
+  font-size: 13.5px;
+  color: var(--cb-text-muted);
+  margin: 0 0 14px;
+  line-height: 1.55;
+}
+.partner-card a {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--cb-navy);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.partner-card a:hover {
+  color: var(--cb-red);
+}
+/* Dark variant for use on navy sections (e.g. landing page) */
+.partner-card--dark {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+.partner-card--dark h4 {
+  color: var(--cb-white);
+}
+.partner-card--dark p {
+  color: rgba(255, 255, 255, 0.65);
+}
+.partner-card--dark .partner-card-icon {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--cb-white);
+}
+.partner-card--dark a {
+  color: var(--cb-white);
+}
+.partner-card--dark a:hover {
+  color: #7fdcef;
+}
+@media (max-width: 860px) {
+  .partners-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Team — split into Leadership / Technical groups
+   ========================================================================== */
+.team-group-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 70px 0 36px;
+}
+.team-group-heading:first-of-type {
+  margin-top: 20px;
+}
+.team-group-eyebrow {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--cb-navy);
+}
+.team-group-line {
+  flex: 1;
+  height: 1px;
+  background: var(--cb-border);
+}
+
+/* ==========================================================================
+   Services — sliding carousel (arrow controlled)
+   ========================================================================== */
+.svc-carousel {
+  position: relative;
+  margin-bottom: 90px;
+}
+.svc-carousel-track {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 6px 6px 20px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.svc-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+.svc-slide {
+  scroll-snap-align: start;
+  flex: 0 0 300px;
+  background: var(--cb-white);
+  border: 1px solid var(--cb-border);
+  border-radius: var(--radius-card);
+  padding: 32px 26px;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+.svc-slide:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 44px rgba(20, 20, 58, 0.16);
+  border-color: var(--cb-red);
+}
+.svc-slide-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: #eef0fa;
+  color: var(--cb-navy);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.svc-slide h4 {
+  font-size: 17px;
+  margin: 0 0 10px;
+}
+.svc-slide p {
+  font-size: 14px;
+  color: var(--cb-text-muted);
+  line-height: 1.6;
+  margin: 0 0 18px;
+}
+.svc-slide a {
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--cb-red);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.svc-carousel-arrows {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+.svc-arrow {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--cb-navy);
+  color: var(--cb-white);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.svc-arrow:hover {
+  background: var(--cb-red);
+  transform: translateY(-2px);
+}
+@media (max-width: 600px) {
+  .svc-slide {
+    flex-basis: 260px;
+  }
+}
+
+/* Bluish/navy variant — used for the "Who we are / Vision / Mission" carousel */
+.svc-slide--navy {
+  background: linear-gradient(150deg, #22246e 0%, #171a4d 100%);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+.svc-slide--navy:hover {
+  border-color: #7fdcef;
+  box-shadow: 0 20px 44px rgba(20, 20, 58, 0.35);
+}
+.svc-slide--navy .svc-slide-icon {
+  background: rgba(127, 220, 239, 0.14);
+  color: #7fdcef;
+}
+.svc-slide--navy h4 {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.svc-slide--navy p {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14.5px;
 }
