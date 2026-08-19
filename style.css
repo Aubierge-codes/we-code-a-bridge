@@ -379,6 +379,120 @@ body.home-page .site-nav.is-scrolled .site-nav-toggle {
   }
 }
 
+/* ==========================================================================
+   Nav dropdown submenus (About us, Services, Careers, Innovations)
+   ========================================================================== */
+.nav-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.nav-item-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.nav-item-caret {
+  display: none;
+  background: none;
+  border: none;
+  padding: 4px;
+  margin-left: 2px;
+  color: inherit;
+  cursor: pointer;
+  line-height: 0;
+}
+.nav-item-caret svg {
+  transition: transform 0.2s ease;
+}
+
+.nav-dropdown {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: 0;
+  min-width: 210px;
+  background: var(--cb-white);
+  border: 1px solid var(--cb-border);
+  border-radius: 14px;
+  box-shadow: 0 16px 36px rgba(17, 24, 39, 0.14);
+  padding: 8px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s ease;
+  z-index: 30;
+}
+.nav-dropdown a {
+  display: block;
+  padding: 9px 12px;
+  border-radius: 9px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--cb-text) !important;
+  white-space: nowrap;
+}
+.nav-dropdown a:hover {
+  background: var(--cb-bg-soft);
+  color: var(--cb-navy) !important;
+}
+
+/* Desktop: hover (or keyboard focus) reveals the dropdown */
+@media (min-width: 1121px) {
+  .nav-item:hover .nav-dropdown,
+  .nav-item:focus-within .nav-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  .nav-item:hover .nav-item-caret svg,
+  .nav-item:focus-within .nav-item-caret svg {
+    transform: rotate(180deg);
+  }
+}
+
+/* Mobile: nav collapses into the hamburger panel — dropdowns become
+   tap-to-expand accordions instead of hovers. */
+@media (max-width: 1120px) {
+  .nav-item {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .nav-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .nav-item-caret {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .nav-dropdown {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    border: none;
+    box-shadow: none;
+    padding: 0 0 0 14px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.22s ease;
+  }
+  .nav-dropdown a {
+    color: var(--cb-text) !important;
+    padding: 8px 12px;
+  }
+  .nav-item.open .nav-dropdown {
+    max-height: 260px;
+  }
+  .nav-item.open .nav-item-caret svg {
+    transform: rotate(180deg);
+  }
+}
+
 /* Push content below the fixed nav on all pages */
 body {
   padding-top: 84px;
